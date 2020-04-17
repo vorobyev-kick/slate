@@ -19,11 +19,8 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the External API.
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](https://github.com/slatedocs/slate). Feel free to edit it and use it as a base for your own API's documentation.
 
 # Authentication
 
@@ -65,58 +62,73 @@ Kittn expects for the API key to be included in all API requests to the server i
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
 
-# Kittens
+# Market
+This section covers methods that provide data regarding available currencies and currency pairs and rates.
+<aside class="notice">
+You don't need to authorize to use methods from <b>Market</b> section.
+</aside>
 
-## Get All Kittens
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+## Pairs
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+curl "http://example.com/api/v1/market/pairs?type=market"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
+{
+	"pairId": 111111111,
+	"pairName": "BTC/USDT",
+	"baseCurrency": "BTC",
+	"quoteCurrencу": "USDT",
+	"baseMinSIze": "0.0001",
+	"quoteMinSize": "0.0001",
+	"priceDecimal": 12,
+	"amountDecimal": 8,
+	"feeTaker": "0.15",
+	"feeMaker": "0.15",
+	"isFrozen": 0
+}
 ```
 
-This endpoint retrieves all kittens.
+### HTTP Request
+
+`GET https://example.com/api/v1/market/pairs?type=market`
+
+### URL Parameters
+
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+type | string | Yes | Currently the only valid value is 'market'
+
+### Response Parameters
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+pairId | integer | Yes | Currency pair identifier 
+pairName | string | Yes | Currency pair name *(ex: BTC/USDT)*
+baseCurrency | string | Yes | Base currency name *(ex: BTC)*
+quoteCurrencу | string | Yes | Quotes currency name *(ex: USDT)*
+baseMinSIze | string | Yes | Minimum amount of base currency for order creation
+quoteMinSize | string | Yes | Minimum amount of quote currency for order creation
+priceDecimal | Number | Yes | Price fraction digits 
+amountDecimal | Number | Yes | Amount fraction digits
+feeTaker | string | Yes | Taker fee (percentage of transaction amount)
+feeMaker | string | Yes | Maker fee (percentage of transaction amount)
+isFrozen | integer | Yes | Attribute showing if trading on this currency pair is frozen or not: <br/>0 – trading is available <br/>1 – traiding is unavailable
+
+## Ticker
+
+## All Tickers
+
+## 24hrs stats
+
+## Orderbook
+
+## Trade history
+
+## Currencies
 
 ### HTTP Request
 
