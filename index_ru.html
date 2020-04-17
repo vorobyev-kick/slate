@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Ex API Reference</title>
+    <title>Описание внешнего API</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -201,7 +201,7 @@
       <script src="javascripts/all-c5541673.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index_ru" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -222,7 +222,7 @@
         <ul class="search-results"></ul>
       <ul id="toc" class="toc-list-h1">
           <li>
-            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+            <a href="#1e4dc60201" class="toc-h1 toc-link" data-title="Ведение">Ведение</a>
           </li>
           <li>
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
@@ -251,31 +251,28 @@
                   <li>
                     <a href="#trade-history" class="toc-h2 toc-link" data-title="Trade history">Trade history</a>
                   </li>
-                  <li>
-                    <a href="#currencies" class="toc-h2 toc-link" data-title="Currencies">Currencies</a>
-                  </li>
               </ul>
           </li>
           <li>
             <a href="#trade" class="toc-h1 toc-link" data-title="Trade">Trade</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#place-order" class="toc-h2 toc-link" data-title="Place Order">Place Order</a>
+                    <a href="#place-order" class="toc-h2 toc-link" data-title="place order">place order</a>
                   </li>
                   <li>
-                    <a href="#cancel-order" class="toc-h2 toc-link" data-title="Cancel Order">Cancel Order</a>
+                    <a href="#cancel-order" class="toc-h2 toc-link" data-title="cancel order">cancel order</a>
                   </li>
                   <li>
-                    <a href="#cancel-all-orders" class="toc-h2 toc-link" data-title="Cancel All Orders">Cancel All Orders</a>
+                    <a href="#cancel-all-orders" class="toc-h2 toc-link" data-title="cancel all orders">cancel all orders</a>
                   </li>
                   <li>
-                    <a href="#active-orders-list" class="toc-h2 toc-link" data-title="Active Orders List">Active Orders List</a>
+                    <a href="#active-orders-list" class="toc-h2 toc-link" data-title="active orders list">active orders list</a>
                   </li>
                   <li>
-                    <a href="#orders-list" class="toc-h2 toc-link" data-title="Orders List">Orders List</a>
+                    <a href="#orders-list" class="toc-h2 toc-link" data-title="orders list">orders list</a>
                   </li>
                   <li>
-                    <a href="#trade-list" class="toc-h2 toc-link" data-title="Trade List">Trade List</a>
+                    <a href="#trade-list" class="toc-h2 toc-link" data-title="trade list">trade list</a>
                   </li>
               </ul>
           </li>
@@ -283,22 +280,22 @@
             <a href="#user" class="toc-h1 toc-link" data-title="User">User</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#user-info" class="toc-h2 toc-link" data-title="User Info">User Info</a>
+                    <a href="#userinfo" class="toc-h2 toc-link" data-title="userinfo">userinfo</a>
                   </li>
                   <li>
-                    <a href="#balance" class="toc-h2 toc-link" data-title="Balance">Balance</a>
+                    <a href="#balance" class="toc-h2 toc-link" data-title="balance">balance</a>
                   </li>
                   <li>
-                    <a href="#deposit-address" class="toc-h2 toc-link" data-title="Deposit Address">Deposit Address</a>
+                    <a href="#depositaddress" class="toc-h2 toc-link" data-title="depositaddress">depositaddress</a>
                   </li>
                   <li>
-                    <a href="#deposit-history" class="toc-h2 toc-link" data-title="Deposit History">Deposit History</a>
+                    <a href="#deposit-history" class="toc-h2 toc-link" data-title="deposit history">deposit history</a>
                   </li>
                   <li>
-                    <a href="#withdraw" class="toc-h2 toc-link" data-title="Withdraw">Withdraw</a>
+                    <a href="#withdraw" class="toc-h2 toc-link" data-title="withdraw">withdraw</a>
                   </li>
                   <li>
-                    <a href="#withdraw-history" class="toc-h2 toc-link" data-title="Withdraw History">Withdraw History</a>
+                    <a href="#withdrawhistory" class="toc-h2 toc-link" data-title="withdrawhistory">withdrawhistory</a>
                   </li>
                   <li>
                     <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Get a Specific Kitten">Get a Specific Kitten</a>
@@ -315,14 +312,14 @@
         <ul class="toc-footer">
             <li><a href='#'>Sign Up for a Developer Key</a></li>
             <li><a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a></li>
-            <li><a href='index_ru.html'>Описание API на русском языке</a></li>
+            <li><a href='index.html'>API documentation in English</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the External API.</p>
+        <h1 id='1e4dc60201'>Ведение</h1>
+<p>API для внешней интеграции</p>
 <h1 id='authentication'>Authentication</h1>
 <blockquote>
 <p>To authorize, use this code:</p>
@@ -354,17 +351,16 @@ curl <span class="s2">"api_endpoint_here"</span>
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
 <h1 id='market'>Market</h1>
-<p>This section covers methods that provide data regarding available currencies and currency pairs and rates.
+<p>Данный раздел описывает набор методов, передающих информацию о парах и криптовалютах на платформе.
 <aside class="notice">
-You don&#39;t need to authorize to use methods from <b>Market</b> section.
+Методы раздела <b>Market</b> доступны без авторизации.
 </aside></p>
 <h2 id='pairs'>Pairs</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/market/pairs?type=market"</span>
 </code></pre>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>Команда выше вернёт структуру следующего вида:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"pairId"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
     </span><span class="s2">"pairName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USDT"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"baseCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"quoteCurrencу"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
@@ -376,107 +372,100 @@ You don&#39;t need to authorize to use methods from <b>Market</b> section.
     </span><span class="s2">"feeMaker"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.15"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"isFrozen"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-request'>HTTP Request</h3>
+</span></code></pre><h3 id='http'>HTTP Запрос</h3>
 <p><code>GET https://example.com/api/v1/market/pairs?type=market</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
+<h3 id='url'>Параметры URL</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
+<th>Параметр</th>
+<th>Тип</th>
+<th>Обязательный</th>
+<th>Описание</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>type</td>
 <td>string</td>
-<td>Yes</td>
-<td>Currently the only valid value is &#39;market&#39;</td>
+<td>Да</td>
+<td>Единственное корректное значение - &#39;market&#39;</td>
 </tr>
 </tbody></table>
-<h3 id='response-parameters'>Response Parameters</h3>
+<h3 id='1300eba048'>Параметры ответа</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
+<th>Параметр</th>
+<th>Тип</th>
+<th>Обязательный</th>
+<th>Описание</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>pairId</td>
-<td>integer</td>
-<td>Yes</td>
-<td>Currency pair unique identifier</td>
-</tr>
-<tr>
 <td>pairName</td>
 <td>string</td>
-<td>Yes</td>
-<td>Currency pair name <em>(ex: BTC/USDT)</em></td>
+<td>Да</td>
+<td>наименование криптовалютной пары <em>(пример: BTC/USDT)</em></td>
 </tr>
 <tr>
 <td>baseCurrency</td>
 <td>string</td>
-<td>Yes</td>
-<td>Base currency name <em>(ex: BTC)</em></td>
+<td>Да</td>
+<td>наименование базовой криптовалюты <em>(пример: BTC)</em></td>
 </tr>
 <tr>
 <td>quoteCurrencу</td>
 <td>string</td>
-<td>Yes</td>
-<td>Quotes currency name <em>(ex: USDT)</em></td>
+<td>Да</td>
+<td>наименование котируемой криптовалюты <em>(пример: USDT)</em></td>
 </tr>
 <tr>
 <td>baseMinSIze</td>
 <td>string</td>
-<td>Yes</td>
-<td>Minimum amount of base currency for order creation</td>
+<td>Да</td>
+<td>минимальное кол-во базовой криптовалюты для выставления ордера</td>
 </tr>
 <tr>
 <td>quoteMinSize</td>
 <td>string</td>
-<td>Yes</td>
-<td>Minimum amount of quote currency for order creation</td>
+<td>Да</td>
+<td>минимальное количество котируемой криптовалюты для выставления ордера</td>
 </tr>
 <tr>
 <td>priceDecimal</td>
 <td>Number</td>
-<td>Yes</td>
-<td>Price fraction digits</td>
+<td>Да</td>
+<td>максимальное количество знаков после точки для пары при указании цены</td>
 </tr>
 <tr>
 <td>amountDecimal</td>
 <td>Number</td>
-<td>Yes</td>
-<td>Amount fraction digits</td>
+<td>Да</td>
+<td>максимальное количество знаков после точки для пары при указании количества</td>
 </tr>
 <tr>
 <td>feeTaker</td>
 <td>string</td>
-<td>Yes</td>
-<td>Taker fee (percentage of transaction amount)</td>
+<td>Да</td>
+<td>комиссия тэйкера (процент от суммы сделки)</td>
 </tr>
 <tr>
 <td>feeMaker</td>
 <td>string</td>
-<td>Yes</td>
-<td>Maker fee (percentage of transaction amount)</td>
+<td>Да</td>
+<td>комиссия мэйкера (процент от суммы сделки)</td>
 </tr>
 <tr>
 <td>isFrozen</td>
 <td>integer</td>
-<td>Yes</td>
-<td>Attribute showing if trading on this currency pair is frozen or not: <br/>0 – trading is available <br/>1 – traiding is unavailable</td>
+<td>Да</td>
+<td>Индикатор, показывающий, доступна ли торговля по паре (0 – доступна) 1 – не доступна</td>
 </tr>
 </tbody></table>
 <h2 id='ticker'>Ticker</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/market/ticker?pairName=BTC/USDT"</span>
 </code></pre>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>Команда выше вернёт структуру следующего вида:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"pairId"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
     </span><span class="s2">"pairName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USDT"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"bestBid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"bestAsk"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
@@ -486,96 +475,90 @@ You don&#39;t need to authorize to use methods from <b>Market</b> section.
     </span><span class="s2">"bestBidSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
     </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.15"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-request-2'>HTTP Request</h3>
+</span></code></pre><h3 id='http-2'>HTTP Запрос</h3>
 <p><code>GET https://example.com/api/v1/market/ticker?pairName=BTC/USDT</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
+<h3 id='url-2'>Параметры URL</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
+<th>Параметр</th>
+<th>Тип</th>
+<th>Обязательный</th>
+<th>Описание</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>pairName</td>
 <td>string</td>
-<td>Yes</td>
-<td>Currency pair name <em>(ex: BTC/USDT)</em></td>
+<td>Да</td>
+<td>Имя криптовалютной пары <em>(пример: BTC/USDT)</em></td>
 </tr>
 </tbody></table>
-<h3 id='response-parameters-2'>Response Parameters</h3>
+<h3 id='1300eba048-2'>Параметры ответа</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
+<th>Параметр</th>
+<th>Тип</th>
+<th>Обязательный</th>
+<th>Описание</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>pairId</td>
-<td>integer</td>
-<td>Yes</td>
-<td>Currency pair unique identifier</td>
-</tr>
-<tr>
 <td>pairName</td>
 <td>string</td>
-<td>Yes</td>
-<td>Currency pair name <em>(ex: BTC/USDT)</em></td>
+<td>Да</td>
+<td>Наименование криптовалютной пары <em>(пример: BTC/USDT)</em></td>
 </tr>
 <tr>
 <td>bestBid</td>
 <td>string</td>
-<td>Yes</td>
-<td>Best bid</td>
+<td>Да</td>
+<td>Лучший бид</td>
 </tr>
 <tr>
 <td>bestAsk</td>
 <td>string</td>
-<td>Yes</td>
-<td>Best ask</td>
+<td>Да</td>
+<td>Лучший аск</td>
 </tr>
 <tr>
 <td>lastPrice</td>
 <td>string</td>
-<td>Yes</td>
-<td>Last deal price</td>
+<td>Да</td>
+<td>Последняя цена сделки</td>
 </tr>
 <tr>
 <td>lastVolume</td>
 <td>string</td>
-<td>Yes</td>
-<td>Last deal volume</td>
+<td>Да</td>
+<td>Последний объем сделки</td>
 </tr>
 <tr>
 <td>bestAskSize</td>
 <td>string</td>
-<td>Yes</td>
-<td>Amount of currency in best ask</td>
+<td>Да</td>
+<td>Количество криптовалюты по цене лучшего аска</td>
 </tr>
 <tr>
 <td>bestBidSize</td>
 <td>string</td>
-<td>Yes</td>
-<td>Amount of currency in best bid</td>
+<td>Да</td>
+<td>Количество криптовалюты по цене лучшего бида</td>
 </tr>
 <tr>
 <td>time</td>
 <td>timestamp</td>
-<td>Yes</td>
-<td>Timestamp (milliseconds)</td>
+<td>Да</td>
+<td>Время, на которое получены данные (в миллисекундах)</td>
 </tr>
 </tbody></table>
 <h2 id='all-tickers'>All Tickers</h2>
-<p><strong>Description not finalized.</strong></p>
+<p><strong>Описание ещё не завершено</strong></p>
 <h2 id='24hrs-stats'>24hrs stats</h2>
-<p>The method provides statistics on a currency pair during the last 24 hours.</p>
+<p>Метод возвращает данные по криптовалютной паре за последние 24 часа.</p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/market/stats24?pairName=BTC/USDT"</span>
 </code></pre>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>Команда выше вернёт структуру следующего вида:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"pairName"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
@@ -591,112 +574,112 @@ You don&#39;t need to authorize to use methods from <b>Market</b> section.
     </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USDT"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"changeRate?"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-request-3'>HTTP Request</h3>
+</span></code></pre><h3 id='http-3'>HTTP Запрос</h3>
 <p><code>GET https://example.com/api/v1/market/stats24?pairName=BTC/USDT</code></p>
-<h3 id='url-parameters-3'>URL Parameters</h3>
+<h3 id='url-3'>Параметры URL</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
+<th>Параметр</th>
+<th>Тип</th>
+<th>Обязательный</th>
+<th>Описание</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>pairName</td>
 <td>string</td>
-<td>Yes</td>
-<td>Currency pair name <em>(ex: BTC/USDT)</em></td>
+<td>Да</td>
+<td>Имя криптовалютной пары <em>(пример: BTC/USDT)</em></td>
 </tr>
 </tbody></table>
-<h3 id='response-parameters-3'>Response Parameters</h3>
+<h3 id='1300eba048-3'>Параметры ответа</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
+<th>Параметр</th>
+<th>Тип</th>
+<th>Обязательный</th>
+<th>Описание</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>pairName</td>
 <td>string</td>
-<td>Yes</td>
-<td>Currency pair name <em>(ex: BTC/USDT)</em></td>
+<td>Да</td>
+<td>наименование криптовалютной пары (В формате BTC/USDT)</td>
 </tr>
 <tr>
 <td>high24</td>
 <td>string</td>
-<td>Yes</td>
-<td>Maximum price during last 24 hours</td>
+<td>Да</td>
+<td>Наивысшая цена за 24 часа</td>
 </tr>
 <tr>
 <td>low24</td>
 <td>string</td>
-<td>Yes</td>
-<td>Minimum price during last 24 hours</td>
+<td>Да</td>
+<td>наименьшая цена за 24 чкаса</td>
 </tr>
 <tr>
 <td>amountVol</td>
 <td>string</td>
-<td>Yes</td>
-<td>Aggregated deals volume during last 24 hours</td>
+<td>Да</td>
+<td>Количество криптовалюты, задействованной в сделках за 24 часа</td>
 </tr>
 <tr>
 <td>baseVol</td>
 <td>string</td>
-<td>Yes</td>
-<td>Aggregated deals volume during last 24 hours in base currency</td>
+<td>Да</td>
+<td>Объем торгов за 24 часа выраженный в базовой криптовалюте</td>
 </tr>
 <tr>
 <td>lastPrice</td>
 <td>string</td>
-<td>Yes</td>
-<td>Last deal price</td>
+<td>Да</td>
+<td>последняя цена сделки в паре</td>
 </tr>
 <tr>
 <td>bestBid</td>
 <td>string</td>
-<td>Yes</td>
-<td>Best bid price</td>
+<td>Да</td>
+<td>лучшая цена на покупку</td>
 </tr>
 <tr>
 <td>bestAsk</td>
 <td>string</td>
-<td>Yes</td>
-<td>Best ask price</td>
+<td>Да</td>
+<td>лучшая цена на продажу</td>
 </tr>
 <tr>
 <td>averagePrice</td>
 <td>string</td>
-<td>Yes</td>
-<td>Average price during last 24 hours</td>
+<td>Да</td>
+<td>средняя цена в сделках за 24 часа</td>
 </tr>
 <tr>
 <td>priceChange</td>
 <td>string</td>
-<td>Yes</td>
-<td>Price change during last 24 hours</td>
+<td>Да</td>
+<td>Изменение цены за 24 часа</td>
 </tr>
 <tr>
 <td>time</td>
 <td>timestamp</td>
-<td>Yes</td>
-<td>Timestamp</td>
+<td>Да</td>
+<td>Время, на которое действительна полученная информация в миллисекундах</td>
 </tr>
 <tr>
 <td>changeRate?</td>
 <td>string</td>
-<td>Yes</td>
+<td>Да</td>
 <td></td>
 </tr>
 </tbody></table>
 <h2 id='currency'>Currency</h2>
-<p>The method provides data regarding specified currency. If <em>currency</em> parameter is not provided, returns data regarding all available currencies.</p>
+<p>В случае, если параметр в запросе не отправлен, предоставляется информация по всем криптовалютам платформы.</p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/currencies?currency=ETH"</span>
 </code></pre>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>Команда выше вернёт структуру следующего вида:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"currencyCode"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
@@ -710,131 +693,131 @@ You don&#39;t need to authorize to use methods from <b>Market</b> section.
     </span><span class="s2">"isExchangeEnable"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
     </span><span class="s2">"isFrozen"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-request-4'>HTTP Request</h3>
+</span></code></pre><h3 id='http-4'>HTTP Запрос</h3>
 <p><code>GET https://example.com/api/v1/currencies?currency=ETH</code></p>
-<h3 id='url-parameters-4'>URL Parameters</h3>
+<h3 id='url-4'>Параметры URL</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
+<th>Параметр</th>
+<th>Тип</th>
+<th>Обязательный</th>
+<th>Описание</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>currency</td>
 <td>string</td>
-<td>Yes</td>
-<td>Currency short name <em>(ex: BTC)</em></td>
+<td>Нет</td>
+<td>Краткое наименование криптовалюты (токена) <em>(пример: BTC)</em></td>
 </tr>
 </tbody></table>
-<h3 id='response-parameters-4'>Response Parameters</h3>
+<h3 id='1300eba048-4'>Параметры ответа</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
+<th>Параметр</th>
+<th>Тип</th>
+<th>Обязательный</th>
+<th>Описание</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>currencyCode</td>
 <td>string</td>
 <td>?</td>
-<td>Currency short name</td>
+<td>краткое наименование криптовалюты по ISO4217</td>
 </tr>
 <tr>
 <td>currencyName</td>
 <td>string</td>
-<td>Yes</td>
-<td>Currency short name</td>
+<td>Да</td>
+<td>краткое наименование криптовалюты</td>
 </tr>
 <tr>
 <td>fullName</td>
 <td>string</td>
-<td>Yes</td>
-<td>Currency full name</td>
+<td>Да</td>
+<td>полное наименование криптовалюты</td>
 </tr>
 <tr>
 <td>decimal</td>
 <td>number</td>
-<td>Yes</td>
-<td>Currency fraction digits</td>
+<td>Да</td>
+<td>Количество знаков после точки для этой криптовалюты</td>
 </tr>
 <tr>
 <td>minWithdawal</td>
 <td>string</td>
 <td>?</td>
-<td>Minimum withdrawal amount</td>
+<td>минимальное количество криптовалюты, которое разрешено выводить с платформы</td>
 </tr>
 <tr>
 <td>minFeeWithrawal?</td>
 <td>string</td>
 <td>?</td>
-<td>Minimum withdrawal fee</td>
+<td>минимальный размер комиссии взимаемый за вывод средств</td>
 </tr>
 <tr>
 <td>isWithdrawEnable</td>
 <td>integer</td>
 <td>?</td>
-<td>Is withdrawal available?</td>
+<td>Индикатор, показывающий, доступен ли вывод (0 – доступен) 1 – не доступен</td>
 </tr>
 <tr>
 <td>isDepositEnable</td>
 <td>integer</td>
 <td>?</td>
-<td>Is deposit available?</td>
+<td>Индикатор, показывающий, доступно ли пополнение (0 – доступно) 1 – не доступно</td>
 </tr>
 <tr>
 <td>isExchangeEnable</td>
 <td>integer</td>
 <td>?</td>
-<td>Is exhange available?</td>
+<td>Индикатор, показывающий, доступен ли обмен на платформе этой криптовалюты (0 – доступно) 1 – не доступно</td>
 </tr>
 <tr>
 <td>isFrozen</td>
 <td>integer</td>
 <td>?</td>
-<td>Is frozen?</td>
+<td>Индикатор, показывающий, доступна ли торговля этой криптовалюты на бирже (0 – доступна) 1 – не доступна</td>
 </tr>
 </tbody></table>
-<h2 id='orderbook'>Orderbook</h2><h2 id='trade-history'>Trade history</h2><h2 id='currencies'>Currencies</h2><h1 id='trade'>Trade</h1>
-<p>This section covers methods that operate with exchange orders.</p>
+<h2 id='orderbook'>Orderbook</h2><h2 id='trade-history'>Trade history</h2><h1 id='trade'>Trade</h1>
+<p>Набор методов для выставления ордеров и получения информации об ордерах.</p>
 
 <aside class="warning">
-Authorization is needed to use these methods.
+Для использования данных методов требуется авторизация.
 </aside>
-<h2 id='place-order'>Place Order</h2>
+<h2 id='place-order'>place order</h2>
 <p>установка ордера</p>
-<h2 id='cancel-order'>Cancel Order</h2>
+<h2 id='cancel-order'>cancel order</h2>
 <p>отмена ордера</p>
-<h2 id='cancel-all-orders'>Cancel All Orders</h2>
+<h2 id='cancel-all-orders'>cancel all orders</h2>
 <p>отмена группы ордеров или всех ордеров</p>
-<h2 id='active-orders-list'>Active Orders List</h2>
+<h2 id='active-orders-list'>active orders list</h2>
 <p>получение информации об активных ордерах</p>
-<h2 id='orders-list'>Orders List</h2>
+<h2 id='orders-list'>orders list</h2>
 <p>получение информации о завершенных ордерах</p>
-<h2 id='trade-list'>Trade List</h2>
+<h2 id='trade-list'>trade list</h2>
 <p>получение информации об истории сделок Пользователя</p>
 <h1 id='user'>User</h1>
-<p>набор методов информации о Пользователе и его аккаунте на криптовалютной бирже (требуется авторизация)</p>
+<p>набор методов информации о Пользователе и его аккаунте на криптовалютной бирже </p>
 
 <aside class="warning">
-Authorization is needed to use these methods.
+Для использования данных методов требуется авторизация.
 </aside>
-<h2 id='user-info'>User Info</h2>
+<h2 id='userinfo'>userinfo</h2>
 <p>информация об аккаунте</p>
-<h2 id='balance'>Balance</h2>
+<h2 id='balance'>balance</h2>
 <p>информация о балансе Пользователя;</p>
-<h2 id='deposit-address'>Deposit Address</h2>
+<h2 id='depositaddress'>depositaddress</h2>
 <p>получение адреса для Пополнения</p>
-<h2 id='deposit-history'>Deposit History</h2>
+<h2 id='deposit-history'>deposit history</h2>
 <p>история пополнений</p>
-<h2 id='withdraw'>Withdraw</h2>
+<h2 id='withdraw'>withdraw</h2>
 <p>осуществление вывода средств;</p>
-<h2 id='withdraw-history'>Withdraw History</h2>
+<h2 id='withdrawhistory'>withdrawhistory</h2>
 <p>история вывода средств;</p>
-<h3 id='http-request-5'>HTTP Request</h3>
+<h3 id='http-request'>HTTP Request</h3>
 <p><code>GET http://example.com/api/kittens</code></p>
 <h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
@@ -888,9 +871,9 @@ Remember — a happy kitten is an authenticated kitten!
 <p>This endpoint retrieves a specific kitten.</p>
 
 <aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-<h3 id='http-request-6'>HTTP Request</h3>
+<h3 id='http-request-2'>HTTP Request</h3>
 <p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-5'>URL Parameters</h3>
+<h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -927,9 +910,9 @@ Remember — a happy kitten is an authenticated kitten!
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-7'>HTTP Request</h3>
+<h3 id='http-request-3'>HTTP Request</h3>
 <p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-6'>URL Parameters</h3>
+<h3 id='url-parameters-2'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
