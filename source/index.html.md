@@ -10,6 +10,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
   - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
+  - <a href='index_ru.html'>Описание API на русском языке</a>
 
 includes:
   - errors
@@ -106,7 +107,7 @@ type | string | Yes | Currently the only valid value is 'market'
 ### Response Parameters
 Parameter | Type | Required | Description
 --------- | ----------- | ----------- | -----------
-pairId | integer | Yes | Currency pair identifier 
+pairId | integer | Yes | Currency pair unique identifier 
 pairName | string | Yes | Currency pair name *(ex: BTC/USDT)*
 baseCurrency | string | Yes | Base currency name *(ex: BTC)*
 quoteCurrencу | string | Yes | Quotes currency name *(ex: USDT)*
@@ -120,15 +121,225 @@ isFrozen | integer | Yes | Attribute showing if trading on this currency pair is
 
 ## Ticker
 
+```shell
+curl "http://example.com/api/v1/market/ticker?pairName=BTC/USDT"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+	"pairId": 111111111,
+	"pairName": "BTC/USDT",
+	"bestBid": "BTC",
+	"bestAsk": "USDT",
+	"lastPrice": "0.0001",
+	"lastVolume": "0.0001",
+	"bestAskSize": 12,
+	"bestBidSize": 8,
+	"time": "0.15"
+}
+```
+
+### HTTP Request
+
+`GET https://example.com/api/v1/market/ticker?pairName=BTC/USDT`
+
+### URL Parameters
+
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+pairName | string | Yes | Currency pair name *(ex: BTC/USDT)*
+
+### Response Parameters
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+pairId | integer | Yes | Currency pair unique identifier 
+pairName | string | Yes | Currency pair name *(ex: BTC/USDT)*
+bestBid | string | Yes | Best bid
+bestAsk | string | Yes | Best ask
+lastPrice | string | Yes | Last deal price
+lastVolume | string | Yes | Last deal volume
+bestAskSize | string | Yes | Amount of currency in best ask
+bestBidSize | string | Yes | Amount of currency in best bid
+time | timestamp | Yes | Timestamp (milliseconds)
+
 ## All Tickers
 
+**Description not finalized.**
+
 ## 24hrs stats
+
+The method provides statistics on a currency pair during the last 24 hours.
+
+```shell
+curl "http://example.com/api/v1/market/stats24?pairName=BTC/USDT"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+	"pairName": 111111111,
+	"high24": "BTC/USDT",
+	"low24": "BTC",
+	"amountVol": "USDT",
+	"baseVol": "0.0001",
+	"lastPrice": "0.0001",
+	"bestBid": 12,
+	"bestAsk": 8,
+	"averagePrice": "0.15",
+	"priceChange": 111111111,
+	"time": "BTC/USDT",
+	"changeRate?": "BTC"
+}
+```
+
+### HTTP Request
+
+`GET https://example.com/api/v1/market/stats24?pairName=BTC/USDT`
+
+### URL Parameters
+
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+pairName | string | Yes | Currency pair name *(ex: BTC/USDT)*
+
+### Response Parameters
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+pairName | string | Yes | Currency pair name *(ex: BTC/USDT)*
+high24 | string | Yes | Maximum price during last 24 hours
+low24 | string | Yes | Minimum price during last 24 hours
+amountVol | string | Yes | Aggregated deals volume during last 24 hours
+baseVol | string | Yes | Aggregated deals volume during last 24 hours in base currency
+lastPrice | string | Yes | Last deal price
+bestBid | string | Yes | Best bid price
+bestAsk | string | Yes | Best ask price
+averagePrice | string | Yes | Average price during last 24 hours
+priceChange | string | Yes | Price change during last 24 hours
+time | timestamp | Yes | Timestamp
+changeRate? | string | Yes | 
+
+## Currency
+
+The method provides data regarding specified currency. If *currency* parameter is not provided, returns data regarding all available currencies.
+
+```shell
+curl "http://example.com/api/v1/currencies?currency=ETH"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+	"currencyCode": 111111111,
+	"currencyName": 111111111,
+	"fullName": 111111111,
+	"decimal": 111111111,
+	"minWithdawal": 111111111,
+	"minFeeWithrawal?": 111111111,
+	"isWithdrawEnable": 111111111,
+	"isDepositEnable": 111111111,
+	"isExchangeEnable": 111111111,
+	"isFrozen": 111111111
+}
+```
+
+### HTTP Request
+
+`GET https://example.com/api/v1/currencies?currency=ETH`
+
+### URL Parameters
+
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+currency | string | Yes | Currency short name *(ex: BTC)*
+
+### Response Parameters
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+currencyCode | string | ? | Currency short name
+currencyName | string | Yes | Currency short name
+fullName | string | Yes | Currency full name
+decimal | number | Yes | Currency fraction digits
+minWithdawal | string | ? | Minimum withdrawal amount
+minFeeWithrawal? | string | ? | Minimum withdrawal fee
+isWithdrawEnable | integer | ? | Is withdrawal available?
+isDepositEnable | integer | ? | Is deposit available?
+isExchangeEnable | integer | ? | Is exhange available?
+isFrozen | integer | ? | Is frozen?
 
 ## Orderbook
 
 ## Trade history
 
 ## Currencies
+
+# Trade 
+
+This section covers methods that operate with exchange orders.
+
+<aside class="warning">
+Authorization is needed to use these methods.
+</aside>
+
+## Place Order 
+
+установка ордера
+
+## Cancel Order 
+
+отмена ордера
+
+## Cancel All Orders
+
+отмена группы ордеров или всех ордеров
+
+## Active Orders List 
+
+получение информации об активных ордерах
+
+## Orders List 
+
+получение информации о завершенных ордерах
+
+## Trade List 
+
+получение информации об истории сделок Пользователя
+
+# User 
+
+набор методов информации о Пользователе и его аккаунте на криптовалютной бирже (требуется авторизация)
+
+<aside class="warning">
+Authorization is needed to use these methods.
+</aside>
+
+
+## User Info 
+
+информация об аккаунте
+
+## Balance
+
+информация о балансе Пользователя;
+
+## Deposit Address 
+
+получение адреса для Пополнения
+
+## Deposit History 
+
+история пополнений
+
+## Withdraw 
+
+осуществление вывода средств;
+
+## Withdraw History 
+
+история вывода средств;
 
 ### HTTP Request
 
