@@ -80,7 +80,6 @@ curl "http://example.com/api/v1/market/pairs?type=market"
 
 ```json
 {
-	"pairId": 111111111,
 	"pairName": "BTC/USDT",
 	"baseCurrency": "BTC",
 	"quoteCurrencу": "USDT",
@@ -107,7 +106,6 @@ type | string | Yes | Currently the only valid value is 'market'
 ### Response Parameters
 Parameter | Type | Required | Description
 --------- | ----------- | ----------- | -----------
-pairId | integer | Yes | Currency pair unique identifier 
 pairName | string | Yes | Currency pair name *(ex: BTC/USDT)*
 baseCurrency | string | Yes | Base currency name *(ex: BTC)*
 quoteCurrencу | string | Yes | Quotes currency name *(ex: USDT)*
@@ -153,8 +151,7 @@ pairName | string | Yes | Currency pair name *(ex: BTC/USDT)*
 
 ### Response Parameters
 Parameter | Type | Required | Description
---------- | ----------- | ----------- | -----------
-pairId | integer | Yes | Currency pair unique identifier 
+--------- | ----------- | ----------- | ----------- 
 pairName | string | Yes | Currency pair name *(ex: BTC/USDT)*
 bestBid | string | Yes | Best bid
 bestAsk | string | Yes | Best ask
@@ -270,11 +267,54 @@ isDepositEnable | integer | ? | Is deposit available?
 isExchangeEnable | integer | ? | Is exhange available?
 isFrozen | integer | ? | Is frozen?
 
+## Trades
+
+This method returns deals history during last 24 hours.
+
+```shell
+curl "http://example.com/api/v1/market/trades?pairName=BTC/USDT&type=buy"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+	"tradeId": 111111111,
+	"price": 111111111,
+	"baseVol": 111111111,
+	"quoteVol": 111111111,
+	"timestamp": 111111111,
+	"type": 111111111
+}
+```
+
+### HTTP Request
+
+`GET https://example.com/api/v1/market/trades?pairName=BTC/USDT&type=buy`
+
+### URL Parameters
+
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+pairName | string | Да | наименование криптовалютной пары (В формате BTC/USDT)
+type | string | Нет | Принимает значения buy или sell, если параметр не передается передаем и то и другое
+
+### Response Parameters
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+tradeId | Integer | Yes | Trade unique identifier
+price | string | Yes | Trade price
+baseVol | string | Yes | Base currency volume
+quoteVol | string | Yes | Quotes currency volume
+timestamp | timestamp | Yes | Trade timestamp
+type | string | Yes | Trade type: <br/>buy - means that an ask position was removed from the exchange order book; <br/>sell - means that a bid position was removed from the exchange order book.
+
 ## Orderbook
+
+
 
 ## Trade history
 
-## Currencies
 
 # Trade 
 
@@ -310,7 +350,7 @@ Authorization is needed to use these methods.
 
 # User 
 
-набор методов информации о Пользователе и его аккаунте на криптовалютной бирже (требуется авторизация)
+This section covers methods getting information regarding user and his or her account on the Exchange.
 
 <aside class="warning">
 Authorization is needed to use these methods.
@@ -319,27 +359,223 @@ Authorization is needed to use these methods.
 
 ## User Info 
 
-информация об аккаунте
+Main user data.
+
+```shell
+curl "http://example.com/api/v1/userInfo"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+	"userId": 111111111,
+	"userName": 111111111,
+	"platformName": 111111111,
+	"comment": 111111111,
+	"restrictions": 111111111
+}
+```
+
+### HTTP Request
+
+`GET https://example.com/api/v1/userInfo`
+
+### URL Parameters
+
+*None.*
+
+### Response Parameters
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+userId | integer | Yes | User identifier
+userName | string | No | User nickname
+platformName | string | Yes | KickEX
+comment | string | No | Human-readable (?) comment that may contain restrictions applied to using API by the user.
+restrictions | integer | Yes | Attribute showing if trading is blocked for the user (0 - available, 1 - blocked)
 
 ## Balance
 
-информация о балансе Пользователя;
+User balance data.
+
+```shell
+curl "http://example.com/api/v1/user/balance"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+	"currencyName": 111111111,
+	"balance": 111111111,
+	"available": 111111111,
+	"inOrders": 111111111,
+	"accountType": 111111111
+}
+```
+
+### HTTP Request
+
+`GET https://example.com/api/v1/user/balance`
+
+### URL Parameters
+
+*None.*
+
+### Response Parameters
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+currencyName | string | Yes | Currency short name
+balance | string | Yes | Total balance
+available | string | Yes | Balance available for withdrawal
+inOrders | string | Yes | Reserved balance
+accountType | string | Yes | Account type:<br/> 2401 - ordinary account <br/> 2411 - Ecosystem account
 
 ## Deposit Address 
 
-получение адреса для Пополнения
+Method for getting personal deposit address.
+
+```shell
+curl "http://example.com/api/v1/depositAddresses"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+	"currencyName": 111111111,
+	"balance": 111111111,
+	"available": 111111111,
+	"inOrders": 111111111,
+	"accountType": 111111111
+}
+```
+
+### HTTP Request
+
+`GET https://example.com/api/v1/depositAddresses`
+
+### URL Parameters
+
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+currencyName | string | Yes | Currency short name
+chain | string | No | Blockchain short name: ERC20/OMNI/TRC20 (required for cryptocurrencies available in several blockchains)
+
+### Response Parameters
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+currencyName | string | Yes | Currency short name
+chain | string | No | Blockchain short name (required for cryptocurrencies available in several blockchains)
+memo | string | No | Required for XRP
+address | string | Yes | Address in specified blockchain
 
 ## Deposit History 
 
-история пополнений
+This method provides deposit history.
+
+```shell
+curl "http://example.com/api/v1/depositHistory"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+	"currencyName": 111111111,
+	"balance": 111111111,
+	"available": 111111111,
+	"inOrders": 111111111,
+	"accountType": 111111111
+}
+```
+
+### HTTP Request
+
+`GET https://example.com/api/v1/depositHistory`
+
+### URL Parameters
+
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+сurrencyName | string | No | Currency short name
+startTime | timestamp | No | Start time of the report
+endTime | timestamp | No | End time of the report
+status | string | No | Deposit status filtering (failure/success/processing)
+
+### Response Parameters
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+address | string | Yes | Deposit address
+amount | string | Yes | Deposit amount
+fee | string | Yes | Deposit commission (if any)
+currencyName | string | Yes | Currency short name
+memo | string | No | Memo or tag (if present)
+walletTxId | string | Yes | Transaction hash
+status | string | Yes | Transaction status (failure/success/processing)
+createdAt | timestamp | Yes | Database record creation timestamp
+updatedAt | timestamp | Yes | Database record update timestamp
+comment | string | No | Comment (if any)
 
 ## Withdraw 
 
-осуществление вывода средств;
+Method for withdrawal request creation.
 
 ## Withdraw History 
 
-история вывода средств;
+Method to get withdrawal history.
+
+```shell
+curl "http://example.com/api/v1/withdrawalHistory"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+	"transactionId": 111111111,
+	"address": 111111111,
+	"amount": 111111111,
+	"fee": 111111111,
+	"currencyName": 111111111,
+	"memo": 111111111,
+	"walletTxId": 111111111,
+	"status": 111111111,
+	"createdAt": 111111111,
+	"updatedAt": 111111111,
+	"comment": 111111111,
+	"chain": 111111111
+}
+```
+
+### HTTP Request
+
+`GET https://example.com/api/v1/withdrawalHistory`
+
+### URL Parameters
+
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+сurrencyName | string | No | Currency short name
+startTime | timestamp | No | Start time of the report
+endTime | timestamp | No | End time of the report
+status | string | No | Withdrawal status filtering (failure/success/processing/wallet_processing)
+
+### Response Parameters
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+transactionId | string | Yes | Unique identifier of withdrawal transaction
+address | string | Yes | Withdrawal address
+amount | string | Yes | Withdrawal amount
+fee | string | Yes | Withdrawal commission
+currencyName | string | Yes | Currency short name
+memo | string | No | Memo or tag (if any)
+walletTxId | string | Yes | Transaction hash
+status | string | Yes | Transaction status (failure/success/processing)
+createdAt | timestamp | Yes | Database record creation timestamp
+updatedAt | timestamp | Yes | Database record update timestamp
+comment | string | No | Comment (if any)
+chain | string | No | Blockchain short name (required for cryptocurrencies available in several blockchains)
 
 ### HTTP Request
 
