@@ -472,17 +472,85 @@ This section covers methods that operate with exchange orders.
 Authorization is needed to use these methods.
 </aside>
 
+## Cancel Order 
+
+Exchange order cancellation method.
+
+**???**
+```shell
+curl "http://example.com/api/v1/status"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+	"cancelledOrderId": 111111111,
+	"comment": 111111111
+}
+```
+
+### HTTP Request
+
+`DELETE https://example.com/api/v1/orders/{orderId}`
+
+### URL Parameters
+
+*None.*
+
+
+### Response Parameters
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+cancelledOrderId | string | Yes | Cancelled exchange order identifier
+comment | string | No | Contains result: order cancelled or error
+
+## Cancel All Orders
+
+Method used to cancel a group of orders or all the open orders.
+
+
+**???**
+```shell
+curl "http://example.com/api/v1/status"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+
+}
+```
+
+### HTTP Request
+
+`DELETE https://example.com/api/v1/orders?pairName=BTC/USDT&orderType=STOP`
+
+### URL Parameters
+
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+pairName | string | No | Currency pair name *(ex: KICK/ETH)*
+orderType | string | No | Type of the orders to cancel (stop/limit/all), missing order type is treated as "all".
+
+
+### Response Parameters
+
+**???** Should here be an object array?
+
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+cancelledOrderId | string | Yes | Cancelled exchange order identifier
+comment | string | No | Contains result: order cancelled or error
+
 ## Place Order 
 
 установка ордера
 
-## Cancel Order 
 
-отмена ордера
 
-## Cancel All Orders
 
-отмена группы ордеров или всех ордеров
 
 ## Active Orders List 
 
