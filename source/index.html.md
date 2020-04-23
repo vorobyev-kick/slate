@@ -401,6 +401,69 @@ lowPrice | string | Yes | Lowest price
 transactionVolume | string | Yes | Trades volume within the candle
 transactionAmount | string | Yes | Trades number within the candle
 
+## Status
+
+```shell
+curl "http://example.com/api/v1/status"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+	"code": 111111111,
+	"status": 111111111,
+	"message": 111111111
+}
+```
+
+### HTTP Request
+
+`GET https://example.com/api/v1/status`
+
+### URL Parameters
+
+*None.*
+
+### Response Parameters
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+code | integer | Yes | Response code (200 for OK)
+status | string | Yes | *open*/*close*
+message | string | Yes | Text describing reasons for current status.
+
+## Server time
+
+```shell
+curl "http://example.com/api/v1/serverTime"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+	"code": 111111111,
+	"message": 111111111,
+	"time": 111111111
+}
+```
+
+### HTTP Request
+
+`GET https://example.com/api/v1/serverTime`
+
+### URL Parameters
+
+*None.*
+
+### Response Parameters
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+code | integer | Yes | Response code (200 for OK)
+message | string | Yes | *success*/*error*
+time | timestamp | Yes | Current server time (in milliseconds)
+
+
 # Trade 
 
 This section covers methods that operate with exchange orders.
