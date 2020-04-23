@@ -246,10 +246,7 @@
                     <a href="#currency" class="toc-h2 toc-link" data-title="Currency">Currency</a>
                   </li>
                   <li>
-                    <a href="#orderbook" class="toc-h2 toc-link" data-title="Orderbook">Orderbook</a>
-                  </li>
-                  <li>
-                    <a href="#trade-history" class="toc-h2 toc-link" data-title="Trade history">Trade history</a>
+                    <a href="#trades" class="toc-h2 toc-link" data-title="Trades">Trades</a>
                   </li>
               </ul>
           </li>
@@ -274,6 +271,12 @@
                   <li>
                     <a href="#trade-list" class="toc-h2 toc-link" data-title="trade list">trade list</a>
                   </li>
+                  <li>
+                    <a href="#orderbook" class="toc-h2 toc-link" data-title="Orderbook">Orderbook</a>
+                  </li>
+                  <li>
+                    <a href="#trade-history" class="toc-h2 toc-link" data-title="Trade history">Trade history</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -292,7 +295,7 @@
                     <a href="#deposit-history" class="toc-h2 toc-link" data-title="deposit history">deposit history</a>
                   </li>
                   <li>
-                    <a href="#withdraw" class="toc-h2 toc-link" data-title="withdraw">withdraw</a>
+                    <a href="#withdraw" class="toc-h2 toc-link" data-title="Withdraw">Withdraw</a>
                   </li>
                   <li>
                     <a href="#withdrawhistory" class="toc-h2 toc-link" data-title="withdrawhistory">withdrawhistory</a>
@@ -457,7 +460,7 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <td>isFrozen</td>
 <td>integer</td>
 <td>Да</td>
-<td>Индикатор, показывающий, доступна ли торговля по паре (0 – доступна) 1 – не доступна</td>
+<td>Индикатор, показывающий, доступна ли торговля по паре (0 – доступна, 1 – недоступна)</td>
 </tr>
 </tbody></table>
 <h2 id='ticker'>Ticker</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/market/ticker?pairName=BTC/USDT"</span>
@@ -760,28 +763,113 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <td>isWithdrawEnable</td>
 <td>integer</td>
 <td>?</td>
-<td>Индикатор, показывающий, доступен ли вывод (0 – доступен) 1 – не доступен</td>
+<td>Индикатор, показывающий, доступен ли вывод (0 – доступен, 1 – недоступен)</td>
 </tr>
 <tr>
 <td>isDepositEnable</td>
 <td>integer</td>
 <td>?</td>
-<td>Индикатор, показывающий, доступно ли пополнение (0 – доступно) 1 – не доступно</td>
+<td>Индикатор, показывающий, доступно ли пополнение (0 – доступно, 1 – недоступно)</td>
 </tr>
 <tr>
 <td>isExchangeEnable</td>
 <td>integer</td>
 <td>?</td>
-<td>Индикатор, показывающий, доступен ли обмен на платформе этой криптовалюты (0 – доступно) 1 – не доступно</td>
+<td>Индикатор, показывающий, доступен ли обмен на платформе этой криптовалюты (0 – доступно, 1 – недоступно)</td>
 </tr>
 <tr>
 <td>isFrozen</td>
 <td>integer</td>
 <td>?</td>
-<td>Индикатор, показывающий, доступна ли торговля этой криптовалюты на бирже (0 – доступна) 1 – не доступна</td>
+<td>Индикатор, показывающий, доступна ли торговля этой криптовалюты на бирже (0 – доступна, 1 – недоступна)</td>
 </tr>
 </tbody></table>
-<h2 id='orderbook'>Orderbook</h2><h2 id='trade-history'>Trade history</h2><h1 id='trade'>Trade</h1>
+<h2 id='trades'>Trades</h2>
+<p>Запрос истории сделок по конкретной паре за последние 24 часа.</p>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/market/trades?pairName=BTC/USDT&amp;type=buy"</span>
+</code></pre>
+<blockquote>
+<p>Команда выше вернёт структуру следующего вида:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"tradeId"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"baseVol"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"quoteVol"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-5'>HTTP Запрос</h3>
+<p><code>GET https://example.com/api/v1/market/trades?pairName=BTC/USDT&amp;type=buy</code></p>
+<h3 id='url-5'>Параметры URL</h3>
+<table><thead>
+<tr>
+<th>Параметр</th>
+<th>Тип</th>
+<th>Обязательный</th>
+<th>Описание</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pairName</td>
+<td>string</td>
+<td>Да</td>
+<td>наименование криптовалютной пары (В формате BTC/USDT)</td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>Нет</td>
+<td>Принимает значения buy или sell, если параметр не передается передаем и то и другое</td>
+</tr>
+</tbody></table>
+<h3 id='1300eba048-5'>Параметры ответа</h3>
+<table><thead>
+<tr>
+<th>Параметр</th>
+<th>Тип</th>
+<th>Обязательный</th>
+<th>Описание</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>tradeId</td>
+<td>Integer</td>
+<td>Да</td>
+<td>Уникальный идентификатор сделки</td>
+</tr>
+<tr>
+<td>price</td>
+<td>string</td>
+<td>Да</td>
+<td>Цена сделки</td>
+</tr>
+<tr>
+<td>baseVol</td>
+<td>string</td>
+<td>Да</td>
+<td>Количество базовой криптовалюты, задействованное в сделке</td>
+</tr>
+<tr>
+<td>quoteVol</td>
+<td>string</td>
+<td>Да</td>
+<td>Количество котируемой криптовалюты, задействованное в сделке</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>timestamp</td>
+<td>Да</td>
+<td>время совершения сделки в мс</td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>Да</td>
+<td>Тип сделки покупка/продажа. <br/>Покупка говорит о том, что после выполнения сделки в стакане убралась позиция на аск. <br/>Продажа- убралась из стакана позиция на бид.</td>
+</tr>
+</tbody></table>
+<h1 id='trade'>Trade</h1>
 <p>Набор методов для выставления ордеров и получения информации об ордерах.</p>
 
 <aside class="warning">
@@ -799,24 +887,461 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <p>получение информации о завершенных ордерах</p>
 <h2 id='trade-list'>trade list</h2>
 <p>получение информации об истории сделок Пользователя</p>
-<h1 id='user'>User</h1>
-<p>набор методов информации о Пользователе и его аккаунте на криптовалютной бирже </p>
+<h2 id='orderbook'>Orderbook</h2><h2 id='trade-history'>Trade history</h2><h1 id='user'>User</h1>
+<p>Набор методов для получения информации о пользователе и его аккаунте на бирже </p>
 
 <aside class="warning">
 Для использования данных методов требуется авторизация.
 </aside>
 <h2 id='userinfo'>userinfo</h2>
-<p>информация об аккаунте</p>
+<p>Основные данные о пользователе.</p>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/userInfo"</span>
+</code></pre>
+<blockquote>
+<p>Команда выше вернёт структуру следующего вида:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"userName"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"platformName"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"comment"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"restrictions"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-6'>HTTP Запрос</h3>
+<p><code>GET https://example.com/api/v1/userInfo</code></p>
+<h3 id='url-6'>Параметры URL</h3>
+<p><em>Отсутствуют.</em></p>
+<h3 id='1300eba048-6'>Параметры ответа</h3>
+<table><thead>
+<tr>
+<th>Параметр</th>
+<th>Тип</th>
+<th>Обязательный</th>
+<th>Описание</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>userId</td>
+<td>integer</td>
+<td>Да</td>
+<td>идентификатор Пользователя</td>
+</tr>
+<tr>
+<td>userName</td>
+<td>string</td>
+<td>Нет</td>
+<td>слаг Пользователя</td>
+</tr>
+<tr>
+<td>platformName</td>
+<td>string</td>
+<td>Да</td>
+<td>KickEX</td>
+</tr>
+<tr>
+<td>comment</td>
+<td>string</td>
+<td>Нет</td>
+<td>Комментарий, может содержать информацию, касательно ограничений на действия с АПИ Пользоватем</td>
+</tr>
+<tr>
+<td>restrictions</td>
+<td>integer</td>
+<td>Да</td>
+<td>Индикатор, показывающий, доступна ли торговля Пользователю (0 – доступна) 1 – не доступна</td>
+</tr>
+</tbody></table>
 <h2 id='balance'>balance</h2>
-<p>информация о балансе Пользователя;</p>
+<p>Информация о балансе пользователя;</p>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/user/balance"</span>
+</code></pre>
+<blockquote>
+<p>Команда выше вернёт структуру следующего вида:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"currencyName"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"inOrders"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-7'>HTTP Запрос</h3>
+<p><code>GET https://example.com/api/v1/user/balance</code></p>
+<h3 id='url-7'>Параметры URL</h3>
+<p><em>Отсутствуют.</em></p>
+<h3 id='1300eba048-7'>Параметры ответа</h3>
+<table><thead>
+<tr>
+<th>Параметр</th>
+<th>Тип</th>
+<th>Обязательный</th>
+<th>Описание</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>currencyName</td>
+<td>string</td>
+<td>Да</td>
+<td>наименование криптовалюты краткое</td>
+</tr>
+<tr>
+<td>balance</td>
+<td>string</td>
+<td>Да</td>
+<td>количество средств (тотал)</td>
+</tr>
+<tr>
+<td>available</td>
+<td>string</td>
+<td>Да</td>
+<td>количество средств, доступных для вывода или торговли</td>
+</tr>
+<tr>
+<td>inOrders</td>
+<td>string</td>
+<td>Да</td>
+<td>количество зарезервированных средств</td>
+</tr>
+<tr>
+<td>accountType</td>
+<td>string</td>
+<td>Да</td>
+<td>номер счета <br/>2401 - основной счет <br/>2411 - экосистемный счет в валюте брокера</td>
+</tr>
+</tbody></table>
 <h2 id='depositaddress'>depositaddress</h2>
-<p>получение адреса для Пополнения</p>
+<p>Метод получения персонального адреса для пополнения.</p>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/depositAddresses"</span>
+</code></pre>
+<blockquote>
+<p>Команда выше вернёт структуру следующего вида:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"currencyName"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"inOrders"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-8'>HTTP Запрос</h3>
+<p><code>GET https://example.com/api/v1/depositAddresses</code></p>
+<h3 id='url-8'>Параметры URL</h3>
+<table><thead>
+<tr>
+<th>Параметр</th>
+<th>Тип</th>
+<th>Обязательный</th>
+<th>Описание</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>currencyName</td>
+<td>string</td>
+<td>Да</td>
+<td>Наименование криптовалюты</td>
+</tr>
+<tr>
+<td>chain</td>
+<td>string</td>
+<td>Нет</td>
+<td>ERC20/OMNI/TRC20 какой выберем по дефолту для USDT?</td>
+</tr>
+</tbody></table>
+<h3 id='1300eba048-8'>Параметры ответа</h3>
+<table><thead>
+<tr>
+<th>Параметр</th>
+<th>Тип</th>
+<th>Обязательный</th>
+<th>Описание</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>currencyName</td>
+<td>string</td>
+<td>Да</td>
+<td>Наименование криптовалюты</td>
+</tr>
+<tr>
+<td>chain</td>
+<td>string</td>
+<td>Нет</td>
+<td>ERC20/OMNI/TRC20</td>
+</tr>
+<tr>
+<td>memo</td>
+<td>string</td>
+<td>Нет</td>
+<td>необходим для xrp валют? в остальных случаях не нужен?</td>
+</tr>
+<tr>
+<td>address</td>
+<td>string</td>
+<td>Да</td>
+<td>адрес для пополнения</td>
+</tr>
+</tbody></table>
 <h2 id='deposit-history'>deposit history</h2>
-<p>история пополнений</p>
-<h2 id='withdraw'>withdraw</h2>
-<p>осуществление вывода средств;</p>
+<p>Метод получения истории пополнений.</p>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/depositHistory"</span>
+</code></pre>
+<blockquote>
+<p>Команда выше вернёт структуру следующего вида:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"currencyName"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"inOrders"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-9'>HTTP Запрос</h3>
+<p><code>GET https://example.com/api/v1/depositHistory</code></p>
+<h3 id='url-9'>Параметры URL</h3>
+<table><thead>
+<tr>
+<th>Параметр</th>
+<th>Тип</th>
+<th>Обязательный</th>
+<th>Описание</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>сurrencyName</td>
+<td>string</td>
+<td>Нет</td>
+<td>наименование криптовалюты, краткое, например BTC</td>
+</tr>
+<tr>
+<td>startTime</td>
+<td>timestamp</td>
+<td>Нет</td>
+<td>Время начала периода, в мс</td>
+</tr>
+<tr>
+<td>endTime</td>
+<td>timestamp</td>
+<td>Нет</td>
+<td>время окончания периода, в мс</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>Нет</td>
+<td>фильтр статусов депозита (failure/success/processing)</td>
+</tr>
+</tbody></table>
+<h3 id='1300eba048-9'>Параметры ответа</h3>
+<table><thead>
+<tr>
+<th>Параметр</th>
+<th>Тип</th>
+<th>Обязательный</th>
+<th>Описание</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>address</td>
+<td>string</td>
+<td>Да</td>
+<td>адрес, на который было произведено пополнение</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>Да</td>
+<td>количество пополненной криптовалюты</td>
+</tr>
+<tr>
+<td>fee</td>
+<td>string</td>
+<td>Да</td>
+<td>комиссия за пополнение</td>
+</tr>
+<tr>
+<td>currencyName</td>
+<td>string</td>
+<td>Да</td>
+<td>наименование криптовалюты (краткое), например, BTC</td>
+</tr>
+<tr>
+<td>memo</td>
+<td>string</td>
+<td>Нет</td>
+<td>мемо метка (если есть, отображаем)</td>
+</tr>
+<tr>
+<td>walletTxId</td>
+<td>string</td>
+<td>Да</td>
+<td>хэш транзакции</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>Да</td>
+<td>failure/success/processing</td>
+</tr>
+<tr>
+<td>createdAt</td>
+<td>timestamp</td>
+<td>Да</td>
+<td>время создания записи в бд</td>
+</tr>
+<tr>
+<td>updatedAt</td>
+<td>timestamp</td>
+<td>Да</td>
+<td>время обновления записи в бд</td>
+</tr>
+<tr>
+<td>comment</td>
+<td>string</td>
+<td>Нет</td>
+<td>комментарий (при наличии)</td>
+</tr>
+</tbody></table>
+<h2 id='withdraw'>Withdraw</h2>
+<p>Отправка запроса на вывод средств;</p>
 <h2 id='withdrawhistory'>withdrawhistory</h2>
-<p>история вывода средств;</p>
+<p>Метод для запроса истории вывода средств.</p>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/withdrawalHistory"</span>
+</code></pre>
+<blockquote>
+<p>Команда выше вернёт структуру следующего вида:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"transactionId"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currencyName"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"memo"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"walletTxId"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"comment"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"chain"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-10'>HTTP Запрос</h3>
+<p><code>GET https://example.com/api/v1/withdrawalHistory</code></p>
+<h3 id='url-10'>Параметры URL</h3>
+<table><thead>
+<tr>
+<th>Параметр</th>
+<th>Тип</th>
+<th>Обязательный</th>
+<th>Описание</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>сurrencyName</td>
+<td>string</td>
+<td>Нет</td>
+<td>наименование криптовалюты, краткое, например BTC</td>
+</tr>
+<tr>
+<td>startTime</td>
+<td>timestamp</td>
+<td>Нет</td>
+<td>Время начала периода, в мс</td>
+</tr>
+<tr>
+<td>endTime</td>
+<td>timestamp</td>
+<td>Нет</td>
+<td>время окончания периода, в мс</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>Нет</td>
+<td>failure/success/processing/wallet_processing</td>
+</tr>
+</tbody></table>
+<h3 id='1300eba048-10'>Параметры ответа</h3>
+<table><thead>
+<tr>
+<th>Параметр</th>
+<th>Тип</th>
+<th>Обязательный</th>
+<th>Описание</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>transactionId</td>
+<td>string</td>
+<td>Да</td>
+<td>Уникальный идентификатор транзакции</td>
+</tr>
+<tr>
+<td>address</td>
+<td>string</td>
+<td>Да</td>
+<td>адрес, на который был произведен вывод</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>Да</td>
+<td>количество отправленной криптовалюты</td>
+</tr>
+<tr>
+<td>fee</td>
+<td>string</td>
+<td>Да</td>
+<td>комиссия за вывод</td>
+</tr>
+<tr>
+<td>currencyName</td>
+<td>string</td>
+<td>Да</td>
+<td>наименование криптовалюты (краткое), например, BTC</td>
+</tr>
+<tr>
+<td>memo</td>
+<td>string</td>
+<td>Нет</td>
+<td>мемо метка (если есть, отображаем)</td>
+</tr>
+<tr>
+<td>walletTxId</td>
+<td>string</td>
+<td>Да</td>
+<td>хэш транзакции</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>Да</td>
+<td>failure/success/processing</td>
+</tr>
+<tr>
+<td>createdAt</td>
+<td>timestamp</td>
+<td>Да</td>
+<td>время создания записи в бд</td>
+</tr>
+<tr>
+<td>updatedAt</td>
+<td>timestamp</td>
+<td>Да</td>
+<td>время обновления записи в бд</td>
+</tr>
+<tr>
+<td>comment</td>
+<td>string</td>
+<td>Нет</td>
+<td>комментарий (при наличии)</td>
+</tr>
+<tr>
+<td>chain</td>
+<td>string</td>
+<td>Нет</td>
+<td>Если чейнов несколько, как с USDT, то отображается чейн на который был вывод</td>
+</tr>
+</tbody></table>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>GET http://example.com/api/kittens</code></p>
 <h3 id='query-parameters'>Query Parameters</h3>

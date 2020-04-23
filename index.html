@@ -246,13 +246,13 @@
                     <a href="#currency" class="toc-h2 toc-link" data-title="Currency">Currency</a>
                   </li>
                   <li>
+                    <a href="#trades" class="toc-h2 toc-link" data-title="Trades">Trades</a>
+                  </li>
+                  <li>
                     <a href="#orderbook" class="toc-h2 toc-link" data-title="Orderbook">Orderbook</a>
                   </li>
                   <li>
                     <a href="#trade-history" class="toc-h2 toc-link" data-title="Trade history">Trade history</a>
-                  </li>
-                  <li>
-                    <a href="#currencies" class="toc-h2 toc-link" data-title="Currencies">Currencies</a>
                   </li>
               </ul>
           </li>
@@ -364,7 +364,6 @@ You don&#39;t need to authorize to use methods from <b>Market</b> section.
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"pairId"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
     </span><span class="s2">"pairName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USDT"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"baseCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"quoteCurrencу"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
@@ -403,12 +402,6 @@ You don&#39;t need to authorize to use methods from <b>Market</b> section.
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>pairId</td>
-<td>integer</td>
-<td>Yes</td>
-<td>Currency pair unique identifier</td>
-</tr>
 <tr>
 <td>pairName</td>
 <td>string</td>
@@ -513,12 +506,6 @@ You don&#39;t need to authorize to use methods from <b>Market</b> section.
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>pairId</td>
-<td>integer</td>
-<td>Yes</td>
-<td>Currency pair unique identifier</td>
-</tr>
 <tr>
 <td>pairName</td>
 <td>string</td>
@@ -798,7 +785,92 @@ You don&#39;t need to authorize to use methods from <b>Market</b> section.
 <td>Is frozen?</td>
 </tr>
 </tbody></table>
-<h2 id='orderbook'>Orderbook</h2><h2 id='trade-history'>Trade history</h2><h2 id='currencies'>Currencies</h2><h1 id='trade'>Trade</h1>
+<h2 id='trades'>Trades</h2>
+<p>This method returns deals history during last 24 hours.</p>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/market/trades?pairName=BTC/USDT&amp;type=buy"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"tradeId"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"baseVol"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"quoteVol"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-request-5'>HTTP Request</h3>
+<p><code>GET https://example.com/api/v1/market/trades?pairName=BTC/USDT&amp;type=buy</code></p>
+<h3 id='url-parameters-5'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pairName</td>
+<td>string</td>
+<td>Да</td>
+<td>наименование криптовалютной пары (В формате BTC/USDT)</td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>Нет</td>
+<td>Принимает значения buy или sell, если параметр не передается передаем и то и другое</td>
+</tr>
+</tbody></table>
+<h3 id='response-parameters-5'>Response Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>tradeId</td>
+<td>Integer</td>
+<td>Yes</td>
+<td>Trade unique identifier</td>
+</tr>
+<tr>
+<td>price</td>
+<td>string</td>
+<td>Yes</td>
+<td>Trade price</td>
+</tr>
+<tr>
+<td>baseVol</td>
+<td>string</td>
+<td>Yes</td>
+<td>Base currency volume</td>
+</tr>
+<tr>
+<td>quoteVol</td>
+<td>string</td>
+<td>Yes</td>
+<td>Quotes currency volume</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>timestamp</td>
+<td>Yes</td>
+<td>Trade timestamp</td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>Yes</td>
+<td>Trade type: <br/>buy - means that an ask position was removed from the exchange order book; <br/>sell - means that a bid position was removed from the exchange order book.</td>
+</tr>
+</tbody></table>
+<h2 id='orderbook'>Orderbook</h2><h2 id='trade-history'>Trade history</h2><h1 id='trade'>Trade</h1>
 <p>This section covers methods that operate with exchange orders.</p>
 
 <aside class="warning">
@@ -817,24 +889,461 @@ Authorization is needed to use these methods.
 <h2 id='trade-list'>Trade List</h2>
 <p>получение информации об истории сделок Пользователя</p>
 <h1 id='user'>User</h1>
-<p>набор методов информации о Пользователе и его аккаунте на криптовалютной бирже (требуется авторизация)</p>
+<p>This section covers methods getting information regarding user and his or her account on the Exchange.</p>
 
 <aside class="warning">
 Authorization is needed to use these methods.
 </aside>
 <h2 id='user-info'>User Info</h2>
-<p>информация об аккаунте</p>
+<p>Main user data.</p>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/userInfo"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"userName"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"platformName"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"comment"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"restrictions"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-request-6'>HTTP Request</h3>
+<p><code>GET https://example.com/api/v1/userInfo</code></p>
+<h3 id='url-parameters-6'>URL Parameters</h3>
+<p><em>None.</em></p>
+<h3 id='response-parameters-6'>Response Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>userId</td>
+<td>integer</td>
+<td>Yes</td>
+<td>User identifier</td>
+</tr>
+<tr>
+<td>userName</td>
+<td>string</td>
+<td>No</td>
+<td>User nickname</td>
+</tr>
+<tr>
+<td>platformName</td>
+<td>string</td>
+<td>Yes</td>
+<td>KickEX</td>
+</tr>
+<tr>
+<td>comment</td>
+<td>string</td>
+<td>No</td>
+<td>Human-readable (?) comment that may contain restrictions applied to using API by the user.</td>
+</tr>
+<tr>
+<td>restrictions</td>
+<td>integer</td>
+<td>Yes</td>
+<td>Attribute showing if trading is blocked for the user (0 - available, 1 - blocked)</td>
+</tr>
+</tbody></table>
 <h2 id='balance'>Balance</h2>
-<p>информация о балансе Пользователя;</p>
+<p>User balance data.</p>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/user/balance"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"currencyName"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"inOrders"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-request-7'>HTTP Request</h3>
+<p><code>GET https://example.com/api/v1/user/balance</code></p>
+<h3 id='url-parameters-7'>URL Parameters</h3>
+<p><em>None.</em></p>
+<h3 id='response-parameters-7'>Response Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>currencyName</td>
+<td>string</td>
+<td>Yes</td>
+<td>Currency short name</td>
+</tr>
+<tr>
+<td>balance</td>
+<td>string</td>
+<td>Yes</td>
+<td>Total balance</td>
+</tr>
+<tr>
+<td>available</td>
+<td>string</td>
+<td>Yes</td>
+<td>Balance available for withdrawal</td>
+</tr>
+<tr>
+<td>inOrders</td>
+<td>string</td>
+<td>Yes</td>
+<td>Reserved balance</td>
+</tr>
+<tr>
+<td>accountType</td>
+<td>string</td>
+<td>Yes</td>
+<td>Account type:<br/> 2401 - ordinary account <br/> 2411 - Ecosystem account</td>
+</tr>
+</tbody></table>
 <h2 id='deposit-address'>Deposit Address</h2>
-<p>получение адреса для Пополнения</p>
+<p>Method for getting personal deposit address.</p>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/depositAddresses"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"currencyName"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"inOrders"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-request-8'>HTTP Request</h3>
+<p><code>GET https://example.com/api/v1/depositAddresses</code></p>
+<h3 id='url-parameters-8'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>currencyName</td>
+<td>string</td>
+<td>Yes</td>
+<td>Currency short name</td>
+</tr>
+<tr>
+<td>chain</td>
+<td>string</td>
+<td>No</td>
+<td>Blockchain short name: ERC20/OMNI/TRC20 (required for cryptocurrencies available in several blockchains)</td>
+</tr>
+</tbody></table>
+<h3 id='response-parameters-8'>Response Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>currencyName</td>
+<td>string</td>
+<td>Yes</td>
+<td>Currency short name</td>
+</tr>
+<tr>
+<td>chain</td>
+<td>string</td>
+<td>No</td>
+<td>Blockchain short name (required for cryptocurrencies available in several blockchains)</td>
+</tr>
+<tr>
+<td>memo</td>
+<td>string</td>
+<td>No</td>
+<td>Required for XRP</td>
+</tr>
+<tr>
+<td>address</td>
+<td>string</td>
+<td>Yes</td>
+<td>Address in specified blockchain</td>
+</tr>
+</tbody></table>
 <h2 id='deposit-history'>Deposit History</h2>
-<p>история пополнений</p>
+<p>This method provides deposit history.</p>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/depositHistory"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"currencyName"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"inOrders"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-request-9'>HTTP Request</h3>
+<p><code>GET https://example.com/api/v1/depositHistory</code></p>
+<h3 id='url-parameters-9'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>сurrencyName</td>
+<td>string</td>
+<td>No</td>
+<td>Currency short name</td>
+</tr>
+<tr>
+<td>startTime</td>
+<td>timestamp</td>
+<td>No</td>
+<td>Start time of the report</td>
+</tr>
+<tr>
+<td>endTime</td>
+<td>timestamp</td>
+<td>No</td>
+<td>End time of the report</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>No</td>
+<td>Deposit status filtering (failure/success/processing)</td>
+</tr>
+</tbody></table>
+<h3 id='response-parameters-9'>Response Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>address</td>
+<td>string</td>
+<td>Yes</td>
+<td>Deposit address</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>Yes</td>
+<td>Deposit amount</td>
+</tr>
+<tr>
+<td>fee</td>
+<td>string</td>
+<td>Yes</td>
+<td>Deposit commission (if any)</td>
+</tr>
+<tr>
+<td>currencyName</td>
+<td>string</td>
+<td>Yes</td>
+<td>Currency short name</td>
+</tr>
+<tr>
+<td>memo</td>
+<td>string</td>
+<td>No</td>
+<td>Memo or tag (if present)</td>
+</tr>
+<tr>
+<td>walletTxId</td>
+<td>string</td>
+<td>Yes</td>
+<td>Transaction hash</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>Yes</td>
+<td>Transaction status (failure/success/processing)</td>
+</tr>
+<tr>
+<td>createdAt</td>
+<td>timestamp</td>
+<td>Yes</td>
+<td>Database record creation timestamp</td>
+</tr>
+<tr>
+<td>updatedAt</td>
+<td>timestamp</td>
+<td>Yes</td>
+<td>Database record update timestamp</td>
+</tr>
+<tr>
+<td>comment</td>
+<td>string</td>
+<td>No</td>
+<td>Comment (if any)</td>
+</tr>
+</tbody></table>
 <h2 id='withdraw'>Withdraw</h2>
-<p>осуществление вывода средств;</p>
+<p>Method for withdrawal request creation.</p>
 <h2 id='withdraw-history'>Withdraw History</h2>
-<p>история вывода средств;</p>
-<h3 id='http-request-5'>HTTP Request</h3>
+<p>Method to get withdrawal history.</p>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/withdrawalHistory"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"transactionId"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currencyName"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"memo"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"walletTxId"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"comment"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"chain"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-request-10'>HTTP Request</h3>
+<p><code>GET https://example.com/api/v1/withdrawalHistory</code></p>
+<h3 id='url-parameters-10'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>сurrencyName</td>
+<td>string</td>
+<td>No</td>
+<td>Currency short name</td>
+</tr>
+<tr>
+<td>startTime</td>
+<td>timestamp</td>
+<td>No</td>
+<td>Start time of the report</td>
+</tr>
+<tr>
+<td>endTime</td>
+<td>timestamp</td>
+<td>No</td>
+<td>End time of the report</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>No</td>
+<td>Withdrawal status filtering (failure/success/processing/wallet_processing)</td>
+</tr>
+</tbody></table>
+<h3 id='response-parameters-10'>Response Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>transactionId</td>
+<td>string</td>
+<td>Yes</td>
+<td>Unique identifier of withdrawal transaction</td>
+</tr>
+<tr>
+<td>address</td>
+<td>string</td>
+<td>Yes</td>
+<td>Withdrawal address</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>Yes</td>
+<td>Withdrawal amount</td>
+</tr>
+<tr>
+<td>fee</td>
+<td>string</td>
+<td>Yes</td>
+<td>Withdrawal commission</td>
+</tr>
+<tr>
+<td>currencyName</td>
+<td>string</td>
+<td>Yes</td>
+<td>Currency short name</td>
+</tr>
+<tr>
+<td>memo</td>
+<td>string</td>
+<td>No</td>
+<td>Memo or tag (if any)</td>
+</tr>
+<tr>
+<td>walletTxId</td>
+<td>string</td>
+<td>Yes</td>
+<td>Transaction hash</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>Yes</td>
+<td>Transaction status (failure/success/processing)</td>
+</tr>
+<tr>
+<td>createdAt</td>
+<td>timestamp</td>
+<td>Yes</td>
+<td>Database record creation timestamp</td>
+</tr>
+<tr>
+<td>updatedAt</td>
+<td>timestamp</td>
+<td>Yes</td>
+<td>Database record update timestamp</td>
+</tr>
+<tr>
+<td>comment</td>
+<td>string</td>
+<td>No</td>
+<td>Comment (if any)</td>
+</tr>
+<tr>
+<td>chain</td>
+<td>string</td>
+<td>No</td>
+<td>Blockchain short name (required for cryptocurrencies available in several blockchains)</td>
+</tr>
+</tbody></table>
+<h3 id='http-request-11'>HTTP Request</h3>
 <p><code>GET http://example.com/api/kittens</code></p>
 <h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
@@ -888,9 +1397,9 @@ Remember — a happy kitten is an authenticated kitten!
 <p>This endpoint retrieves a specific kitten.</p>
 
 <aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-<h3 id='http-request-6'>HTTP Request</h3>
+<h3 id='http-request-12'>HTTP Request</h3>
 <p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-5'>URL Parameters</h3>
+<h3 id='url-parameters-11'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -927,9 +1436,9 @@ Remember — a happy kitten is an authenticated kitten!
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-7'>HTTP Request</h3>
+<h3 id='http-request-13'>HTTP Request</h3>
 <p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-6'>URL Parameters</h3>
+<h3 id='url-parameters-12'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
