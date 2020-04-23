@@ -252,9 +252,6 @@
                     <a href="#orderbook" class="toc-h2 toc-link" data-title="Orderbook">Orderbook</a>
                   </li>
                   <li>
-                    <a href="#trade-history" class="toc-h2 toc-link" data-title="Trade history">Trade history</a>
-                  </li>
-                  <li>
                     <a href="#candles" class="toc-h2 toc-link" data-title="Candles">Candles</a>
                   </li>
                   <li>
@@ -275,16 +272,16 @@
                     <a href="#cancel-all-orders" class="toc-h2 toc-link" data-title="Cancel All Orders">Cancel All Orders</a>
                   </li>
                   <li>
-                    <a href="#place-order" class="toc-h2 toc-link" data-title="Place Order">Place Order</a>
+                    <a href="#trade-history" class="toc-h2 toc-link" data-title="Trade History">Trade History</a>
                   </li>
                   <li>
                     <a href="#active-orders-list" class="toc-h2 toc-link" data-title="Active Orders List">Active Orders List</a>
                   </li>
                   <li>
-                    <a href="#orders-list" class="toc-h2 toc-link" data-title="Orders List">Orders List</a>
+                    <a href="#place-order" class="toc-h2 toc-link" data-title="Place Order">Place Order</a>
                   </li>
                   <li>
-                    <a href="#trade-list" class="toc-h2 toc-link" data-title="Trade List">Trade List</a>
+                    <a href="#orders-list" class="toc-h2 toc-link" data-title="Orders List">Orders List</a>
                   </li>
               </ul>
           </li>
@@ -950,8 +947,6 @@ Provides both aggregated and particular data.</p>
 <td>List of asks (price and amount)</td>
 </tr>
 </tbody></table>
-<h2 id='trade-history'>Trade history</h2>
-<p>???</p>
 <h2 id='candles'>Candles</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/market/bars/?period=5min&amp;pairName=BTC/USDT&amp;startTime=22814882323&amp;endTIme32222869898"</span>
 </code></pre>
 <blockquote>
@@ -1203,12 +1198,10 @@ curl &quot;http://example.com/api/v1/status&quot;
 </tbody></table>
 <h2 id='cancel-all-orders'>Cancel All Orders</h2>
 <p>Method used to cancel a group of orders or all the open orders.</p>
-
-<p><strong>???</strong>
-<code>shell
-curl &quot;http://example.com/api/v1/status&quot;
-</code></p>
-
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/orders?pairName=BTC/USDT&amp;orderType=STOP"</span>
+  -X DELETE
+  -H <span class="s2">"Authorization: meowmeowmeow"</span>
+</code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -1263,14 +1256,246 @@ curl &quot;http://example.com/api/v1/status&quot;
 <td>Contains result: order cancelled or error</td>
 </tr>
 </tbody></table>
+<h2 id='trade-history'>Trade History</h2>
+<p>This method is used to get data on the user&#39;s trades.</p>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/tradesHistory?pairName=KICK/BTC&amp;startTime=123213123213213&amp;endTime=32434523523535"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"pairName"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"feeQuoted"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"feeExternal"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"externalFeeCurrency"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"buyVolume"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sellVolume"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-request-12'>HTTP Request</h3>
+<p><code>GET https://example.com/api/v1/tradesHistory?pairName=KICK/BTC&amp;startTime=123213123213213&amp;endTime=32434523523535</code></p>
+<h3 id='url-parameters-12'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pairName</td>
+<td>string</td>
+<td>Yes</td>
+<td>Currency pair name <em>(ex: KICK/BTC)</em></td>
+</tr>
+<tr>
+<td>startTIme</td>
+<td>timestamp</td>
+<td></td>
+<td>Start time in milliseconds</td>
+</tr>
+<tr>
+<td>endTime</td>
+<td>timestamp</td>
+<td></td>
+<td>End time in milliseconds</td>
+</tr>
+</tbody></table>
+<h3 id='response-parameters-12'>Response Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pairName</td>
+<td>string</td>
+<td>Yes</td>
+<td>Currency pair name <em>(ex: KICK/ETH)</em></td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>timestamp</td>
+<td>Yes</td>
+<td>Trade timestamp</td>
+</tr>
+<tr>
+<td>side</td>
+<td>integer</td>
+<td>Yes</td>
+<td>Trade side <br/> 0 - BUY <br/>1 - SALE</td>
+</tr>
+<tr>
+<td>price</td>
+<td>string</td>
+<td>Yes</td>
+<td>Price per currency unit (in quotes currency)</td>
+</tr>
+<tr>
+<td>feeQuoted</td>
+<td>string</td>
+<td>Yes</td>
+<td>Fee (in quoted currency)</td>
+</tr>
+<tr>
+<td>feeExternal</td>
+<td>string</td>
+<td>No</td>
+<td>Fee (in additional currency)</td>
+</tr>
+<tr>
+<td>externalFeeCurrency</td>
+<td>string</td>
+<td>No</td>
+<td>Additional fee currency</td>
+</tr>
+<tr>
+<td>buyVolume</td>
+<td>string</td>
+<td>Yes</td>
+<td>Trade buy volume</td>
+</tr>
+<tr>
+<td>sellVolume</td>
+<td>string</td>
+<td>Yes</td>
+<td>Trade sell volume</td>
+</tr>
+</tbody></table>
+<h2 id='active-orders-list'>Active Orders List</h2>
+<p>Method used to get information regarding all user&#39;s open (active) exchange orders.</p>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/activeOrders?pairName=KICK/BTC"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"pairName"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"feeQuoted"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"feeExternal"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"externalFeeCurrency"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"buyVolume"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sellVolume"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-request-13'>HTTP Request</h3>
+<p><code>GET https://example.com/api/v1/activeOrders?pairName=KICK/BTC</code></p>
+<h3 id='url-parameters-13'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pairName</td>
+<td>string</td>
+<td>No</td>
+<td>Currency pair name <em>(ex: KICK/BTC)</em></td>
+</tr>
+</tbody></table>
+<h3 id='response-parameters-13'>Response Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pairName</td>
+<td>string</td>
+<td>Yes</td>
+<td>Currency pair name <em>(ex: KICK/ETH)</em></td>
+</tr>
+<tr>
+<td>createdTimeStamp</td>
+<td>timestamp</td>
+<td>Yes</td>
+<td>Order creation timestamp</td>
+</tr>
+<tr>
+<td>side</td>
+<td>integer</td>
+<td>Yes</td>
+<td>Trade side <br/> 0 - BUY <br/>1 - SALE</td>
+</tr>
+<tr>
+<td>limitPrice</td>
+<td>string</td>
+<td>No</td>
+<td>Will be returned for orders where limit price was set on creation.</td>
+</tr>
+<tr>
+<td>totalBuyVolume</td>
+<td>string</td>
+<td>Yes</td>
+<td>Total bought volume <strong>???</strong></td>
+</tr>
+<tr>
+<td>totalSellVolume</td>
+<td>string</td>
+<td>Yes</td>
+<td>Total sold volume <strong>???</strong></td>
+</tr>
+<tr>
+<td>orderedAmount</td>
+<td>string</td>
+<td>Yes</td>
+<td>Ordered amount of currency</td>
+</tr>
+<tr>
+<td>tpActivateLeve</td>
+<td>string</td>
+<td>No</td>
+<td>Take profit activation level, will be returned if set on order creation.</td>
+</tr>
+<tr>
+<td>tpLimitPrice</td>
+<td>string</td>
+<td>No</td>
+<td>Take profit limit price, will be returned if it was set on order creation.</td>
+</tr>
+<tr>
+<td>slLimitPrice</td>
+<td>string</td>
+<td>No</td>
+<td>Stop loss limit price, will be returned if it was set on order creation.</td>
+</tr>
+<tr>
+<td>tpSubmitLevel</td>
+<td>string</td>
+<td>No</td>
+<td>Take profit stop level, will be returned if it was set on order creation.</td>
+</tr>
+<tr>
+<td>slSubmitLevel</td>
+<td>string</td>
+<td>No</td>
+<td>Stop loss stop level, will be returned if it was set on order creation.</td>
+</tr>
+<tr>
+<td>activated</td>
+<td>timestamp</td>
+<td>No</td>
+<td>Will be returned if the order was activated (for sliding orders) <strong>???</strong></td>
+</tr>
+</tbody></table>
 <h2 id='place-order'>Place Order</h2>
 <p>установка ордера</p>
-<h2 id='active-orders-list'>Active Orders List</h2>
-<p>получение информации об активных ордерах</p>
 <h2 id='orders-list'>Orders List</h2>
 <p>получение информации о завершенных ордерах</p>
-<h2 id='trade-list'>Trade List</h2>
-<p>получение информации об истории сделок Пользователя</p>
 <h1 id='user'>User</h1>
 <p>This section covers methods getting information regarding user and his or her account on the Exchange.</p>
 
@@ -1291,11 +1516,11 @@ Authorization is needed to use these methods.
     </span><span class="s2">"comment"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
     </span><span class="s2">"restrictions"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-request-12'>HTTP Request</h3>
+</span></code></pre><h3 id='http-request-14'>HTTP Request</h3>
 <p><code>GET https://example.com/api/v1/userInfo</code></p>
-<h3 id='url-parameters-12'>URL Parameters</h3>
+<h3 id='url-parameters-14'>URL Parameters</h3>
 <p><em>None.</em></p>
-<h3 id='response-parameters-12'>Response Parameters</h3>
+<h3 id='response-parameters-14'>Response Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1349,11 +1574,11 @@ Authorization is needed to use these methods.
     </span><span class="s2">"inOrders"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
     </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-request-13'>HTTP Request</h3>
+</span></code></pre><h3 id='http-request-15'>HTTP Request</h3>
 <p><code>GET https://example.com/api/v1/user/balance</code></p>
-<h3 id='url-parameters-13'>URL Parameters</h3>
+<h3 id='url-parameters-15'>URL Parameters</h3>
 <p><em>None.</em></p>
-<h3 id='response-parameters-13'>Response Parameters</h3>
+<h3 id='response-parameters-15'>Response Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1407,9 +1632,9 @@ Authorization is needed to use these methods.
     </span><span class="s2">"inOrders"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
     </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-request-14'>HTTP Request</h3>
+</span></code></pre><h3 id='http-request-16'>HTTP Request</h3>
 <p><code>GET https://example.com/api/v1/depositAddresses</code></p>
-<h3 id='url-parameters-14'>URL Parameters</h3>
+<h3 id='url-parameters-16'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1431,7 +1656,7 @@ Authorization is needed to use these methods.
 <td>Blockchain short name: ERC20/OMNI/TRC20 (required for cryptocurrencies available in several blockchains)</td>
 </tr>
 </tbody></table>
-<h3 id='response-parameters-14'>Response Parameters</h3>
+<h3 id='response-parameters-16'>Response Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1479,9 +1704,9 @@ Authorization is needed to use these methods.
     </span><span class="s2">"inOrders"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
     </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-request-15'>HTTP Request</h3>
+</span></code></pre><h3 id='http-request-17'>HTTP Request</h3>
 <p><code>GET https://example.com/api/v1/depositHistory</code></p>
-<h3 id='url-parameters-15'>URL Parameters</h3>
+<h3 id='url-parameters-17'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1515,7 +1740,7 @@ Authorization is needed to use these methods.
 <td>Deposit status filtering (failure/success/processing)</td>
 </tr>
 </tbody></table>
-<h3 id='response-parameters-15'>Response Parameters</h3>
+<h3 id='response-parameters-17'>Response Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1608,9 +1833,9 @@ Authorization is needed to use these methods.
     </span><span class="s2">"comment"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
     </span><span class="s2">"chain"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-request-16'>HTTP Request</h3>
+</span></code></pre><h3 id='http-request-18'>HTTP Request</h3>
 <p><code>GET https://example.com/api/v1/withdrawalHistory</code></p>
-<h3 id='url-parameters-16'>URL Parameters</h3>
+<h3 id='url-parameters-18'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1644,7 +1869,7 @@ Authorization is needed to use these methods.
 <td>Withdrawal status filtering (failure/success/processing/wallet_processing)</td>
 </tr>
 </tbody></table>
-<h3 id='response-parameters-16'>Response Parameters</h3>
+<h3 id='response-parameters-18'>Response Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1726,7 +1951,7 @@ Authorization is needed to use these methods.
 <td>Blockchain short name (required for cryptocurrencies available in several blockchains)</td>
 </tr>
 </tbody></table>
-<h3 id='http-request-17'>HTTP Request</h3>
+<h3 id='http-request-19'>HTTP Request</h3>
 <p><code>GET http://example.com/api/kittens</code></p>
 <h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
@@ -1780,9 +2005,9 @@ Remember — a happy kitten is an authenticated kitten!
 <p>This endpoint retrieves a specific kitten.</p>
 
 <aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-<h3 id='http-request-18'>HTTP Request</h3>
+<h3 id='http-request-20'>HTTP Request</h3>
 <p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-17'>URL Parameters</h3>
+<h3 id='url-parameters-19'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1819,9 +2044,9 @@ Remember — a happy kitten is an authenticated kitten!
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-19'>HTTP Request</h3>
+<h3 id='http-request-21'>HTTP Request</h3>
 <p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-18'>URL Parameters</h3>
+<h3 id='url-parameters-20'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>

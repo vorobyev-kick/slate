@@ -252,9 +252,6 @@
                     <a href="#orderbook" class="toc-h2 toc-link" data-title="Orderbook">Orderbook</a>
                   </li>
                   <li>
-                    <a href="#trade-history" class="toc-h2 toc-link" data-title="Trade history">Trade history</a>
-                  </li>
-                  <li>
                     <a href="#candles" class="toc-h2 toc-link" data-title="Candles">Candles</a>
                   </li>
                   <li>
@@ -272,19 +269,19 @@
                     <a href="#cancel-order" class="toc-h2 toc-link" data-title="cancel order">cancel order</a>
                   </li>
                   <li>
-                    <a href="#cancel-all-orders" class="toc-h2 toc-link" data-title="cancel all orders">cancel all orders</a>
+                    <a href="#cancel-all-orders" class="toc-h2 toc-link" data-title="Cancel All Orders">Cancel All Orders</a>
                   </li>
                   <li>
-                    <a href="#place-order" class="toc-h2 toc-link" data-title="place order">place order</a>
+                    <a href="#trade-history" class="toc-h2 toc-link" data-title="Trade History">Trade History</a>
                   </li>
                   <li>
                     <a href="#active-orders-list" class="toc-h2 toc-link" data-title="active orders list">active orders list</a>
                   </li>
                   <li>
-                    <a href="#orders-list" class="toc-h2 toc-link" data-title="orders list">orders list</a>
+                    <a href="#place-order" class="toc-h2 toc-link" data-title="place order">place order</a>
                   </li>
                   <li>
-                    <a href="#trade-list" class="toc-h2 toc-link" data-title="trade list">trade list</a>
+                    <a href="#orders-list" class="toc-h2 toc-link" data-title="orders list">orders list</a>
                   </li>
                   <li>
                     <a href="#orderbook-2" class="toc-h2 toc-link" data-title="Orderbook">Orderbook</a>
@@ -304,22 +301,16 @@
                     <a href="#balance" class="toc-h2 toc-link" data-title="balance">balance</a>
                   </li>
                   <li>
-                    <a href="#depositaddress" class="toc-h2 toc-link" data-title="depositaddress">depositaddress</a>
+                    <a href="#deposit-address" class="toc-h2 toc-link" data-title="Deposit Address">Deposit Address</a>
                   </li>
                   <li>
-                    <a href="#deposit-history" class="toc-h2 toc-link" data-title="deposit history">deposit history</a>
+                    <a href="#deposit-history" class="toc-h2 toc-link" data-title="Deposit History">Deposit History</a>
                   </li>
                   <li>
                     <a href="#withdraw" class="toc-h2 toc-link" data-title="Withdraw">Withdraw</a>
                   </li>
                   <li>
-                    <a href="#withdrawhistory" class="toc-h2 toc-link" data-title="withdrawhistory">withdrawhistory</a>
-                  </li>
-                  <li>
-                    <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Get a Specific Kitten">Get a Specific Kitten</a>
-                  </li>
-                  <li>
-                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Delete a Specific Kitten">Delete a Specific Kitten</a>
+                    <a href="#withdrawal-history" class="toc-h2 toc-link" data-title="withdrawal History">withdrawal History</a>
                   </li>
               </ul>
           </li>
@@ -939,7 +930,7 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <td>timestamp</td>
 <td>timestamp</td>
 <td>Yes</td>
-<td>Секунды с 1 января 1970 года судя по примеру, но в описании указаны миллисекунды???</td>
+<td>Секунды с 1 января 1970 года судя по примеру, но в описании указаны миллисекунды <strong>???</strong></td>
 </tr>
 <tr>
 <td>bids</td>
@@ -954,8 +945,6 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <td>Содержит в себе цену и количество криптовалюты</td>
 </tr>
 </tbody></table>
-<h2 id='trade-history'>Trade history</h2>
-<p>???</p>
 <h2 id='candles'>Candles</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/market/bars/?period=5min&amp;pairName=BTC/USDT&amp;startTime=22814882323&amp;endTIme32222869898"</span>
 </code></pre>
 <blockquote>
@@ -1211,14 +1200,12 @@ curl &quot;http://example.com/api/v1/serverTime&quot;
 <td>ордер отменен / причина ошибки отмены</td>
 </tr>
 </tbody></table>
-<h2 id='cancel-all-orders'>cancel all orders</h2>
+<h2 id='cancel-all-orders'>Cancel All Orders</h2>
 <p>Метод отмены группы ордеров или всех открытых ордеров.</p>
-
-<p><strong>???</strong>
-<code>shell
-curl &quot;http://example.com/api/v1/serverTime&quot;
-</code></p>
-
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/orders?pairName=BTC/USDT&amp;orderType=STOP"</span>
+  -X DELETE
+  -H <span class="s2">"Authorization: meowmeowmeow"</span>
+</code></pre>
 <blockquote>
 <p>Команда выше вернёт структуру следующего вида:</p>
 </blockquote>
@@ -1273,14 +1260,246 @@ curl &quot;http://example.com/api/v1/serverTime&quot;
 <td>ордер отменен / причина ошибки отмены</td>
 </tr>
 </tbody></table>
+<h2 id='trade-history'>Trade History</h2>
+<p>Метод получения информации об истории сделок Пользователя.</p>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/tradesHistory?pairName=KICK/BTC&amp;startTime=123213123213213&amp;endTime=32434523523535"</span>
+</code></pre>
+<blockquote>
+<p>Команда выше вернёт структуру следующего вида:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"pairName"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"feeQuoted"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"feeExternal"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"externalFeeCurrency"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"buyVolume"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sellVolume"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-12'>HTTP Запрос</h3>
+<p><code>GET https://example.com/api/v1/tradesHistory?pairName=KICK/BTC&amp;startTime=123213123213213&amp;endTime=32434523523535</code></p>
+<h3 id='url-12'>Параметры URL</h3>
+<table><thead>
+<tr>
+<th>Параметр</th>
+<th>Тип</th>
+<th>Обязательный</th>
+<th>Описание</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pairName</td>
+<td>string</td>
+<td>Да</td>
+<td>Наименование криптовалютной пары, например KICK/BTC</td>
+</tr>
+<tr>
+<td>startTime</td>
+<td>timestamp</td>
+<td>Нет</td>
+<td>Время начала периода, в мс</td>
+</tr>
+<tr>
+<td>endTime</td>
+<td>timestamp</td>
+<td>Нет</td>
+<td>время окончания периода, в мс</td>
+</tr>
+</tbody></table>
+<h3 id='1300eba048-12'>Параметры ответа</h3>
+<table><thead>
+<tr>
+<th>Параметр</th>
+<th>Тип</th>
+<th>Обязательный</th>
+<th>Описание</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pairName</td>
+<td>string</td>
+<td>Да</td>
+<td>Наименование крпитовалютнйо пары в формате KICK/ETH</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>timestamp</td>
+<td>Да</td>
+<td>Время сделки,в мс</td>
+</tr>
+<tr>
+<td>side</td>
+<td>integer</td>
+<td>Да</td>
+<td>Стороны ордера <br/>0-BUY </br>1- SALE</td>
+</tr>
+<tr>
+<td>price</td>
+<td>string</td>
+<td>Да</td>
+<td>цена за единицу криптовалюты в сделке, выраженная в котируемой криптовалюте</td>
+</tr>
+<tr>
+<td>feeQuoted</td>
+<td>string</td>
+<td>Да</td>
+<td>размер комиссии в котируемой криптовалюте</td>
+</tr>
+<tr>
+<td>feeExternal</td>
+<td>string</td>
+<td>Нет</td>
+<td>размер комисиии в дополнительнйо криптовалюте</td>
+</tr>
+<tr>
+<td>externalFeeCurrency</td>
+<td>string</td>
+<td>Нет</td>
+<td>наименование криптовалюты, в которой взяли дополнительную комиссию</td>
+</tr>
+<tr>
+<td>buyVolume</td>
+<td>string</td>
+<td>Да</td>
+<td>купленный объем в сделке</td>
+</tr>
+<tr>
+<td>sellVolume</td>
+<td>string</td>
+<td>Да</td>
+<td>проданный объем в сделке</td>
+</tr>
+</tbody></table>
+<h2 id='active-orders-list'>active orders list</h2>
+<p>Метод получения информации об активных ордерах.</p>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/activeOrders?pairName=KICK/BTC"</span>
+</code></pre>
+<blockquote>
+<p>Команда выше вернёт структуру следующего вида:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"pairName"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"feeQuoted"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"feeExternal"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"externalFeeCurrency"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"buyVolume"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sellVolume"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-13'>HTTP Запрос</h3>
+<p><code>GET https://example.com/api/v1/activeOrders?pairName=KICK/BTC</code></p>
+<h3 id='url-13'>Параметры URL</h3>
+<table><thead>
+<tr>
+<th>Параметр</th>
+<th>Тип</th>
+<th>Обязательный</th>
+<th>Описание</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pairName</td>
+<td>string</td>
+<td>Нет</td>
+<td>Наименование криптовалютной пары, например KICK/BTC</td>
+</tr>
+</tbody></table>
+<h3 id='1300eba048-13'>Параметры ответа</h3>
+<table><thead>
+<tr>
+<th>Параметр</th>
+<th>Тип</th>
+<th>Обязательный</th>
+<th>Описание</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pairName</td>
+<td>string</td>
+<td>Да</td>
+<td>Наименование крпитовалютнйо пары в формате KICK/ETH</td>
+</tr>
+<tr>
+<td>createdTimeStamp</td>
+<td>timestamp</td>
+<td>Да</td>
+<td>Время создания ордера, в мс</td>
+</tr>
+<tr>
+<td>side</td>
+<td>integer</td>
+<td>Да</td>
+<td>Стороны ордера <br/>0-BUY </br>1- SALE</td>
+</tr>
+<tr>
+<td>limitPrice</td>
+<td>string</td>
+<td>Нет</td>
+<td>Возвращает значение, если при установке ордера была указана лимит цена в том случае если ордер не парный</td>
+</tr>
+<tr>
+<td>totalBuyVolume</td>
+<td>string</td>
+<td>Да</td>
+<td>итоговый купленный объем</td>
+</tr>
+<tr>
+<td>totalSellVolume</td>
+<td>string</td>
+<td>Да</td>
+<td>итоговый проданный объем</td>
+</tr>
+<tr>
+<td>orderedAmount</td>
+<td>string</td>
+<td>Да</td>
+<td>Заказанное количество криптовалюты для покупки/продажи</td>
+</tr>
+<tr>
+<td>tpActivateLeve</td>
+<td>string</td>
+<td>Нет</td>
+<td>уровень активации, параметр передается в случае, если был задан при установке ордера</td>
+</tr>
+<tr>
+<td>tpLimitPrice</td>
+<td>string</td>
+<td>Нет</td>
+<td>лимит цена блок тэйк профит, параметр передается в случае, если был задан при установке ордера</td>
+</tr>
+<tr>
+<td>slLimitPrice</td>
+<td>string</td>
+<td>Нет</td>
+<td>лимит цена блока стоп лос, параметр передается в случае, если был задан при установке ордера</td>
+</tr>
+<tr>
+<td>tpSubmitLevel</td>
+<td>string</td>
+<td>Нет</td>
+<td>стоп уровень блока тэйк профит, параметр передается в случае, если был задан при установке ордера</td>
+</tr>
+<tr>
+<td>slSubmitLevel</td>
+<td>string</td>
+<td>Нет</td>
+<td>стоп уровень блока стоп лосс, параметр передается в случае, если был задан при установке ордера</td>
+</tr>
+<tr>
+<td>activated</td>
+<td>timestamp</td>
+<td>Нет</td>
+<td>время (в мс) передается если ордер активировался (если был выставлен скользящий или скользящий +сл ордер)</td>
+</tr>
+</tbody></table>
 <h2 id='place-order'>place order</h2>
 <p>установка ордера</p>
-<h2 id='active-orders-list'>active orders list</h2>
-<p>получение информации об активных ордерах</p>
 <h2 id='orders-list'>orders list</h2>
 <p>получение информации о завершенных ордерах</p>
-<h2 id='trade-list'>trade list</h2>
-<p>получение информации об истории сделок Пользователя</p>
 <h2 id='orderbook-2'>Orderbook</h2><h2 id='trade-history-2'>Trade history</h2><h1 id='user'>User</h1>
 <p>Набор методов для получения информации о пользователе и его аккаунте на бирже </p>
 
@@ -1301,11 +1520,11 @@ curl &quot;http://example.com/api/v1/serverTime&quot;
     </span><span class="s2">"comment"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
     </span><span class="s2">"restrictions"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-12'>HTTP Запрос</h3>
+</span></code></pre><h3 id='http-14'>HTTP Запрос</h3>
 <p><code>GET https://example.com/api/v1/userInfo</code></p>
-<h3 id='url-12'>Параметры URL</h3>
+<h3 id='url-14'>Параметры URL</h3>
 <p><em>Отсутствуют.</em></p>
-<h3 id='1300eba048-12'>Параметры ответа</h3>
+<h3 id='1300eba048-14'>Параметры ответа</h3>
 <table><thead>
 <tr>
 <th>Параметр</th>
@@ -1359,11 +1578,11 @@ curl &quot;http://example.com/api/v1/serverTime&quot;
     </span><span class="s2">"inOrders"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
     </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-13'>HTTP Запрос</h3>
+</span></code></pre><h3 id='http-15'>HTTP Запрос</h3>
 <p><code>GET https://example.com/api/v1/user/balance</code></p>
-<h3 id='url-13'>Параметры URL</h3>
+<h3 id='url-15'>Параметры URL</h3>
 <p><em>Отсутствуют.</em></p>
-<h3 id='1300eba048-13'>Параметры ответа</h3>
+<h3 id='1300eba048-15'>Параметры ответа</h3>
 <table><thead>
 <tr>
 <th>Параметр</th>
@@ -1403,7 +1622,7 @@ curl &quot;http://example.com/api/v1/serverTime&quot;
 <td>номер счета <br/>2401 - основной счет <br/>2411 - экосистемный счет в валюте брокера</td>
 </tr>
 </tbody></table>
-<h2 id='depositaddress'>depositaddress</h2>
+<h2 id='deposit-address'>Deposit Address</h2>
 <p>Метод получения персонального адреса для пополнения.</p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/depositAddresses"</span>
 </code></pre>
@@ -1417,9 +1636,9 @@ curl &quot;http://example.com/api/v1/serverTime&quot;
     </span><span class="s2">"inOrders"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
     </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-14'>HTTP Запрос</h3>
+</span></code></pre><h3 id='http-16'>HTTP Запрос</h3>
 <p><code>GET https://example.com/api/v1/depositAddresses</code></p>
-<h3 id='url-14'>Параметры URL</h3>
+<h3 id='url-16'>Параметры URL</h3>
 <table><thead>
 <tr>
 <th>Параметр</th>
@@ -1441,7 +1660,7 @@ curl &quot;http://example.com/api/v1/serverTime&quot;
 <td>ERC20/OMNI/TRC20 какой выберем по дефолту для USDT?</td>
 </tr>
 </tbody></table>
-<h3 id='1300eba048-14'>Параметры ответа</h3>
+<h3 id='1300eba048-16'>Параметры ответа</h3>
 <table><thead>
 <tr>
 <th>Параметр</th>
@@ -1475,7 +1694,7 @@ curl &quot;http://example.com/api/v1/serverTime&quot;
 <td>адрес для пополнения</td>
 </tr>
 </tbody></table>
-<h2 id='deposit-history'>deposit history</h2>
+<h2 id='deposit-history'>Deposit History</h2>
 <p>Метод получения истории пополнений.</p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/depositHistory"</span>
 </code></pre>
@@ -1489,9 +1708,9 @@ curl &quot;http://example.com/api/v1/serverTime&quot;
     </span><span class="s2">"inOrders"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
     </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-15'>HTTP Запрос</h3>
+</span></code></pre><h3 id='http-17'>HTTP Запрос</h3>
 <p><code>GET https://example.com/api/v1/depositHistory</code></p>
-<h3 id='url-15'>Параметры URL</h3>
+<h3 id='url-17'>Параметры URL</h3>
 <table><thead>
 <tr>
 <th>Параметр</th>
@@ -1525,7 +1744,7 @@ curl &quot;http://example.com/api/v1/serverTime&quot;
 <td>фильтр статусов депозита (failure/success/processing)</td>
 </tr>
 </tbody></table>
-<h3 id='1300eba048-15'>Параметры ответа</h3>
+<h3 id='1300eba048-17'>Параметры ответа</h3>
 <table><thead>
 <tr>
 <th>Параметр</th>
@@ -1597,7 +1816,7 @@ curl &quot;http://example.com/api/v1/serverTime&quot;
 </tbody></table>
 <h2 id='withdraw'>Withdraw</h2>
 <p>Отправка запроса на вывод средств;</p>
-<h2 id='withdrawhistory'>withdrawhistory</h2>
+<h2 id='withdrawal-history'>withdrawal History</h2>
 <p>Метод для запроса истории вывода средств.</p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/withdrawalHistory"</span>
 </code></pre>
@@ -1618,9 +1837,9 @@ curl &quot;http://example.com/api/v1/serverTime&quot;
     </span><span class="s2">"comment"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
     </span><span class="s2">"chain"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-16'>HTTP Запрос</h3>
+</span></code></pre><h3 id='http-18'>HTTP Запрос</h3>
 <p><code>GET https://example.com/api/v1/withdrawalHistory</code></p>
-<h3 id='url-16'>Параметры URL</h3>
+<h3 id='url-18'>Параметры URL</h3>
 <table><thead>
 <tr>
 <th>Параметр</th>
@@ -1654,7 +1873,7 @@ curl &quot;http://example.com/api/v1/serverTime&quot;
 <td>failure/success/processing/wallet_processing</td>
 </tr>
 </tbody></table>
-<h3 id='1300eba048-16'>Параметры ответа</h3>
+<h3 id='1300eba048-18'>Параметры ответа</h3>
 <table><thead>
 <tr>
 <th>Параметр</th>
@@ -1761,88 +1980,6 @@ curl &quot;http://example.com/api/v1/serverTime&quot;
 <aside class="success">
 Remember — a happy kitten is an authenticated kitten!
 </aside>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves a specific kitten.</p>
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
-</tr>
-</tbody></table>
-<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -X DELETE
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to delete</td>
-</tr>
-</tbody></table>
 <h1 id='errors'>Errors</h1>
 <aside class="notice">
 This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
