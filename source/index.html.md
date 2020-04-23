@@ -311,10 +311,95 @@ type | string | Yes | Trade type: <br/>buy - means that an ask position was remo
 
 ## Orderbook
 
+This request is used to get current exchange orders by currency pair name.
+Provides both aggregated and particular data.
 
+```shell
+curl "http://example.com/api/v1/market/orderbook/pairName=BTC/USDT?depth=20"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+	"timestamp": 111111111,
+	"bids": 111111111,
+	"asks": 111111111
+}
+```
+
+### HTTP Request
+
+`GET https://example.com/api/v1/market/orderbook/pairName=BTC/USDT?depth=20`
+
+### URL Parameters
+
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+pairName | string | Yes | Currency pair name *(ex: KICK/BTC)*
+depth | int? | No | Orderbook depth.<br/>0 or null - all available data <br/>5/10/20/50/100/500 - number of bid and ask positions to show
+level | int | No | 1 - Best buy and sell open trades <br>2 - Whole orderbook sorted by best bid and ask prices <br> 3 - Whole orderbook (not sorted)
+
+### Response Parameters
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+timestamp | timestamp | Yes | Timestamp
+bids | Array of string | Yes | List of bids (price and amount)
+asks | Array of string | Yes | List of asks (price and amount)
 
 ## Trade history
 
+???
+
+## Candles
+
+```shell
+curl "http://example.com/api/v1/market/bars/?period=5min&pairName=BTC/USDT&startTime=22814882323&endTIme32222869898"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+	"code": 111111111,
+	"message": 111111111,
+	"timestamp": 111111111,
+	"openPrice": 111111111,
+	"closePrice": 111111111,
+	"highPrice": 111111111,
+	"lowPrice": 111111111,
+	"transactionVolume": 111111111,
+	"transactionAmount": 111111111
+}
+```
+
+### HTTP Request
+
+If `startTime` or `endTime` are not provided, not more than **???** results are returned.
+
+`GET https://example.com/api/v1/market/bars/?period=5min&pairName=BTC/USDT&startTime=22814882323&endTIme32222869898`
+
+### URL Parameters
+
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+pairName | string |  | Currency pair name *(ex: KICK/BTC)*
+period | string |  | 1/3/10/60 (minutes) 1D 1M 3M
+startTIme | timestamp |  | Start time in milliseconds
+endTime | timestamp |  | End time in milliseconds
+
+### Response Parameters
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+code | integer | Yes | Response code (200 for OK)
+message | string | Yes | *success*/*error*
+timestamp | timestamp | Yes | Timestamp of candle creation
+openPrice | string | Yes | Open price of the candle
+closePrice | string | Yes | Close price of the candle
+highPrice | string | Yes | Highest price
+lowPrice | string | Yes | Lowest price
+transactionVolume | string | Yes | Trades volume within the candle
+transactionAmount | string | Yes | Trades number within the candle
 
 # Trade 
 
