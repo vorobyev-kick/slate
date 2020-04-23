@@ -248,6 +248,21 @@
                   <li>
                     <a href="#trades" class="toc-h2 toc-link" data-title="Trades">Trades</a>
                   </li>
+                  <li>
+                    <a href="#orderbook" class="toc-h2 toc-link" data-title="Orderbook">Orderbook</a>
+                  </li>
+                  <li>
+                    <a href="#trade-history" class="toc-h2 toc-link" data-title="Trade history">Trade history</a>
+                  </li>
+                  <li>
+                    <a href="#candles" class="toc-h2 toc-link" data-title="Candles">Candles</a>
+                  </li>
+                  <li>
+                    <a href="#status" class="toc-h2 toc-link" data-title="Status">Status</a>
+                  </li>
+                  <li>
+                    <a href="#server-time" class="toc-h2 toc-link" data-title="Server time">Server time</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -272,10 +287,10 @@
                     <a href="#trade-list" class="toc-h2 toc-link" data-title="trade list">trade list</a>
                   </li>
                   <li>
-                    <a href="#orderbook" class="toc-h2 toc-link" data-title="Orderbook">Orderbook</a>
+                    <a href="#orderbook-2" class="toc-h2 toc-link" data-title="Orderbook">Orderbook</a>
                   </li>
                   <li>
-                    <a href="#trade-history" class="toc-h2 toc-link" data-title="Trade history">Trade history</a>
+                    <a href="#trade-history-2" class="toc-h2 toc-link" data-title="Trade history">Trade history</a>
                   </li>
               </ul>
           </li>
@@ -869,6 +884,284 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <td>Тип сделки покупка/продажа. <br/>Покупка говорит о том, что после выполнения сделки в стакане убралась позиция на аск. <br/>Продажа- убралась из стакана позиция на бид.</td>
 </tr>
 </tbody></table>
+<h2 id='orderbook'>Orderbook</h2>
+<p>Запрос актуальных биржевых ордеров по валютной паре, может предоставлять как агрегированные, так и неагрегированные данные.</p>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/market/orderbook/pairName=BTC/USDT?depth=20"</span>
+</code></pre>
+<blockquote>
+<p>Команда выше вернёт структуру следующего вида:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bids"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"asks"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-6'>HTTP Запрос</h3>
+<p><code>GET https://example.com/api/v1/market/orderbook/pairName=BTC/USDT?depth=20</code></p>
+<h3 id='url-6'>Параметры URL</h3>
+<table><thead>
+<tr>
+<th>Параметр</th>
+<th>Тип</th>
+<th>Обязательный</th>
+<th>Описание</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pairName</td>
+<td>string</td>
+<td>Да</td>
+<td>Наименование криптовалютной пары, например KICK/BTC</td>
+</tr>
+<tr>
+<td>depth</td>
+<td>int?</td>
+<td>Нет</td>
+<td>Глубина стакана <br/>0 или параметр не передан – полный стакан </br>5/10/20/50/100/500 количество позиций спроса и предложения, которые нужно передать (по 5, по 10 и т.д.)</td>
+</tr>
+<tr>
+<td>level</td>
+<td>int</td>
+<td>Нет</td>
+<td>1- Лучшее предложение на покупку и лучшее предложение на продажу <br/>2- Весь стакан, отсортированный по лучшим бидам и аскам <br/>3- Весь стакан не отсортированный по лучшим бидам и аскам</td>
+</tr>
+</tbody></table>
+<h3 id='1300eba048-6'>Параметры ответа</h3>
+<table><thead>
+<tr>
+<th>Параметр</th>
+<th>Тип</th>
+<th>Обязательный</th>
+<th>Описание</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>timestamp</td>
+<td>timestamp</td>
+<td>Yes</td>
+<td>Секунды с 1 января 1970 года судя по примеру, но в описании указаны миллисекунды???</td>
+</tr>
+<tr>
+<td>bids</td>
+<td>Array of string</td>
+<td>Yes</td>
+<td>Содержит в себе цену и количество крпитовалюты</td>
+</tr>
+<tr>
+<td>asks</td>
+<td>Array of string</td>
+<td>Yes</td>
+<td>Содержит в себе цену и количество криптовалюты</td>
+</tr>
+</tbody></table>
+<h2 id='trade-history'>Trade history</h2>
+<p>???</p>
+<h2 id='candles'>Candles</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/market/bars/?period=5min&amp;pairName=BTC/USDT&amp;startTime=22814882323&amp;endTIme32222869898"</span>
+</code></pre>
+<blockquote>
+<p>Команда выше вернёт структуру следующего вида:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"openPrice"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"closePrice"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"highPrice"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lowPrice"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"transactionVolume"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"transactionAmount"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-7'>HTTP Запрос</h3>
+<p>В случае, если время не указано, возвращается не более <strong>???</strong> результатов.</p>
+
+<p><code>GET https://example.com/api/v1/market/bars/?period=5min&amp;pairName=BTC/USDT&amp;startTime=22814882323&amp;endTIme32222869898</code></p>
+<h3 id='url-7'>Параметры URL</h3>
+<table><thead>
+<tr>
+<th>Параметр</th>
+<th>Тип</th>
+<th>Обязательный</th>
+<th>Описание</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pairName</td>
+<td>string</td>
+<td>Да</td>
+<td>Наименование криптовалютной пары, например KICK/BTC</td>
+</tr>
+<tr>
+<td>period</td>
+<td>string</td>
+<td>Да</td>
+<td>1/3/10/60 (minutes) 1D 1M 3M</td>
+</tr>
+<tr>
+<td>startTIme</td>
+<td>timestamp</td>
+<td>Нет</td>
+<td>время начала в мс</td>
+</tr>
+<tr>
+<td>endTime</td>
+<td>timestamp</td>
+<td>Нет</td>
+<td>время окончания в мс</td>
+</tr>
+</tbody></table>
+<h3 id='1300eba048-7'>Параметры ответа</h3>
+<table><thead>
+<tr>
+<th>Параметр</th>
+<th>Тип</th>
+<th>Обязательный</th>
+<th>Описание</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>Да</td>
+<td>код ответа 200-,если ок</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>Да</td>
+<td>текст success/error</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>timestamp</td>
+<td>Да</td>
+<td>начальное время формирования свечи</td>
+</tr>
+<tr>
+<td>openPrice</td>
+<td>string</td>
+<td>Да</td>
+<td>цена в момент открытия свечи</td>
+</tr>
+<tr>
+<td>closePrice</td>
+<td>string</td>
+<td>Да</td>
+<td>цена в момент закрытия свечи</td>
+</tr>
+<tr>
+<td>highPrice</td>
+<td>string</td>
+<td>Да</td>
+<td>наивысшая цена в свече</td>
+</tr>
+<tr>
+<td>lowPrice</td>
+<td>string</td>
+<td>Да</td>
+<td>наименьшая цена в свече</td>
+</tr>
+<tr>
+<td>transactionVolume</td>
+<td>string</td>
+<td>Да</td>
+<td>объем транзакций в свече</td>
+</tr>
+<tr>
+<td>transactionAmount</td>
+<td>string</td>
+<td>Да</td>
+<td>количество транзакций в свече</td>
+</tr>
+</tbody></table>
+<h2 id='status'>Status</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/status"</span>
+</code></pre>
+<blockquote>
+<p>Команда выше вернёт структуру следующего вида:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-8'>HTTP Запрос</h3>
+<p>В случае, если время не указано, возвращается не более <strong>???</strong> результатов.</p>
+
+<p><code>GET https://example.com/api/v1/status</code></p>
+<h3 id='url-8'>Параметры URL</h3>
+<p><em>Отсутствуют.</em></p>
+<h3 id='1300eba048-8'>Параметры ответа</h3>
+<table><thead>
+<tr>
+<th>Параметр</th>
+<th>Тип</th>
+<th>Обязательный</th>
+<th>Описание</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>Да</td>
+<td>код 200-ОК</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>Да</td>
+<td>open/close</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>Да</td>
+<td>текст пояснения</td>
+</tr>
+</tbody></table>
+<h2 id='server-time'>Server time</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/serverTime"</span>
+</code></pre>
+<blockquote>
+<p>Команда выше вернёт структуру следующего вида:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-9'>HTTP Запрос</h3>
+<p>В случае, если время не указано, возвращается не более <strong>???</strong> результатов.</p>
+
+<p><code>GET https://example.com/api/v1/serverTime</code></p>
+<h3 id='url-9'>Параметры URL</h3>
+<p><em>Отсутствуют.</em></p>
+<h3 id='1300eba048-9'>Параметры ответа</h3>
+<table><thead>
+<tr>
+<th>Параметр</th>
+<th>Тип</th>
+<th>Обязательный</th>
+<th>Описание</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>Да</td>
+<td>код ответа 200-ок</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>Да</td>
+<td>success/error</td>
+</tr>
+<tr>
+<td>time</td>
+<td>timestamp</td>
+<td>Да</td>
+<td>текущее серверное время в мс</td>
+</tr>
+</tbody></table>
 <h1 id='trade'>Trade</h1>
 <p>Набор методов для выставления ордеров и получения информации об ордерах.</p>
 
@@ -887,7 +1180,7 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <p>получение информации о завершенных ордерах</p>
 <h2 id='trade-list'>trade list</h2>
 <p>получение информации об истории сделок Пользователя</p>
-<h2 id='orderbook'>Orderbook</h2><h2 id='trade-history'>Trade history</h2><h1 id='user'>User</h1>
+<h2 id='orderbook-2'>Orderbook</h2><h2 id='trade-history-2'>Trade history</h2><h1 id='user'>User</h1>
 <p>Набор методов для получения информации о пользователе и его аккаунте на бирже </p>
 
 <aside class="warning">
@@ -907,11 +1200,11 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
     </span><span class="s2">"comment"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
     </span><span class="s2">"restrictions"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-6'>HTTP Запрос</h3>
+</span></code></pre><h3 id='http-10'>HTTP Запрос</h3>
 <p><code>GET https://example.com/api/v1/userInfo</code></p>
-<h3 id='url-6'>Параметры URL</h3>
+<h3 id='url-10'>Параметры URL</h3>
 <p><em>Отсутствуют.</em></p>
-<h3 id='1300eba048-6'>Параметры ответа</h3>
+<h3 id='1300eba048-10'>Параметры ответа</h3>
 <table><thead>
 <tr>
 <th>Параметр</th>
@@ -965,11 +1258,11 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
     </span><span class="s2">"inOrders"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
     </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-7'>HTTP Запрос</h3>
+</span></code></pre><h3 id='http-11'>HTTP Запрос</h3>
 <p><code>GET https://example.com/api/v1/user/balance</code></p>
-<h3 id='url-7'>Параметры URL</h3>
+<h3 id='url-11'>Параметры URL</h3>
 <p><em>Отсутствуют.</em></p>
-<h3 id='1300eba048-7'>Параметры ответа</h3>
+<h3 id='1300eba048-11'>Параметры ответа</h3>
 <table><thead>
 <tr>
 <th>Параметр</th>
@@ -1023,9 +1316,9 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
     </span><span class="s2">"inOrders"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
     </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-8'>HTTP Запрос</h3>
+</span></code></pre><h3 id='http-12'>HTTP Запрос</h3>
 <p><code>GET https://example.com/api/v1/depositAddresses</code></p>
-<h3 id='url-8'>Параметры URL</h3>
+<h3 id='url-12'>Параметры URL</h3>
 <table><thead>
 <tr>
 <th>Параметр</th>
@@ -1047,7 +1340,7 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <td>ERC20/OMNI/TRC20 какой выберем по дефолту для USDT?</td>
 </tr>
 </tbody></table>
-<h3 id='1300eba048-8'>Параметры ответа</h3>
+<h3 id='1300eba048-12'>Параметры ответа</h3>
 <table><thead>
 <tr>
 <th>Параметр</th>
@@ -1095,9 +1388,9 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
     </span><span class="s2">"inOrders"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
     </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-9'>HTTP Запрос</h3>
+</span></code></pre><h3 id='http-13'>HTTP Запрос</h3>
 <p><code>GET https://example.com/api/v1/depositHistory</code></p>
-<h3 id='url-9'>Параметры URL</h3>
+<h3 id='url-13'>Параметры URL</h3>
 <table><thead>
 <tr>
 <th>Параметр</th>
@@ -1131,7 +1424,7 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <td>фильтр статусов депозита (failure/success/processing)</td>
 </tr>
 </tbody></table>
-<h3 id='1300eba048-9'>Параметры ответа</h3>
+<h3 id='1300eba048-13'>Параметры ответа</h3>
 <table><thead>
 <tr>
 <th>Параметр</th>
@@ -1224,9 +1517,9 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
     </span><span class="s2">"comment"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
     </span><span class="s2">"chain"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-10'>HTTP Запрос</h3>
+</span></code></pre><h3 id='http-14'>HTTP Запрос</h3>
 <p><code>GET https://example.com/api/v1/withdrawalHistory</code></p>
-<h3 id='url-10'>Параметры URL</h3>
+<h3 id='url-14'>Параметры URL</h3>
 <table><thead>
 <tr>
 <th>Параметр</th>
@@ -1260,7 +1553,7 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <td>failure/success/processing/wallet_processing</td>
 </tr>
 </tbody></table>
-<h3 id='1300eba048-10'>Параметры ответа</h3>
+<h3 id='1300eba048-14'>Параметры ответа</h3>
 <table><thead>
 <tr>
 <th>Параметр</th>
