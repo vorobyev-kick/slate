@@ -347,9 +347,6 @@ timestamp | timestamp | Yes | Timestamp
 bids | Array of string | Yes | List of bids (price and amount)
 asks | Array of string | Yes | List of asks (price and amount)
 
-## Trade history
-
-???
 
 ## Candles
 
@@ -510,9 +507,10 @@ comment | string | No | Contains result: order cancelled or error
 Method used to cancel a group of orders or all the open orders.
 
 
-**???**
 ```shell
-curl "http://example.com/api/v1/status"
+curl "http://example.com/api/v1/orders?pairName=BTC/USDT&orderType=STOP"
+  -X DELETE
+  -H "Authorization: meowmeowmeow"
 ```
 
 > The above command returns JSON structured like this:
@@ -544,25 +542,120 @@ Parameter | Type | Required | Description
 cancelledOrderId | string | Yes | Cancelled exchange order identifier
 comment | string | No | Contains result: order cancelled or error
 
+
+## Trade History 
+
+This method is used to get data on the user's trades.
+
+```shell
+curl "http://example.com/api/v1/tradesHistory?pairName=KICK/BTC&startTime=123213123213213&endTime=32434523523535"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+	"pairName": 111111111,
+	"timestamp": 111111111,
+	"side": 111111111,
+	"price": 111111111,
+	"feeQuoted": 111111111,
+	"feeExternal": 111111111,
+	"externalFeeCurrency": 111111111,
+	"buyVolume": 111111111,
+	"sellVolume": 111111111
+}
+```
+
+### HTTP Request
+
+`GET https://example.com/api/v1/tradesHistory?pairName=KICK/BTC&startTime=123213123213213&endTime=32434523523535`
+
+### URL Parameters
+
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+pairName | string | Yes | Currency pair name *(ex: KICK/BTC)*
+startTIme | timestamp |  | Start time in milliseconds
+endTime | timestamp |  | End time in milliseconds
+
+
+### Response Parameters
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+pairName | string | Yes | Currency pair name *(ex: KICK/ETH)*
+timestamp | timestamp | Yes | Trade timestamp
+side | integer | Yes | Trade side <br/> 0 - BUY <br/>1 - SALE
+price | string | Yes | Price per currency unit (in quotes currency)
+feeQuoted | string | Yes | Fee (in quoted currency)
+feeExternal | string | No | Fee (in additional currency)
+externalFeeCurrency | string | No | Additional fee currency
+buyVolume | string | Yes | Trade buy volume
+sellVolume | string | Yes | Trade sell volume
+
+
+## Active Orders List 
+
+Method used to get information regarding all user's open (active) exchange orders.
+
+```shell
+curl "http://example.com/api/v1/activeOrders?pairName=KICK/BTC"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+	"pairName": 111111111,
+	"timestamp": 111111111,
+	"side": 111111111,
+	"price": 111111111,
+	"feeQuoted": 111111111,
+	"feeExternal": 111111111,
+	"externalFeeCurrency": 111111111,
+	"buyVolume": 111111111,
+	"sellVolume": 111111111
+}
+```
+
+### HTTP Request
+
+`GET https://example.com/api/v1/activeOrders?pairName=KICK/BTC`
+
+### URL Parameters
+
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+pairName | string | No | Currency pair name *(ex: KICK/BTC)*
+
+
+### Response Parameters
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+pairName | string | Yes | Currency pair name *(ex: KICK/ETH)*
+createdTimeStamp | timestamp | Yes | Order creation timestamp
+side | integer | Yes | Trade side <br/> 0 - BUY <br/>1 - SALE
+limitPrice | string | No | Will be returned for orders where limit price was set on creation.
+totalBuyVolume | string | Yes | Total bought volume **???**
+totalSellVolume | string | Yes | Total sold volume **???**
+orderedAmount | string | Yes | Ordered amount of currency
+tpActivateLeve | string | No | Take profit activation level, will be returned if set on order creation.
+tpLimitPrice | string | No | Take profit limit price, will be returned if it was set on order creation.
+slLimitPrice | string | No | Stop loss limit price, will be returned if it was set on order creation.
+tpSubmitLevel | string | No | Take profit stop level, will be returned if it was set on order creation.
+slSubmitLevel | string | No | Stop loss stop level, will be returned if it was set on order creation.
+activated | timestamp | No | Will be returned if the order was activated (for sliding orders) **???**
+
 ## Place Order 
 
 установка ордера
 
 
 
-
-
-## Active Orders List 
-
-получение информации об активных ордерах
-
 ## Orders List 
 
 получение информации о завершенных ордерах
 
-## Trade List 
-
-получение информации об истории сделок Пользователя
 
 # User 
 
