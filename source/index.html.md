@@ -473,9 +473,10 @@ Authorization is needed to use these methods.
 
 Exchange order cancellation method.
 
-**???**
 ```shell
-curl "http://example.com/api/v1/status"
+curl "http://example.com/api/v1/orders/{orderId}"
+  -X DELETE
+  -H "Authorization: meowmeowmeow"
 ```
 
 > The above command returns JSON structured like this:
@@ -517,7 +518,7 @@ curl "http://example.com/api/v1/orders?pairName=BTC/USDT&orderType=STOP"
 
 ```json
 {
-
+ "a": "a"
 }
 ```
 
@@ -646,10 +647,45 @@ tpSubmitLevel | string | No | Take profit stop level, will be returned if it was
 slSubmitLevel | string | No | Stop loss stop level, will be returned if it was set on order creation.
 activated | timestamp | No | Will be returned if the order was activated (for sliding orders) **???**
 
-## Place Order 
+## Create Trade Order 
 
-установка ордера
+Method for exchange order creation.
 
+```shell
+curl "http://example.com/api/v1/orders/createTradeOrder"
+  -X POST
+  -H "Authorization: meowmeowmeow"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+
+}
+```
+
+### HTTP Request
+
+`POST https://example.com/api/v1/orders/createTradeOrder`
+
+### URL Parameters
+
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+pairName | string | Yes | Currency pair name *(ex: KICK/ETH)*
+orderedAmount | string | Yes | Ordered currency amount
+limitPrice | string | No | **???**
+tradeIntent | integer | Yes | Possible values:<br/>0 - buy base currency, <br/>1 - sell base currency
+modifier | integer | No | Possible value: GTC (if ommitted, the same is used)
+reserves | integer | No | 0 (default) - don't create reserves, <br/>1 - create reserves (valid only if limitPrice is set)
+
+
+### Response Parameters
+
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+orderId | integer | Yes | Created trade order identifier
 
 
 ## Orders List 
