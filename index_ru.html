@@ -281,13 +281,7 @@
                     <a href="#create-trade-order" class="toc-h2 toc-link" data-title="Create Trade Order">Create Trade Order</a>
                   </li>
                   <li>
-                    <a href="#orders-list" class="toc-h2 toc-link" data-title="orders list">orders list</a>
-                  </li>
-                  <li>
-                    <a href="#orderbook-2" class="toc-h2 toc-link" data-title="Orderbook">Orderbook</a>
-                  </li>
-                  <li>
-                    <a href="#trade-history-2" class="toc-h2 toc-link" data-title="Trade history">Trade history</a>
+                    <a href="#create-stop-order" class="toc-h2 toc-link" data-title="Create Stop Order">Create Stop Order</a>
                   </li>
               </ul>
           </li>
@@ -1504,11 +1498,11 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <p>Команда выше вернёт структуру следующего вида:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-
+    </span><span class="s2">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-14'>HTTP Запрос</h3>
 <p><code>POST https://example.com/api/v1/orders/createTradeOrder</code></p>
-<h3 id='url-14'>Параметры URL</h3>
+<h3 id='88964dca07'>Параметры запроса</h3>
 <table><thead>
 <tr>
 <th>Параметр</th>
@@ -1570,9 +1564,107 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <td>Идентификатор созданного ордера</td>
 </tr>
 </tbody></table>
-<h2 id='orders-list'>orders list</h2>
-<p>получение информации о завершенных ордерах</p>
-<h2 id='orderbook-2'>Orderbook</h2><h2 id='trade-history-2'>Trade history</h2><h1 id='user'>User</h1>
+<h2 id='create-stop-order'>Create Stop Order</h2>
+<p>установка ордера</p>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/orders/createStopOrder"</span>
+  -X POST
+  -H <span class="s2">"Authorization: meowmeowmeow"</span>
+</code></pre>
+<blockquote>
+<p>Команда выше вернёт структуру следующего вида:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-15'>HTTP Запрос</h3>
+<p><code>POST https://example.com/api/v1/orders/createStopOrder</code></p>
+<h3 id='url-14'>Параметры URL</h3>
+<table><thead>
+<tr>
+<th>Параметр</th>
+<th>Тип</th>
+<th>Обязательный</th>
+<th>Описание</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pairName</td>
+<td>string</td>
+<td>Да</td>
+<td>Наименование крпитовалютнйо пары в формате KICK/ETH</td>
+</tr>
+<tr>
+<td>orderedAmount</td>
+<td>string</td>
+<td>Да</td>
+<td>Заказанное количество криптовалюты для покупки/продажи</td>
+</tr>
+<tr>
+<td>tradeIntent</td>
+<td>integer</td>
+<td>Да</td>
+<td>сейчас принимает значения 0 -покупка базовой и 1 - продажа базовой криптовалюты</td>
+</tr>
+<tr>
+<td>modifier</td>
+<td>integer</td>
+<td>Нет</td>
+<td>сейчас принимает только значение GTC, если параметр не указан выставляется он же</td>
+</tr>
+<tr>
+<td>reserves</td>
+<td>integer</td>
+<td>Нет</td>
+<td>0 (по умолчанию) резервы не делать, 1 - резервы делать. работает только в случае если указана лимит цена</td>
+</tr>
+<tr>
+<td>tpActivateLevel</td>
+<td>string</td>
+<td>Нет</td>
+<td>уровень активации,</td>
+</tr>
+<tr>
+<td>tpLimitPrice</td>
+<td>string</td>
+<td>Нет</td>
+<td>лимит цена блок тэйк профит,</td>
+</tr>
+<tr>
+<td>slLimitPrice</td>
+<td>string</td>
+<td>Нет</td>
+<td>лимит цена блока стоп лос</td>
+</tr>
+<tr>
+<td>tpSubmitLevel</td>
+<td>string</td>
+<td>Нет</td>
+<td>стоп уровень блока тэйк профит</td>
+</tr>
+<tr>
+<td>slSubmitLevel</td>
+<td>string</td>
+<td>Нет</td>
+<td>стоп уровень блока стоп лосс</td>
+</tr>
+</tbody></table>
+<h3 id='1300eba048-15'>Параметры ответа</h3>
+<table><thead>
+<tr>
+<th>Параметр</th>
+<th>Тип</th>
+<th>Обязательный</th>
+<th>Описание</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>orderId</td>
+<td>integer</td>
+<td>Да</td>
+<td>Идентификатор созданного ордера</td>
+</tr>
+</tbody></table>
+<h1 id='user'>User</h1>
 <p>Набор методов для получения информации о пользователе и его аккаунте на бирже </p>
 
 <aside class="warning">
@@ -1592,11 +1684,11 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
     </span><span class="s2">"comment"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
     </span><span class="s2">"restrictions"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-15'>HTTP Запрос</h3>
+</span></code></pre><h3 id='http-16'>HTTP Запрос</h3>
 <p><code>GET https://example.com/api/v1/userInfo</code></p>
 <h3 id='url-15'>Параметры URL</h3>
 <p><em>Отсутствуют.</em></p>
-<h3 id='1300eba048-15'>Параметры ответа</h3>
+<h3 id='1300eba048-16'>Параметры ответа</h3>
 <table><thead>
 <tr>
 <th>Параметр</th>
@@ -1650,11 +1742,11 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
     </span><span class="s2">"inOrders"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
     </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-16'>HTTP Запрос</h3>
+</span></code></pre><h3 id='http-17'>HTTP Запрос</h3>
 <p><code>GET https://example.com/api/v1/user/balance</code></p>
 <h3 id='url-16'>Параметры URL</h3>
 <p><em>Отсутствуют.</em></p>
-<h3 id='1300eba048-16'>Параметры ответа</h3>
+<h3 id='1300eba048-17'>Параметры ответа</h3>
 <table><thead>
 <tr>
 <th>Параметр</th>
@@ -1708,7 +1800,7 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
     </span><span class="s2">"inOrders"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
     </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-17'>HTTP Запрос</h3>
+</span></code></pre><h3 id='http-18'>HTTP Запрос</h3>
 <p><code>GET https://example.com/api/v1/depositAddresses</code></p>
 <h3 id='url-17'>Параметры URL</h3>
 <table><thead>
@@ -1732,7 +1824,7 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <td>ERC20/OMNI/TRC20 какой выберем по дефолту для USDT?</td>
 </tr>
 </tbody></table>
-<h3 id='1300eba048-17'>Параметры ответа</h3>
+<h3 id='1300eba048-18'>Параметры ответа</h3>
 <table><thead>
 <tr>
 <th>Параметр</th>
@@ -1780,7 +1872,7 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
     </span><span class="s2">"inOrders"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
     </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-18'>HTTP Запрос</h3>
+</span></code></pre><h3 id='http-19'>HTTP Запрос</h3>
 <p><code>GET https://example.com/api/v1/depositHistory</code></p>
 <h3 id='url-18'>Параметры URL</h3>
 <table><thead>
@@ -1816,7 +1908,7 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <td>фильтр статусов депозита (failure/success/processing)</td>
 </tr>
 </tbody></table>
-<h3 id='1300eba048-18'>Параметры ответа</h3>
+<h3 id='1300eba048-19'>Параметры ответа</h3>
 <table><thead>
 <tr>
 <th>Параметр</th>
@@ -1887,7 +1979,75 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 </tr>
 </tbody></table>
 <h2 id='withdraw'>Withdraw</h2>
-<p>Отправка запроса на вывод средств;</p>
+<p>Метод создания запроса на вывод средств.</p>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/user/withdraw"</span>
+  -X POST
+  -H <span class="s2">"Authorization: meowmeowmeow"</span>
+</code></pre>
+<blockquote>
+<p>Команда выше вернёт структуру следующего вида:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-20'>HTTP Запрос</h3>
+<p><code>POST https://example.com/api/v1/user/withdraw</code></p>
+<h3 id='url-19'>Параметры URL</h3>
+<table><thead>
+<tr>
+<th>Параметр</th>
+<th>Тип</th>
+<th>Обязательный</th>
+<th>Описание</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>address</td>
+<td>string</td>
+<td>Да</td>
+<td>адрес, на который выводятся средства</td>
+</tr>
+<tr>
+<td>memo</td>
+<td>string</td>
+<td>Нет</td>
+<td>мемо тег (опционально)</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>Да</td>
+<td>количество криптовалюты для вывода</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>Да</td>
+<td>криптовалюта, в которой осуществляется вывод</td>
+</tr>
+<tr>
+<td>сhain</td>
+<td>string</td>
+<td>Нет</td>
+<td>Если чейнов несколько, как с USDT, то отображается чейн на который был вывод</td>
+</tr>
+</tbody></table>
+<h3 id='1300eba048-20'>Параметры ответа</h3>
+<table><thead>
+<tr>
+<th>Параметр</th>
+<th>Тип</th>
+<th>Обязательный</th>
+<th>Описание</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>orderId</td>
+<td>integer</td>
+<td>Да</td>
+<td>Идентификатор созданного ордера</td>
+</tr>
+</tbody></table>
 <h2 id='withdrawal-history'>withdrawal History</h2>
 <p>Метод для запроса истории вывода средств.</p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/withdrawalHistory"</span>
@@ -1909,9 +2069,9 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
     </span><span class="s2">"comment"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
     </span><span class="s2">"chain"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-19'>HTTP Запрос</h3>
+</span></code></pre><h3 id='http-21'>HTTP Запрос</h3>
 <p><code>GET https://example.com/api/v1/withdrawalHistory</code></p>
-<h3 id='url-19'>Параметры URL</h3>
+<h3 id='url-20'>Параметры URL</h3>
 <table><thead>
 <tr>
 <th>Параметр</th>
@@ -1945,7 +2105,7 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <td>failure/success/processing/wallet_processing</td>
 </tr>
 </tbody></table>
-<h3 id='1300eba048-19'>Параметры ответа</h3>
+<h3 id='1300eba048-21'>Параметры ответа</h3>
 <table><thead>
 <tr>
 <th>Параметр</th>
