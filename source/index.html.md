@@ -649,7 +649,7 @@ activated | timestamp | No | Will be returned if the order was activated (for sl
 
 ## Create Trade Order 
 
-Method for exchange order creation.
+Method for trade order creation.
 
 ```shell
 curl "http://example.com/api/v1/orders/createTradeOrder"
@@ -661,7 +661,7 @@ curl "http://example.com/api/v1/orders/createTradeOrder"
 
 ```json
 {
-
+	"orderId": 123456
 }
 ```
 
@@ -669,7 +669,7 @@ curl "http://example.com/api/v1/orders/createTradeOrder"
 
 `POST https://example.com/api/v1/orders/createTradeOrder`
 
-### URL Parameters
+### Request Parameters
 
 Parameter | Type | Required | Description
 --------- | ----------- | ----------- | -----------
@@ -687,11 +687,48 @@ Parameter | Type | Required | Description
 --------- | ----------- | ----------- | -----------
 orderId | integer | Yes | Created trade order identifier
 
+## Create Stop Order 
 
-## Orders List 
+Method for stop order creation.
 
-получение информации о завершенных ордерах
+```shell
+curl "http://example.com/api/v1/orders/createStopOrder"
+  -X POST
+  -H "Authorization: meowmeowmeow"
+```
 
+> The above command returns JSON structured like this:
+
+```json
+{
+	"orderId": 123456
+}
+```
+
+### HTTP Request
+
+`POST https://example.com/api/v1/orders/createStopOrder`
+
+### Request Parameters
+
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+pairName | string | Yes | Currency pair name *(ex: KICK/ETH)*
+orderedAmount | string | Yes | Ordered currency amount
+tradeIntent | integer | Yes | Currently two possible values are accepted: <br/>0 - buying base currency <br/>1 - selling base currency
+modifier | integer | No | Possible value: GTC (if ommitted, the same is used)
+reserves | integer | No | 0 (default) - don't create reserves, <br/>1 - create reserves (valid only if limitPrice is set)
+tpActivateLevel | string | No | Take profit activation level
+tpLimitPrice | string | No | Take profit stop level
+slLimitPrice | string | No | Stop loss limit price
+tpSubmitLevel | string | No | Take profit submit level
+slSubmitLevel | string | No | Stop loss submit level
+
+### Response Parameters
+
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+orderId | integer | Yes | Created trade order identifier
 
 # User 
 
@@ -862,9 +899,43 @@ createdAt | timestamp | Yes | Database record creation timestamp
 updatedAt | timestamp | Yes | Database record update timestamp
 comment | string | No | Comment (if any)
 
-## Withdraw 
+## Withdraw
 
 Method for withdrawal request creation.
+
+```shell
+curl "http://example.com/api/v1/user/withdraw"
+  -X POST
+  -H "Authorization: meowmeowmeow"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+	"orderId": 123456
+}
+```
+
+### HTTP Request
+
+`POST https://example.com/api/v1/user/withdraw`
+
+### Request Parameters
+
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+address | string | Yes | External address for withdrawal
+memo | string | No | Memo tag
+amount | string | Yes | Amount to withdraw
+currency | string | Yes | Currency *(example: USDT)*
+сhain | string | No | Blockchain (needed for currencies like USDT that are present in several blockchains)
+
+### Response Parameters
+
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+orderId | integer | Yes | Created trade order identifier
 
 ## Withdraw History 
 

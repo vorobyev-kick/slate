@@ -688,7 +688,7 @@ curl "http://example.com/api/v1/orders/createTradeOrder"
 
 ```json
 {
-
+	"orderId": 123456
 }
 ```
 
@@ -697,7 +697,7 @@ curl "http://example.com/api/v1/orders/createTradeOrder"
 `POST https://example.com/api/v1/orders/createTradeOrder`
 
 
-### Параметры URL 
+### Параметры запроса 
 
 Параметр | Тип | Обязательный | Описание
 --------- | ----------- | ----------- | -----------
@@ -716,15 +716,49 @@ reserves | integer | Нет | 0 (по умолчанию) резервы не д
 orderId | integer | Да | Идентификатор созданного ордера
 
 
-## orders list 
+## Create Stop Order 
 
-получение информации о завершенных ордерах
+установка ордера
+
+```shell
+curl "http://example.com/api/v1/orders/createStopOrder"
+  -X POST
+  -H "Authorization: meowmeowmeow"
+```
+
+> Команда выше вернёт структуру следующего вида:
+
+```json
+{
+	"orderId": 123456
+}
+```
+
+### HTTP Запрос
+
+`POST https://example.com/api/v1/orders/createStopOrder`
 
 
-## Orderbook
+### Параметры URL 
 
-## Trade history
+Параметр | Тип | Обязательный | Описание
+--------- | ----------- | ----------- | -----------
+pairName | string | Да | Наименование крпитовалютнйо пары в формате KICK/ETH
+orderedAmount | string | Да | Заказанное количество криптовалюты для покупки/продажи
+tradeIntent | integer | Да | сейчас принимает значения 0 -покупка базовой и 1 - продажа базовой криптовалюты
+modifier | integer | Нет | сейчас принимает только значение GTC, если параметр не указан выставляется он же
+reserves | integer | Нет | 0 (по умолчанию) резервы не делать, 1 - резервы делать. работает только в случае если указана лимит цена
+tpActivateLevel | string | Нет | уровень активации,
+tpLimitPrice | string | Нет | лимит цена блок тэйк профит,
+slLimitPrice | string | Нет | лимит цена блока стоп лос
+tpSubmitLevel | string | Нет | стоп уровень блока тэйк профит
+slSubmitLevel | string | Нет | стоп уровень блока стоп лосс
 
+### Параметры ответа
+
+Параметр | Тип | Обязательный | Описание
+--------- | ----------- | ----------- | -----------
+orderId | integer | Да | Идентификатор созданного ордера
 
 # User 
 
@@ -901,7 +935,42 @@ comment | string | Нет | комментарий (при наличии)
 
 ## Withdraw 
 
-Отправка запроса на вывод средств;
+Метод создания запроса на вывод средств.
+
+```shell
+curl "http://example.com/api/v1/user/withdraw"
+  -X POST
+  -H "Authorization: meowmeowmeow"
+```
+
+> Команда выше вернёт структуру следующего вида:
+
+```json
+{
+	"orderId": 123456
+}
+```
+
+### HTTP Запрос
+
+`POST https://example.com/api/v1/user/withdraw`
+
+
+### Параметры URL 
+
+Параметр | Тип | Обязательный | Описание
+--------- | ----------- | ----------- | -----------
+address | string | Да | адрес, на который выводятся средства
+memo | string | Нет | мемо тег (опционально)
+amount | string | Да | количество криптовалюты для вывода
+currency | string | Да | криптовалюта, в которой осуществляется вывод
+сhain | string | Нет | Если чейнов несколько, как с USDT, то отображается чейн на который был вывод
+
+### Параметры ответа
+
+Параметр | Тип | Обязательный | Описание
+--------- | ----------- | ----------- | -----------
+orderId | integer | Да | Идентификатор созданного ордера
 
 ## withdrawal History 
 
