@@ -176,7 +176,7 @@ curl "http://example.com/api/v1/market/stats24?pairName=BTC/USDT"
 
 ```json
 {
-	"pairName": 111111111,
+	"pairName": "BTC/USDT",
 	"high24": "BTC/USDT",
 	"low24": "BTC",
 	"amountVol": "USDT",
@@ -230,16 +230,16 @@ curl "http://example.com/api/v1/currencies?currency=ETH"
 
 ```json
 {
-	"currencyCode": 111111111,
-	"currencyName": 111111111,
-	"fullName": 111111111,
-	"decimal": 111111111,
-	"minWithdawal": 111111111,
-	"minFeeWithrawal?": 111111111,
-	"isWithdrawEnable": 111111111,
-	"isDepositEnable": 111111111,
-	"isExchangeEnable": 111111111,
-	"isFrozen": 111111111
+	"currencyCode???": "KICK",
+	"currencyName": "KICK",
+	"fullName": "Kick Token",
+	"decimal": 8,
+	"minWithdawal???": "1",
+	"minFeeWithrawal???": "0.1",
+	"isWithdrawEnable???": 1,
+	"isDepositEnable???": 1,
+	"isExchangeEnable???": 1,
+	"isFrozen???": 0
 }
 ```
 
@@ -281,11 +281,11 @@ curl "http://example.com/api/v1/market/trades?pairName=BTC/USDT&type=buy"
 ```json
 {
 	"tradeId": 111111111,
-	"price": 111111111,
-	"baseVol": 111111111,
-	"quoteVol": 111111111,
+	"price": "1124.120937",
+	"baseVol": "491082.129100",
+	"quoteVol": "436.858805",
 	"timestamp": 111111111,
-	"type": 111111111
+	"type": "buy"
 }
 ```
 
@@ -578,7 +578,7 @@ curl "http://example.com/api/v1/tradesHistory?pairName=KICK/BTC&startTime=123213
 
 ```json
 {
-	"pairName": 111111111,
+	"pairName": "BTC/USDT",
 	"timestamp": 111111111,
 	"side": 111111111,
 	"price": 111111111,
@@ -631,7 +631,7 @@ curl "http://example.com/api/v1/activeOrders?pairName=KICK/BTC"
 
 ```json
 {
-	"pairName": 111111111,
+	"pairName": "BTC/USDT",
 	"timestamp": 111111111,
 	"side": 111111111,
 	"price": 111111111,
