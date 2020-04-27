@@ -32,7 +32,7 @@ require 'kittn'
 
 api = Kittn::APIClient.authorize!('meowmeowmeow')
 ```
-
+ 
 ```python
 import kittn
 
