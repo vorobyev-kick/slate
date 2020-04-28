@@ -304,13 +304,7 @@
                     <a href="#withdraw" class="toc-h2 toc-link" data-title="Withdraw">Withdraw</a>
                   </li>
                   <li>
-                    <a href="#withdraw-history" class="toc-h2 toc-link" data-title="Withdraw History">Withdraw History</a>
-                  </li>
-                  <li>
-                    <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Get a Specific Kitten">Get a Specific Kitten</a>
-                  </li>
-                  <li>
-                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Delete a Specific Kitten">Delete a Specific Kitten</a>
+                    <a href="#withdrawal-history" class="toc-h2 toc-link" data-title="Withdrawal History">Withdrawal History</a>
                   </li>
               </ul>
           </li>
@@ -336,6 +330,9 @@
 <pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
 
 <span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
 </code></pre><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
 curl <span class="s2">"api_endpoint_here"</span>
   -H <span class="s2">"Authorization: meowmeowmeow"</span>
@@ -367,16 +364,32 @@ You don&#39;t need to authorize to use methods from <b>Market</b> section.
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"pairName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USDT"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"baseCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"quoteCurrencу"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"baseMinSIze"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0001"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"quoteMinSize"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0001"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"priceDecimal"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"amountDecimal"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"feeTaker"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.15"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"feeMaker"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.15"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"isFrozen"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="s2">"pairs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"pairName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USDT"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"baseCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"quoteCurrencу"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"baseMinSIze"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0001"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"quoteMinSize"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0001"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"priceDecimal"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amountDecimal"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"feeTaker"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.15"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"feeMaker"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.15"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"isFrozen"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"pairName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/KICK"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"baseCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"quoteCurrencу"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KICK"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"baseMinSIze"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0001"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"quoteMinSize"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0001"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"priceDecimal"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amountDecimal"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"feeTaker"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.15"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"feeMaker"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.15"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"isFrozen"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-request'>HTTP Request</h3>
 <p><code>GET https://example.com/api/v1/market/pairs?type=market</code></p>
@@ -473,13 +486,13 @@ You don&#39;t need to authorize to use methods from <b>Market</b> section.
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"pairName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USDT"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"bestBid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"bestAsk"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"lastPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0001"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"lastVolume"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0001"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"bestAskSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"bestBidSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.15"</span><span class="w">
+    </span><span class="s2">"bestBid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234.1231"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bestAsk"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1245.2847"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lastPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1242.1984"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lastVolume"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bestAskSize"</span><span class="p">:</span><span class="w"> </span><span class="s2">"124990"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bestBidSize"</span><span class="p">:</span><span class="w"> </span><span class="s2">"95830"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="mi">1588024908</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-request-2'>HTTP Request</h3>
 <p><code>GET https://example.com/api/v1/market/ticker?pairName=BTC/USDT</code></p>
@@ -568,18 +581,18 @@ You don&#39;t need to authorize to use methods from <b>Market</b> section.
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"pairName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USDT"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"high24"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USDT"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"low24"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"amountVol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"baseVol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0001"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"lastPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0001"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"bestBid"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"bestAsk"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"averagePrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.15"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"priceChange"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"changeRate?"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="w">
-</span><span class="p">}</span><span class="w">
+    </span><span class="s2">"high24"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3425.0092"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"low24"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3389.1294"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amountVol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"91572919"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"baseVol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"27020.6311"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lastPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3421.7623"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bestBid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3420.4223"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bestAsk"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3401.7623"",
+    "</span><span class="err">averagePrice</span><span class="s2">": "</span><span class="mf">3407.3719</span><span class="s2">",
+    "</span><span class="err">priceChange</span><span class="s2">": "</span><span class="mf">36.0925</span><span class="s2">",
+    "</span><span class="err">time</span><span class="s2">": 1588024908,
+    "</span><span class="err">changeRate?</span><span class="s2">": ""
+}
 </span></code></pre><h3 id='http-request-3'>HTTP Request</h3>
 <p><code>GET https://example.com/api/v1/market/stats24?pairName=BTC/USDT</code></p>
 <h3 id='url-parameters-3'>URL Parameters</h3>
@@ -799,7 +812,7 @@ You don&#39;t need to authorize to use methods from <b>Market</b> section.
     </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1124.120937"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"baseVol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"491082.129100"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"quoteVol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"436.858805"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1588024908</span><span class="p">,</span><span class="w">
     </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-request-5'>HTTP Request</h3>
@@ -881,9 +894,19 @@ Provides both aggregated and particular data.</p>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"bids"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"asks"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
+    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1588024908</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1001.2913"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1494.9292"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"asks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10421.1234"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1231.9571"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-request-6'>HTTP Request</h3>
 <p><code>GET https://example.com/api/v1/market/orderbook/pairName=BTC/USDT?depth=20</code></p>
@@ -949,15 +972,15 @@ Provides both aggregated and particular data.</p>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"openPrice"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"closePrice"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"highPrice"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"lowPrice"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"transactionVolume"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"transactionAmount"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1588024908</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"openPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8392.2930"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"closePrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8832.1241"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"highPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9123.2120"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lowPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8392.2930"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"transactionVolume"</span><span class="p">:</span><span class="w"> </span><span class="s2">"63829012.0012"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"transactionAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"271"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-request-7'>HTTP Request</h3>
 <p>If <code>startTime</code> or <code>endTime</code> are not provided, not more than <strong>???</strong> results are returned.</p>
@@ -1067,11 +1090,13 @@ Provides both aggregated and particular data.</p>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-request-8'>HTTP Request</h3>
+<p>If time is not specified, <strong>???</strong> results is returned.</p>
+
 <p><code>GET https://example.com/api/v1/status</code></p>
 <h3 id='url-parameters-8'>URL Parameters</h3>
 <p><em>None.</em></p>
@@ -1109,9 +1134,9 @@ Provides both aggregated and particular data.</p>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="mi">1588024908</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-request-9'>HTTP Request</h3>
 <p><code>GET https://example.com/api/v1/serverTime</code></p>
@@ -1161,8 +1186,8 @@ Authorization is needed to use these methods.
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"cancelledOrderId"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"comment"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
+    </span><span class="s2">"cancelledOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"111111111"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-request-10'>HTTP Request</h3>
 <p><code>DELETE https://example.com/api/v1/orders/{orderId}</code></p>
@@ -1200,7 +1225,16 @@ Authorization is needed to use these methods.
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
- </span><span class="s2">"a"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a"</span><span class="w">
+    </span><span class="s2">"cancelledOrders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"cancelledOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"111111"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"cancelledOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"222222"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-request-11'>HTTP Request</h3>
 <p><code>DELETE https://example.com/api/v1/orders?pairName=BTC/USDT&amp;orderType=STOP</code></p>
@@ -1258,15 +1292,30 @@ Authorization is needed to use these methods.
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"pairName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USDT"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"feeQuoted"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"feeExternal"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"externalFeeCurrency"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"buyVolume"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"sellVolume"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
+    </span><span class="s2">"trades"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"pairName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USDT"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1588024908</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"732.9532"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"feeQuoted"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3.1274"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"feeExternal"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"externalFeeCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KICK"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"buyVolume"</span><span class="p">:</span><span class="w"> </span><span class="s2">"14523"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sellVolume"</span><span class="p">:</span><span class="w"> </span><span class="s2">"823491"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"pairName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USDT"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1588024908</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"732.9532"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"feeQuoted"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3.1274"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"feeExternal"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"externalFeeCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KICK"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"buyVolume"</span><span class="p">:</span><span class="w"> </span><span class="s2">"14523"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sellVolume"</span><span class="p">:</span><span class="w"> </span><span class="s2">"823491"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-request-12'>HTTP Request</h3>
 <p><code>GET https://example.com/api/v1/tradesHistory?pairName=KICK/BTC&amp;startTime=123213123213213&amp;endTime=32434523523535</code></p>
@@ -1370,15 +1419,38 @@ Authorization is needed to use these methods.
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"pairName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USDT"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"feeQuoted"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"feeExternal"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"externalFeeCurrency"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"buyVolume"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"sellVolume"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
+    </span><span class="s2">"orders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"pairName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USDT"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"createdTimeStamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1588024908</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"limitPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"91.9012"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"totalBuyVolume"</span><span class="p">:</span><span class="w"> </span><span class="s2">"124124"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"totalSellVolume"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3243"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"orderedAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"tpActivateLeve"</span><span class="p">:</span><span class="w"> </span><span class="s2">"90.0000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"tpLimitPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"92.0000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"slLimitPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"85.0000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"tpSubmitLevel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"89.0000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"slSubmitLevel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"86.0000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"activated"</span><span class="p">:</span><span class="w"> </span><span class="mi">1588022908</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"pairName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USDT"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"createdTimeStamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1588024908</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"limitPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"91.9012"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"totalBuyVolume"</span><span class="p">:</span><span class="w"> </span><span class="s2">"124124"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"totalSellVolume"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3243"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"orderedAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"tpActivateLeve"</span><span class="p">:</span><span class="w"> </span><span class="s2">"90.0000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"tpLimitPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"92.0000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"slLimitPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"85.0000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"tpSubmitLevel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"89.0000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"slSubmitLevel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"86.0000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"activated"</span><span class="p">:</span><span class="w"> </span><span class="mi">1588022908</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-request-13'>HTTP Request</h3>
 <p><code>GET https://example.com/api/v1/activeOrders?pairName=KICK/BTC</code></p>
@@ -1677,10 +1749,10 @@ Authorization is needed to use these methods.
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"userName"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"platformName"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"comment"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"restrictions"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
+    </span><span class="s2">"userName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kickuser123"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"platformName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KickEX"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"restrictions"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-request-16'>HTTP Request</h3>
 <p><code>GET https://example.com/api/v1/userInfo</code></p>
@@ -1734,11 +1806,22 @@ Authorization is needed to use these methods.
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"currencyName"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"inOrders"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
+    </span><span class="s2">"balances"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"currencyName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KICK"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10000000.8372"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"available"</span><span class="p">:</span><span class="w"> </span><span class="s2">"598292.1214"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"inOrders"</span><span class="p">:</span><span class="w"> </span><span class="s2">"300123.9133"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2401"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"currencyName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10000000.8372"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"available"</span><span class="p">:</span><span class="w"> </span><span class="s2">"598292.1214"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"inOrders"</span><span class="p">:</span><span class="w"> </span><span class="s2">"300123.9133"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2401"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-request-17'>HTTP Request</h3>
 <p><code>GET https://example.com/api/v1/user/balance</code></p>
@@ -1786,20 +1869,19 @@ Authorization is needed to use these methods.
 </tbody></table>
 <h2 id='deposit-address'>Deposit Address</h2>
 <p>Method for getting personal deposit address.</p>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/depositAddresses"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/depositAddresses?currencyName=USDT&amp;chain=ERC20"</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"currencyName"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"inOrders"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
+    </span><span class="s2">"currencyName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"chain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ERC20"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"memo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xc0DAa9e14343128cd50f7b934B5Bb23eddd3F246"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-request-18'>HTTP Request</h3>
-<p><code>GET https://example.com/api/v1/depositAddresses</code></p>
+<p><code>GET https://example.com/api/v1/depositAddresses?currencyName=USDT&amp;chain=ERC20</code></p>
 <h3 id='url-parameters-16'>URL Parameters</h3>
 <table><thead>
 <tr>
@@ -1858,20 +1940,41 @@ Authorization is needed to use these methods.
 </tbody></table>
 <h2 id='deposit-history'>Deposit History</h2>
 <p>This method provides deposit history.</p>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/depositHistory"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/depositHistory?сurrencyName=KICK&amp;startTime=1588015708&amp;endTime=1588024908&amp;status=success"</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"currencyName"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"inOrders"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
+    </span><span class="s2">"deposits"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xc0DAa9e14343128cd50f7b934B5Bb23eddd3F246"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200000.0000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"currencyName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KICK"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"memo"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"walletTxId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1588024908</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1588024908</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xc0DAa9e14343128cd50f7b934B5Bb23eddd3F246"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200000.0000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"currencyName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KICK"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"memo"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"walletTxId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x3f9a6dc91d0ac08e2d13fc3a42a9dc4481aade8a96e10c1f497f9d6c60130a15"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1588024908</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1588024908</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-request-19'>HTTP Request</h3>
-<p><code>GET https://example.com/api/v1/depositHistory</code></p>
+<p><code>GET https://example.com/api/v1/depositHistory?сurrencyName=KICK&amp;startTime=1588015708&amp;endTime=1588024908&amp;status=success</code></p>
 <h3 id='url-parameters-17'>URL Parameters</h3>
 <table><thead>
 <tr>
@@ -1981,6 +2084,12 @@ Authorization is needed to use these methods.
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/user/withdraw"</span>
   -X POST
   -H <span class="s2">"Authorization: meowmeowmeow"</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -d <span class="s1">'{"address":"0xc0DAa9e14343128cd50f7b934B5Bb23eddd3F246",
+       "memo":"",
+       "amount":"1000",
+       "currency":"KICK",
+       "chain":"ERC20"}'</span>  
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -2046,29 +2155,45 @@ Authorization is needed to use these methods.
 <td>Created trade order identifier</td>
 </tr>
 </tbody></table>
-<h2 id='withdraw-history'>Withdraw History</h2>
+<h2 id='withdrawal-history'>Withdrawal History</h2>
 <p>Method to get withdrawal history.</p>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/withdrawalHistory"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/withdrawalHistory?сurrencyName=KICK&amp;startTime=1588015708&amp;endTime=1588024908&amp;status=success"</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"transactionId"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"currencyName"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"memo"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"walletTxId"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"comment"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"chain"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
+    </span><span class="s2">"withdrawals"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"transactionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123415"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xc0DAa9e14343128cd50f7b934B5Bb23eddd3F246"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200000.0000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"currencyName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KICK"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"memo"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"walletTxId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"processing"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1588024908</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1588024908</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"transactionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123416"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xc0DAa9e14343128cd50f7b934B5Bb23eddd3F246"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200000.0000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"currencyName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KICK"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"memo"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"walletTxId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x3f9a6dc91d0ac08e2d13fc3a42a9dc4481aade8a96e10c1f497f9d6c60130a15"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1588024908</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1588024908</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-request-21'>HTTP Request</h3>
-<p><code>GET https://example.com/api/v1/withdrawalHistory</code></p>
+<p><code>GET https://example.com/api/v1/withdrawalHistory?сurrencyName=KICK&amp;startTime=1588015708&amp;endTime=1588024908&amp;status=success</code></p>
 <h3 id='url-parameters-18'>URL Parameters</h3>
 <table><thead>
 <tr>
@@ -2183,113 +2308,6 @@ Authorization is needed to use these methods.
 <td>string</td>
 <td>No</td>
 <td>Blockchain short name (required for cryptocurrencies available in several blockchains)</td>
-</tr>
-</tbody></table>
-<h3 id='http-request-22'>HTTP Request</h3>
-<p><code>GET http://example.com/api/kittens</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
-</tr>
-<tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
-</tr>
-</tbody></table>
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves a specific kitten.</p>
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-<h3 id='http-request-23'>HTTP Request</h3>
-<p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-19'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
-</tr>
-</tbody></table>
-<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -X DELETE
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-24'>HTTP Request</h3>
-<p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-20'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to delete</td>
 </tr>
 </tbody></table>
 <h1 id='errors'>Errors</h1>

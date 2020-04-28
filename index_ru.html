@@ -266,7 +266,7 @@
             <a href="#trade" class="toc-h1 toc-link" data-title="Trade">Trade</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#cancel-order" class="toc-h2 toc-link" data-title="cancel order">cancel order</a>
+                    <a href="#cancel-order" class="toc-h2 toc-link" data-title="Cancel Order">Cancel Order</a>
                   </li>
                   <li>
                     <a href="#cancel-all-orders" class="toc-h2 toc-link" data-title="Cancel All Orders">Cancel All Orders</a>
@@ -275,7 +275,7 @@
                     <a href="#trade-history" class="toc-h2 toc-link" data-title="Trade History">Trade History</a>
                   </li>
                   <li>
-                    <a href="#active-orders-list" class="toc-h2 toc-link" data-title="active orders list">active orders list</a>
+                    <a href="#active-orders-list" class="toc-h2 toc-link" data-title="Active Orders List">Active Orders List</a>
                   </li>
                   <li>
                     <a href="#create-trade-order" class="toc-h2 toc-link" data-title="Create Trade Order">Create Trade Order</a>
@@ -289,10 +289,10 @@
             <a href="#user" class="toc-h1 toc-link" data-title="User">User</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#userinfo" class="toc-h2 toc-link" data-title="userinfo">userinfo</a>
+                    <a href="#user-info" class="toc-h2 toc-link" data-title="User Info">User Info</a>
                   </li>
                   <li>
-                    <a href="#balance" class="toc-h2 toc-link" data-title="balance">balance</a>
+                    <a href="#balance" class="toc-h2 toc-link" data-title="Balance">Balance</a>
                   </li>
                   <li>
                     <a href="#deposit-address" class="toc-h2 toc-link" data-title="Deposit Address">Deposit Address</a>
@@ -304,7 +304,7 @@
                     <a href="#withdraw" class="toc-h2 toc-link" data-title="Withdraw">Withdraw</a>
                   </li>
                   <li>
-                    <a href="#withdrawal-history" class="toc-h2 toc-link" data-title="withdrawal History">withdrawal History</a>
+                    <a href="#withdrawal-history" class="toc-h2 toc-link" data-title="Withdrawal History">Withdrawal History</a>
                   </li>
               </ul>
           </li>
@@ -364,16 +364,32 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <p>Команда выше вернёт структуру следующего вида:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"pairName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USDT"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"baseCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"quoteCurrencу"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"baseMinSIze"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0001"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"quoteMinSize"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0001"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"priceDecimal"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"amountDecimal"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"feeTaker"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.15"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"feeMaker"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.15"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"isFrozen"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="s2">"pairs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"pairName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USDT"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"baseCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"quoteCurrencу"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"baseMinSIze"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0001"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"quoteMinSize"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0001"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"priceDecimal"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amountDecimal"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"feeTaker"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.15"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"feeMaker"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.15"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"isFrozen"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"pairName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/KICK"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"baseCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"quoteCurrencу"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KICK"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"baseMinSIze"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0001"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"quoteMinSize"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0001"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"priceDecimal"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amountDecimal"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"feeTaker"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.15"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"feeMaker"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.15"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"isFrozen"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http'>HTTP Запрос</h3>
 <p><code>GET https://example.com/api/v1/market/pairs?type=market</code></p>
@@ -470,13 +486,13 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"pairName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USDT"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"bestBid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"bestAsk"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"lastPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0001"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"lastVolume"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0001"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"bestAskSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"bestBidSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.15"</span><span class="w">
+    </span><span class="s2">"bestBid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234.1231"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bestAsk"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1245.2847"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lastPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1242.1984"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lastVolume"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bestAskSize"</span><span class="p">:</span><span class="w"> </span><span class="s2">"124990"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bestBidSize"</span><span class="p">:</span><span class="w"> </span><span class="s2">"95830"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="mi">1588024908</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-2'>HTTP Запрос</h3>
 <p><code>GET https://example.com/api/v1/market/ticker?pairName=BTC/USDT</code></p>
@@ -565,18 +581,18 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"pairName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USDT"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"high24"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USDT"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"low24"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"amountVol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"baseVol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0001"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"lastPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0001"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"bestBid"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"bestAsk"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"averagePrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.15"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"priceChange"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USDT"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"changeRate?"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="w">
-</span><span class="p">}</span><span class="w">
+    </span><span class="s2">"high24"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3425.0092"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"low24"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3389.1294"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amountVol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"91572919"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"baseVol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"27020.6311"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lastPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3421.7623"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bestBid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3420.4223"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bestAsk"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3401.7623"",
+    "</span><span class="err">averagePrice</span><span class="s2">": "</span><span class="mf">3407.3719</span><span class="s2">",
+    "</span><span class="err">priceChange</span><span class="s2">": "</span><span class="mf">36.0925</span><span class="s2">",
+    "</span><span class="err">time</span><span class="s2">": 1588024908,
+    "</span><span class="err">changeRate?</span><span class="s2">": ""
+}
 </span></code></pre><h3 id='http-3'>HTTP Запрос</h3>
 <p><code>GET https://example.com/api/v1/market/stats24?pairName=BTC/USDT</code></p>
 <h3 id='url-3'>Параметры URL</h3>
@@ -796,7 +812,7 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
     </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1124.120937"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"baseVol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"491082.129100"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"quoteVol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"436.858805"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1588024908</span><span class="p">,</span><span class="w">
     </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-5'>HTTP Запрос</h3>
@@ -877,9 +893,19 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <p>Команда выше вернёт структуру следующего вида:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"bids"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"asks"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
+    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1588024908</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1001.2913"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1494.9292"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"asks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10421.1234"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1231.9571"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-6'>HTTP Запрос</h3>
 <p><code>GET https://example.com/api/v1/market/orderbook/pairName=BTC/USDT?depth=20</code></p>
@@ -945,15 +971,15 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <p>Команда выше вернёт структуру следующего вида:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"openPrice"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"closePrice"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"highPrice"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"lowPrice"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"transactionVolume"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"transactionAmount"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1588024908</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"openPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8392.2930"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"closePrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8832.1241"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"highPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9123.2120"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lowPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8392.2930"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"transactionVolume"</span><span class="p">:</span><span class="w"> </span><span class="s2">"63829012.0012"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"transactionAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"271"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-7'>HTTP Запрос</h3>
 <p>В случае, если время не указано, возвращается не более <strong>???</strong> результатов.</p>
@@ -1063,9 +1089,9 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <p>Команда выше вернёт структуру следующего вида:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-8'>HTTP Запрос</h3>
 <p>В случае, если время не указано, возвращается не более <strong>???</strong> результатов.</p>
@@ -1107,9 +1133,9 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <p>Команда выше вернёт структуру следующего вида:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="mi">1588024908</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-9'>HTTP Запрос</h3>
 <p>В случае, если время не указано, возвращается не более <strong>???</strong> результатов.</p>
@@ -1151,7 +1177,7 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <aside class="warning">
 Для использования данных методов требуется авторизация.
 </aside>
-<h2 id='cancel-order'>cancel order</h2>
+<h2 id='cancel-order'>Cancel Order</h2>
 <p>Метод отмены ордера.</p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/orders/{orderId}"</span>
   -X DELETE
@@ -1161,8 +1187,8 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <p>Команда выше вернёт структуру следующего вида:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"cancelledOrderId"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"comment"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
+    </span><span class="s2">"cancelledOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"111111111"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-10'>HTTP Запрос</h3>
 <p>В случае, если время не указано, возвращается не более <strong>???</strong> результатов.</p>
@@ -1202,7 +1228,16 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <p>Команда выше вернёт структуру следующего вида:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-
+    </span><span class="s2">"cancelledOrders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"cancelledOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"111111"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"cancelledOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"222222"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-11'>HTTP Запрос</h3>
 <p><code>DELETE https://example.com/api/v1/orders?pairName=BTC/USDT&amp;orderType=STOP</code></p>
@@ -1253,22 +1288,37 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 </tr>
 </tbody></table>
 <h2 id='trade-history'>Trade History</h2>
-<p>Метод получения информации об истории сделок Пользователя.</p>
+<p>Метод получения информации об истории сделок пользователя.</p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/tradesHistory?pairName=KICK/BTC&amp;startTime=123213123213213&amp;endTime=32434523523535"</span>
 </code></pre>
 <blockquote>
 <p>Команда выше вернёт структуру следующего вида:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"pairName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USDT"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"feeQuoted"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"feeExternal"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"externalFeeCurrency"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"buyVolume"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"sellVolume"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
+    </span><span class="s2">"trades"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"pairName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USDT"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1588024908</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"732.9532"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"feeQuoted"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3.1274"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"feeExternal"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"externalFeeCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KICK"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"buyVolume"</span><span class="p">:</span><span class="w"> </span><span class="s2">"14523"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sellVolume"</span><span class="p">:</span><span class="w"> </span><span class="s2">"823491"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"pairName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USDT"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1588024908</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"732.9532"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"feeQuoted"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3.1274"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"feeExternal"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"externalFeeCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KICK"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"buyVolume"</span><span class="p">:</span><span class="w"> </span><span class="s2">"14523"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sellVolume"</span><span class="p">:</span><span class="w"> </span><span class="s2">"823491"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-12'>HTTP Запрос</h3>
 <p><code>GET https://example.com/api/v1/tradesHistory?pairName=KICK/BTC&amp;startTime=123213123213213&amp;endTime=32434523523535</code></p>
@@ -1364,7 +1414,7 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <td>проданный объем в сделке</td>
 </tr>
 </tbody></table>
-<h2 id='active-orders-list'>active orders list</h2>
+<h2 id='active-orders-list'>Active Orders List</h2>
 <p>Метод получения информации об активных ордерах.</p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/activeOrders?pairName=KICK/BTC"</span>
 </code></pre>
@@ -1372,15 +1422,38 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <p>Команда выше вернёт структуру следующего вида:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"pairName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USDT"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"feeQuoted"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"feeExternal"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"externalFeeCurrency"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"buyVolume"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"sellVolume"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
+    </span><span class="s2">"orders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"pairName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USDT"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"createdTimeStamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1588024908</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"limitPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"91.9012"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"totalBuyVolume"</span><span class="p">:</span><span class="w"> </span><span class="s2">"124124"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"totalSellVolume"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3243"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"orderedAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"tpActivateLeve"</span><span class="p">:</span><span class="w"> </span><span class="s2">"90.0000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"tpLimitPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"92.0000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"slLimitPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"85.0000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"tpSubmitLevel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"89.0000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"slSubmitLevel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"86.0000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"activated"</span><span class="p">:</span><span class="w"> </span><span class="mi">1588022908</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"pairName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC/USDT"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"createdTimeStamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1588024908</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"limitPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"91.9012"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"totalBuyVolume"</span><span class="p">:</span><span class="w"> </span><span class="s2">"124124"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"totalSellVolume"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3243"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"orderedAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"tpActivateLeve"</span><span class="p">:</span><span class="w"> </span><span class="s2">"90.0000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"tpLimitPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"92.0000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"slLimitPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"85.0000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"tpSubmitLevel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"89.0000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"slSubmitLevel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"86.0000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"activated"</span><span class="p">:</span><span class="w"> </span><span class="mi">1588022908</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-13'>HTTP Запрос</h3>
 <p><code>GET https://example.com/api/v1/activeOrders?pairName=KICK/BTC</code></p>
@@ -1670,7 +1743,7 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <aside class="warning">
 Для использования данных методов требуется авторизация.
 </aside>
-<h2 id='userinfo'>userinfo</h2>
+<h2 id='user-info'>User Info</h2>
 <p>Основные данные о пользователе.</p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/userInfo"</span>
 </code></pre>
@@ -1679,10 +1752,10 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"userName"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"platformName"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"comment"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"restrictions"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
+    </span><span class="s2">"userName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kickuser123"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"platformName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KickEX"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"restrictions"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-16'>HTTP Запрос</h3>
 <p><code>GET https://example.com/api/v1/userInfo</code></p>
@@ -1728,7 +1801,7 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <td>Индикатор, показывающий, доступна ли торговля Пользователю (0 – доступна) 1 – не доступна</td>
 </tr>
 </tbody></table>
-<h2 id='balance'>balance</h2>
+<h2 id='balance'>Balance</h2>
 <p>Информация о балансе пользователя;</p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/user/balance"</span>
 </code></pre>
@@ -1736,11 +1809,22 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <p>Команда выше вернёт структуру следующего вида:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"currencyName"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"inOrders"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
+    </span><span class="s2">"balances"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"currencyName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KICK"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10000000.8372"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"available"</span><span class="p">:</span><span class="w"> </span><span class="s2">"598292.1214"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"inOrders"</span><span class="p">:</span><span class="w"> </span><span class="s2">"300123.9133"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2401"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"currencyName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10000000.8372"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"available"</span><span class="p">:</span><span class="w"> </span><span class="s2">"598292.1214"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"inOrders"</span><span class="p">:</span><span class="w"> </span><span class="s2">"300123.9133"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2401"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-17'>HTTP Запрос</h3>
 <p><code>GET https://example.com/api/v1/user/balance</code></p>
@@ -1788,20 +1872,19 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 </tbody></table>
 <h2 id='deposit-address'>Deposit Address</h2>
 <p>Метод получения персонального адреса для пополнения.</p>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/depositAddresses"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/depositAddresses?currencyName=USDT&amp;chain=ERC20"</span>
 </code></pre>
 <blockquote>
 <p>Команда выше вернёт структуру следующего вида:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"currencyName"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"inOrders"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
+    </span><span class="s2">"currencyName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"chain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ERC20"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"memo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xc0DAa9e14343128cd50f7b934B5Bb23eddd3F246"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-18'>HTTP Запрос</h3>
-<p><code>GET https://example.com/api/v1/depositAddresses</code></p>
+<p><code>GET https://example.com/api/v1/depositAddresses?currencyName=USDT&amp;chain=ERC20</code></p>
 <h3 id='url-17'>Параметры URL</h3>
 <table><thead>
 <tr>
@@ -1860,20 +1943,41 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 </tbody></table>
 <h2 id='deposit-history'>Deposit History</h2>
 <p>Метод получения истории пополнений.</p>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/depositHistory"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/depositHistory?сurrencyName=KICK&amp;startTime=1588015708&amp;endTime=1588024908&amp;status=success"</span>
 </code></pre>
 <blockquote>
 <p>Команда выше вернёт структуру следующего вида:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"currencyName"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"inOrders"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"accountType"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
+    </span><span class="s2">"deposits"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xc0DAa9e14343128cd50f7b934B5Bb23eddd3F246"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200000.0000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"currencyName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KICK"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"memo"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"walletTxId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1588024908</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1588024908</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xc0DAa9e14343128cd50f7b934B5Bb23eddd3F246"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200000.0000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"currencyName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KICK"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"memo"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"walletTxId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x3f9a6dc91d0ac08e2d13fc3a42a9dc4481aade8a96e10c1f497f9d6c60130a15"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1588024908</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1588024908</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-19'>HTTP Запрос</h3>
-<p><code>GET https://example.com/api/v1/depositHistory</code></p>
+<p><code>GET https://example.com/api/v1/depositHistory?сurrencyName=KICK&amp;startTime=1588015708&amp;endTime=1588024908&amp;status=success</code></p>
 <h3 id='url-18'>Параметры URL</h3>
 <table><thead>
 <tr>
@@ -1983,6 +2087,12 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/user/withdraw"</span>
   -X POST
   -H <span class="s2">"Authorization: meowmeowmeow"</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -d <span class="s1">'{"address":"0xc0DAa9e14343128cd50f7b934B5Bb23eddd3F246",
+       "memo":"",
+       "amount":"1000",
+       "currency":"KICK",
+       "chain":"ERC20"}'</span>  
 </code></pre>
 <blockquote>
 <p>Команда выше вернёт структуру следующего вида:</p>
@@ -2048,9 +2158,9 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <td>Идентификатор созданного ордера</td>
 </tr>
 </tbody></table>
-<h2 id='withdrawal-history'>withdrawal History</h2>
+<h2 id='withdrawal-history'>Withdrawal History</h2>
 <p>Метод для запроса истории вывода средств.</p>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/withdrawalHistory"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/withdrawalHistory?сurrencyName=KICK&amp;startTime=1588015708&amp;endTime=1588024908&amp;status=success"</span>
 </code></pre>
 <blockquote>
 <p>Команда выше вернёт структуру следующего вида:</p>
@@ -2070,7 +2180,7 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
     </span><span class="s2">"chain"</span><span class="p">:</span><span class="w"> </span><span class="mi">111111111</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-21'>HTTP Запрос</h3>
-<p><code>GET https://example.com/api/v1/withdrawalHistory</code></p>
+<p><code>GET https://example.com/api/v1/withdrawalHistory?сurrencyName=KICK&amp;startTime=1588015708&amp;endTime=1588024908&amp;status=success</code></p>
 <h3 id='url-20'>Параметры URL</h3>
 <table><thead>
 <tr>
@@ -2187,31 +2297,6 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <td>Если чейнов несколько, как с USDT, то отображается чейн на который был вывод</td>
 </tr>
 </tbody></table>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://example.com/api/kittens</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
-</tr>
-<tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
-</tr>
-</tbody></table>
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
 <h1 id='errors'>Errors</h1>
 <aside class="notice">
 This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
