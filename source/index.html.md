@@ -33,6 +33,12 @@ require 'kittn'
 api = Kittn::APIClient.authorize!('meowmeowmeow')
 ```
 
+```python
+import kittn
+
+api = kittn.authorize('meowmeowmeow')
+```
+
 ```shell
 # With shell, you can just pass the correct header with each request
 curl "api_endpoint_here"
@@ -74,16 +80,32 @@ curl "http://example.com/api/v1/market/pairs?type=market"
 
 ```json
 {
-	"pairName": "BTC/USDT",
-	"baseCurrency": "BTC",
-	"quoteCurrencу": "USDT",
-	"baseMinSIze": "0.0001",
-	"quoteMinSize": "0.0001",
-	"priceDecimal": 12,
-	"amountDecimal": 8,
-	"feeTaker": "0.15",
-	"feeMaker": "0.15",
-	"isFrozen": 0
+	"pairs": [
+		{
+			"pairName": "BTC/USDT",
+			"baseCurrency": "BTC",
+			"quoteCurrencу": "USDT",
+			"baseMinSIze": "0.0001",
+			"quoteMinSize": "0.0001",
+			"priceDecimal": 12,
+			"amountDecimal": 8,
+			"feeTaker": "0.15",
+			"feeMaker": "0.15",
+			"isFrozen": 0
+		},
+		{
+			"pairName": "BTC/KICK",
+			"baseCurrency": "BTC",
+			"quoteCurrencу": "KICK",
+			"baseMinSIze": "0.0001",
+			"quoteMinSize": "0.0001",
+			"priceDecimal": 12,
+			"amountDecimal": 8,
+			"feeTaker": "0.15",
+			"feeMaker": "0.15",
+			"isFrozen": 0
+		}
+	]
 }
 ```
 
@@ -122,13 +144,13 @@ curl "http://example.com/api/v1/market/ticker?pairName=BTC/USDT"
 ```json
 {
 	"pairName": "BTC/USDT",
-	"bestBid": "BTC",
-	"bestAsk": "USDT",
-	"lastPrice": "0.0001",
-	"lastVolume": "0.0001",
-	"bestAskSize": 12,
-	"bestBidSize": 8,
-	"time": "0.15"
+	"bestBid": "1234.1231",
+	"bestAsk": "1245.2847",
+	"lastPrice": "1242.1984",
+	"lastVolume": "100000",
+	"bestAskSize": "124990",
+	"bestBidSize": "95830",
+	"time": 1588024908
 }
 ```
 
@@ -171,17 +193,17 @@ curl "http://example.com/api/v1/market/stats24?pairName=BTC/USDT"
 ```json
 {
 	"pairName": "BTC/USDT",
-	"high24": "BTC/USDT",
-	"low24": "BTC",
-	"amountVol": "USDT",
-	"baseVol": "0.0001",
-	"lastPrice": "0.0001",
-	"bestBid": 12,
-	"bestAsk": 8,
-	"averagePrice": "0.15",
-	"priceChange": 111111111,
-	"time": 111111111,
-	"changeRate?": "BTC"
+	"high24": "3425.0092",
+	"low24": "3389.1294",
+	"amountVol": "91572919",
+	"baseVol": "27020.6311",
+	"lastPrice": "3421.7623",
+	"bestBid": "3420.4223",
+	"bestAsk": "3401.7623"",
+	"averagePrice": "3407.3719",
+	"priceChange": "36.0925",
+	"time": 1588024908,
+	"changeRate?": ""
 }
 ```
 
@@ -276,7 +298,7 @@ curl "http://example.com/api/v1/market/trades?pairName=BTC/USDT&type=buy"
 	"price": "1124.120937",
 	"baseVol": "491082.129100",
 	"quoteVol": "436.858805",
-	"timestamp": 111111111,
+	"timestamp": 1588024908,
 	"type": "buy"
 }
 ```
@@ -315,9 +337,19 @@ curl "http://example.com/api/v1/market/orderbook/pairName=BTC/USDT?depth=20"
 
 ```json
 {
-	"timestamp": 111111111,
-	"bids": 111111111,
-	"asks": 111111111
+	"timestamp": 1588024908,
+	"bids": [
+		{
+			"amount": "1001.2913",
+			"price": "1494.9292"
+		}
+	],
+	"asks": [
+		{
+			"amount": "10421.1234",
+			"price": "1231.9571"
+		}
+	]
 }
 ```
 
@@ -351,15 +383,15 @@ curl "http://example.com/api/v1/market/bars/?period=5min&pairName=BTC/USDT&start
 
 ```json
 {
-	"code": 111111111,
-	"message": 111111111,
-	"timestamp": 111111111,
-	"openPrice": 111111111,
-	"closePrice": 111111111,
-	"highPrice": 111111111,
-	"lowPrice": 111111111,
-	"transactionVolume": 111111111,
-	"transactionAmount": 111111111
+	"code": 200,
+	"message": "success",
+	"timestamp": 1588024908,
+	"openPrice": "8392.2930",
+	"closePrice": "8832.1241",
+	"highPrice": "9123.2120",
+	"lowPrice": "8392.2930",
+	"transactionVolume": "63829012.0012",
+	"transactionAmount": "271"
 }
 ```
 
@@ -401,13 +433,15 @@ curl "http://example.com/api/v1/status"
 
 ```json
 {
-	"code": 111111111,
-	"status": 111111111,
-	"message": 111111111
+	"code": 200,
+	"status": "open",
+	"message": ""
 }
 ```
 
 ### HTTP Request
+
+If time is not specified, **???** results is returned.
 
 `GET https://example.com/api/v1/status`
 
@@ -432,9 +466,9 @@ curl "http://example.com/api/v1/serverTime"
 
 ```json
 {
-	"code": 111111111,
-	"message": 111111111,
-	"time": 111111111
+	"code": 200,
+	"message": "success",
+	"time": 1588024908
 }
 ```
 
@@ -476,8 +510,8 @@ curl "http://example.com/api/v1/orders/{orderId}"
 
 ```json
 {
-	"cancelledOrderId": 111111111,
-	"comment": 111111111
+	"cancelledOrderId": "111111111",
+	"comment": ""
 }
 ```
 
@@ -511,7 +545,16 @@ curl "http://example.com/api/v1/orders?pairName=BTC/USDT&orderType=STOP"
 
 ```json
 {
- "a": "a"
+	"cancelledOrders": [
+		{
+			"cancelledOrderId": "111111",
+			"comment": ""
+		},
+		{
+			"cancelledOrderId": "222222",
+			"comment": ""
+		}
+	]
 }
 ```
 
@@ -525,7 +568,6 @@ Parameter | Type | Required | Description
 --------- | ----------- | ----------- | -----------
 pairName | string | No | Currency pair name *(ex: KICK/ETH)*
 orderType | string | No | Type of the orders to cancel (stop/limit/all), missing order type is treated as "all".
-
 
 ### Response Parameters
 
@@ -549,15 +591,30 @@ curl "http://example.com/api/v1/tradesHistory?pairName=KICK/BTC&startTime=123213
 
 ```json
 {
-	"pairName": "BTC/USDT",
-	"timestamp": 111111111,
-	"side": 111111111,
-	"price": 111111111,
-	"feeQuoted": 111111111,
-	"feeExternal": 111111111,
-	"externalFeeCurrency": 111111111,
-	"buyVolume": 111111111,
-	"sellVolume": 111111111
+	"trades": [
+		{
+			"pairName": "BTC/USDT",
+			"timestamp": 1588024908,
+			"side": 0,
+			"price": "732.9532",
+			"feeQuoted": "3.1274",
+			"feeExternal": "",
+			"externalFeeCurrency": "KICK",
+			"buyVolume": "14523",
+			"sellVolume": "823491"
+		},
+		{
+			"pairName": "BTC/USDT",
+			"timestamp": 1588024908,
+			"side": 0,
+			"price": "732.9532",
+			"feeQuoted": "3.1274",
+			"feeExternal": "",
+			"externalFeeCurrency": "KICK",
+			"buyVolume": "14523",
+			"sellVolume": "823491"
+		}
+	]
 }
 ```
 
@@ -588,7 +645,7 @@ buyVolume | string | Yes | Trade buy volume
 sellVolume | string | Yes | Trade sell volume
 
 
-## Active Orders List 
+## Active Orders List
 
 Method used to get information regarding all user's open (active) exchange orders.
 
@@ -600,15 +657,38 @@ curl "http://example.com/api/v1/activeOrders?pairName=KICK/BTC"
 
 ```json
 {
-	"pairName": "BTC/USDT",
-	"timestamp": 111111111,
-	"side": 111111111,
-	"price": 111111111,
-	"feeQuoted": 111111111,
-	"feeExternal": 111111111,
-	"externalFeeCurrency": 111111111,
-	"buyVolume": 111111111,
-	"sellVolume": 111111111
+	"orders": [
+		{
+			"pairName": "BTC/USDT",
+			"createdTimeStamp": 1588024908,
+			"side": 1,
+			"limitPrice": "91.9012",
+			"totalBuyVolume": "124124",
+			"totalSellVolume": "3243",
+			"orderedAmount": "150000",
+			"tpActivateLeve": "90.0000",
+			"tpLimitPrice": "92.0000",
+			"slLimitPrice": "85.0000",
+			"tpSubmitLevel": "89.0000",
+			"slSubmitLevel": "86.0000",
+			"activated": 1588022908
+		},
+		{
+			"pairName": "BTC/USDT",
+			"createdTimeStamp": 1588024908,
+			"side": 1,
+			"limitPrice": "91.9012",
+			"totalBuyVolume": "124124",
+			"totalSellVolume": "3243",
+			"orderedAmount": "150000",
+			"tpActivateLeve": "90.0000",
+			"tpLimitPrice": "92.0000",
+			"slLimitPrice": "85.0000",
+			"tpSubmitLevel": "89.0000",
+			"slSubmitLevel": "86.0000",
+			"activated": 1588022908
+		}
+	]
 }
 ```
 
@@ -745,10 +825,10 @@ curl "http://example.com/api/v1/userInfo"
 ```json
 {
 	"userId": 111111111,
-	"userName": 111111111,
-	"platformName": 111111111,
-	"comment": 111111111,
-	"restrictions": 111111111
+	"userName": "kickuser123",
+	"platformName": "KickEX",
+	"comment": "",
+	"restrictions": 0
 }
 ```
 
@@ -781,11 +861,22 @@ curl "http://example.com/api/v1/user/balance"
 
 ```json
 {
-	"currencyName": 111111111,
-	"balance": 111111111,
-	"available": 111111111,
-	"inOrders": 111111111,
-	"accountType": 111111111
+	"balances": [
+		{
+			"currencyName": "KICK",
+			"balance": "10000000.8372",
+			"available": "598292.1214",
+			"inOrders": "300123.9133",
+			"accountType": "2401"
+		},
+		{
+			"currencyName": "ETH",
+			"balance": "10000000.8372",
+			"available": "598292.1214",
+			"inOrders": "300123.9133",
+			"accountType": "2401"
+		}
+	]
 }
 ```
 
@@ -811,24 +902,23 @@ accountType | string | Yes | Account type:<br/> 2401 - ordinary account <br/> 24
 Method for getting personal deposit address.
 
 ```shell
-curl "http://example.com/api/v1/depositAddresses"
+curl "http://example.com/api/v1/depositAddresses?currencyName=USDT&chain=ERC20"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-	"currencyName": 111111111,
-	"balance": 111111111,
-	"available": 111111111,
-	"inOrders": 111111111,
-	"accountType": 111111111
+	"currencyName": "USDT",
+	"chain": "ERC20",
+	"memo": "123456",
+	"address": "0xc0DAa9e14343128cd50f7b934B5Bb23eddd3F246"
 }
 ```
 
 ### HTTP Request
 
-`GET https://example.com/api/v1/depositAddresses`
+`GET https://example.com/api/v1/depositAddresses?currencyName=USDT&chain=ERC20`
 
 ### URL Parameters
 
@@ -850,24 +940,45 @@ address | string | Yes | Address in specified blockchain
 This method provides deposit history.
 
 ```shell
-curl "http://example.com/api/v1/depositHistory"
+curl "http://example.com/api/v1/depositHistory?сurrencyName=KICK&startTime=1588015708&endTime=1588024908&status=success"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-	"currencyName": 111111111,
-	"balance": 111111111,
-	"available": 111111111,
-	"inOrders": 111111111,
-	"accountType": 111111111
+	"deposits": [
+		{
+			"address": "0xc0DAa9e14343128cd50f7b934B5Bb23eddd3F246",
+			"amount": "200000.0000",
+			"fee": "",
+			"currencyName": "KICK",
+			"memo": "",
+			"walletTxId": "",
+			"status": "success",
+			"createdAt": 1588024908,
+			"updatedAt": 1588024908,
+			"comment": ""
+		},
+		{
+			"address": "0xc0DAa9e14343128cd50f7b934B5Bb23eddd3F246",
+			"amount": "200000.0000",
+			"fee": "",
+			"currencyName": "KICK",
+			"memo": "",
+			"walletTxId": "0x3f9a6dc91d0ac08e2d13fc3a42a9dc4481aade8a96e10c1f497f9d6c60130a15",
+			"status": "success",
+			"createdAt": 1588024908,
+			"updatedAt": 1588024908,
+			"comment": ""
+		}
+	]
 }
 ```
 
 ### HTTP Request
 
-`GET https://example.com/api/v1/depositHistory`
+`GET https://example.com/api/v1/depositHistory?сurrencyName=KICK&startTime=1588015708&endTime=1588024908&status=success`
 
 ### URL Parameters
 
@@ -900,6 +1011,12 @@ Method for withdrawal request creation.
 curl "http://example.com/api/v1/user/withdraw"
   -X POST
   -H "Authorization: meowmeowmeow"
+  -H "Content-Type: application/json"
+  -d '{"address":"0xc0DAa9e14343128cd50f7b934B5Bb23eddd3F246",
+	   "memo":"",
+	   "amount":"1000",
+	   "currency":"KICK",
+	   "chain":"ERC20"}'  
 ```
 
 > The above command returns JSON structured like this:
@@ -911,6 +1028,7 @@ curl "http://example.com/api/v1/user/withdraw"
 ```
 
 ### HTTP Request
+
 
 `POST https://example.com/api/v1/user/withdraw`
 
@@ -930,36 +1048,52 @@ Parameter | Type | Required | Description
 --------- | ----------- | ----------- | -----------
 orderId | integer | Yes | Created trade order identifier
 
-## Withdraw History 
+## Withdrawal History 
 
 Method to get withdrawal history.
 
 ```shell
-curl "http://example.com/api/v1/withdrawalHistory"
+curl "http://example.com/api/v1/withdrawalHistory?сurrencyName=KICK&startTime=1588015708&endTime=1588024908&status=success"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-	"transactionId": 111111111,
-	"address": 111111111,
-	"amount": 111111111,
-	"fee": 111111111,
-	"currencyName": 111111111,
-	"memo": 111111111,
-	"walletTxId": 111111111,
-	"status": 111111111,
-	"createdAt": 111111111,
-	"updatedAt": 111111111,
-	"comment": 111111111,
-	"chain": 111111111
+	"withdrawals": [
+		{
+			"transactionId": "123415",
+			"address": "0xc0DAa9e14343128cd50f7b934B5Bb23eddd3F246",
+			"amount": "200000.0000",
+			"fee": "",
+			"currencyName": "KICK",
+			"memo": "",
+			"walletTxId": "",
+			"status": "processing",
+			"createdAt": 1588024908,
+			"updatedAt": 1588024908,
+			"comment": ""
+		},
+		{
+			"transactionId": "123416",
+			"address": "0xc0DAa9e14343128cd50f7b934B5Bb23eddd3F246",
+			"amount": "200000.0000",
+			"fee": "",
+			"currencyName": "KICK",
+			"memo": "",
+			"walletTxId": "0x3f9a6dc91d0ac08e2d13fc3a42a9dc4481aade8a96e10c1f497f9d6c60130a15",
+			"status": "success",
+			"createdAt": 1588024908,
+			"updatedAt": 1588024908,
+			"comment": ""
+		}
+	]
 }
 ```
 
 ### HTTP Request
 
-`GET https://example.com/api/v1/withdrawalHistory`
+`GET https://example.com/api/v1/withdrawalHistory?сurrencyName=KICK&startTime=1588015708&endTime=1588024908&status=success`
 
 ### URL Parameters
 
@@ -985,123 +1119,3 @@ createdAt | timestamp | Yes | Database record creation timestamp
 updatedAt | timestamp | Yes | Database record update timestamp
 comment | string | No | Comment (if any)
 chain | string | No | Blockchain short name (required for cryptocurrencies available in several blockchains)
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
-
-This endpoint deletes a specific kitten.
-
-### HTTP Request
-
-`DELETE http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
-

@@ -22,7 +22,6 @@ search: true
 
 API для внешней интеграции
 
-
 # Authentication
 
 > To authorize, use this code:
@@ -69,7 +68,6 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 Методы раздела <b>Market</b> доступны без авторизации.
 </aside>
 
-
 ## Pairs
 
 ```shell
@@ -80,16 +78,32 @@ curl "http://example.com/api/v1/market/pairs?type=market"
 
 ```json
 {
-	"pairName": "BTC/USDT",
-	"baseCurrency": "BTC",
-	"quoteCurrencу": "USDT",
-	"baseMinSIze": "0.0001",
-	"quoteMinSize": "0.0001",
-	"priceDecimal": 12,
-	"amountDecimal": 8,
-	"feeTaker": "0.15",
-	"feeMaker": "0.15",
-	"isFrozen": 0
+	"pairs": [
+		{
+			"pairName": "BTC/USDT",
+			"baseCurrency": "BTC",
+			"quoteCurrencу": "USDT",
+			"baseMinSIze": "0.0001",
+			"quoteMinSize": "0.0001",
+			"priceDecimal": 12,
+			"amountDecimal": 8,
+			"feeTaker": "0.15",
+			"feeMaker": "0.15",
+			"isFrozen": 0
+		},
+		{
+			"pairName": "BTC/KICK",
+			"baseCurrency": "BTC",
+			"quoteCurrencу": "KICK",
+			"baseMinSIze": "0.0001",
+			"quoteMinSize": "0.0001",
+			"priceDecimal": 12,
+			"amountDecimal": 8,
+			"feeTaker": "0.15",
+			"feeMaker": "0.15",
+			"isFrozen": 0
+		}
+	]
 }
 ```
 
@@ -128,13 +142,13 @@ curl "http://example.com/api/v1/market/ticker?pairName=BTC/USDT"
 ```json
 {
 	"pairName": "BTC/USDT",
-	"bestBid": "BTC",
-	"bestAsk": "USDT",
-	"lastPrice": "0.0001",
-	"lastVolume": "0.0001",
-	"bestAskSize": 12,
-	"bestBidSize": 8,
-	"time": "0.15"
+	"bestBid": "1234.1231",
+	"bestAsk": "1245.2847",
+	"lastPrice": "1242.1984",
+	"lastVolume": "100000",
+	"bestAskSize": "124990",
+	"bestBidSize": "95830",
+	"time": 1588024908
 }
 ```
 
@@ -177,17 +191,17 @@ curl "http://example.com/api/v1/market/stats24?pairName=BTC/USDT"
 ```json
 {
 	"pairName": "BTC/USDT",
-	"high24": "BTC/USDT",
-	"low24": "BTC",
-	"amountVol": "USDT",
-	"baseVol": "0.0001",
-	"lastPrice": "0.0001",
-	"bestBid": 12,
-	"bestAsk": 8,
-	"averagePrice": "0.15",
-	"priceChange": 111111111,
-	"time": "BTC/USDT",
-	"changeRate?": "BTC"
+	"high24": "3425.0092",
+	"low24": "3389.1294",
+	"amountVol": "91572919",
+	"baseVol": "27020.6311",
+	"lastPrice": "3421.7623",
+	"bestBid": "3420.4223",
+	"bestAsk": "3401.7623"",
+	"averagePrice": "3407.3719",
+	"priceChange": "36.0925",
+	"time": 1588024908,
+	"changeRate?": ""
 }
 ```
 
@@ -284,11 +298,10 @@ curl "http://example.com/api/v1/market/trades?pairName=BTC/USDT&type=buy"
 	"price": "1124.120937",
 	"baseVol": "491082.129100",
 	"quoteVol": "436.858805",
-	"timestamp": 111111111,
+	"timestamp": 1588024908,
 	"type": "buy"
 }
 ```
-
 
 ### HTTP Запрос
 
@@ -324,16 +337,25 @@ curl "http://example.com/api/v1/market/orderbook/pairName=BTC/USDT?depth=20"
 
 ```json
 {
-	"timestamp": 111111111,
-	"bids": 111111111,
-	"asks": 111111111
+	"timestamp": 1588024908,
+	"bids": [
+		{
+			"amount": "1001.2913",
+			"price": "1494.9292"
+		}
+	],
+	"asks": [
+		{
+			"amount": "10421.1234",
+			"price": "1231.9571"
+		}
+	]
 }
 ```
 
 ### HTTP Запрос
 
 `GET https://example.com/api/v1/market/orderbook/pairName=BTC/USDT?depth=20`
-
 
 ### Параметры URL 
 
@@ -343,7 +365,6 @@ pairName | string | Да | Наименование криптовалютной
 depth | int? | Нет | Глубина стакана <br/>0 или параметр не передан – полный стакан </br>5/10/20/50/100/500 количество позиций спроса и предложения, которые нужно передать (по 5, по 10 и т.д.)
 level | int | Нет | 1- Лучшее предложение на покупку и лучшее предложение на продажу <br/>2- Весь стакан, отсортированный по лучшим бидам и аскам <br/>3- Весь стакан не отсортированный по лучшим бидам и аскам
 
-
 ### Параметры ответа
 
 Параметр | Тип | Обязательный | Описание
@@ -351,7 +372,6 @@ level | int | Нет | 1- Лучшее предложение на покупк�
 timestamp | timestamp | Yes | Секунды с 1 января 1970 года судя по примеру, но в описании указаны миллисекунды **???**
 bids | Array of string | Yes | Содержит в себе цену и количество крпитовалюты
 asks | Array of string | Yes | Содержит в себе цену и количество криптовалюты
-
 
 ## Candles
 
@@ -363,18 +383,17 @@ curl "http://example.com/api/v1/market/bars/?period=5min&pairName=BTC/USDT&start
 
 ```json
 {
-	"code": 111111111,
-	"message": 111111111,
-	"timestamp": 111111111,
-	"openPrice": 111111111,
-	"closePrice": 111111111,
-	"highPrice": 111111111,
-	"lowPrice": 111111111,
-	"transactionVolume": 111111111,
-	"transactionAmount": 111111111
+	"code": 200,
+	"message": "success",
+	"timestamp": 1588024908,
+	"openPrice": "8392.2930",
+	"closePrice": "8832.1241",
+	"highPrice": "9123.2120",
+	"lowPrice": "8392.2930",
+	"transactionVolume": "63829012.0012",
+	"transactionAmount": "271"
 }
 ```
-
 
 ### HTTP Запрос
 
@@ -415,12 +434,11 @@ curl "http://example.com/api/v1/status"
 
 ```json
 {
-	"code": 111111111,
-	"status": 111111111,
-	"message": 111111111
+	"code": 200,
+	"status": "open",
+	"message": ""
 }
 ```
-
 
 ### HTTP Запрос
 
@@ -442,7 +460,6 @@ code | integer | Да | код 200-ОК
 status | string | Да | open/close
 message | string | Да | текст пояснения
 
-
 ## Server time
 
 ```shell
@@ -453,9 +470,9 @@ curl "http://example.com/api/v1/serverTime"
 
 ```json
 {
-	"code": 111111111,
-	"message": 111111111,
-	"time": 111111111
+	"code": 200,
+	"message": "success",
+	"time": 1588024908
 }
 ```
 
@@ -488,7 +505,7 @@ time | timestamp | Да | текущее серверное время в мс
 Для использования данных методов требуется авторизация.
 </aside>
 
-## cancel order 
+## Cancel Order 
 
 Метод отмены ордера.
 
@@ -502,8 +519,8 @@ curl "http://example.com/api/v1/orders/{orderId}"
 
 ```json
 {
-	"cancelledOrderId": 111111111,
-	"comment": 111111111
+	"cancelledOrderId": "111111111",
+	"comment": ""
 }
 ```
 
@@ -541,7 +558,16 @@ curl "http://example.com/api/v1/orders?pairName=BTC/USDT&orderType=STOP"
 
 ```json
 {
-
+	"cancelledOrders": [
+		{
+			"cancelledOrderId": "111111",
+			"comment": ""
+		},
+		{
+			"cancelledOrderId": "222222",
+			"comment": ""
+		}
+	]
 }
 ```
 
@@ -568,7 +594,7 @@ comment | string | Нет | ордер отменен / причина ошиб�
 
 ## Trade History 
 
-Метод получения информации об истории сделок Пользователя.
+Метод получения информации об истории сделок пользователя.
 
 ```shell
 curl "http://example.com/api/v1/tradesHistory?pairName=KICK/BTC&startTime=123213123213213&endTime=32434523523535"
@@ -578,15 +604,30 @@ curl "http://example.com/api/v1/tradesHistory?pairName=KICK/BTC&startTime=123213
 
 ```json
 {
-	"pairName": "BTC/USDT",
-	"timestamp": 111111111,
-	"side": 111111111,
-	"price": 111111111,
-	"feeQuoted": 111111111,
-	"feeExternal": 111111111,
-	"externalFeeCurrency": 111111111,
-	"buyVolume": 111111111,
-	"sellVolume": 111111111
+	"trades": [
+		{
+			"pairName": "BTC/USDT",
+			"timestamp": 1588024908,
+			"side": 0,
+			"price": "732.9532",
+			"feeQuoted": "3.1274",
+			"feeExternal": "",
+			"externalFeeCurrency": "KICK",
+			"buyVolume": "14523",
+			"sellVolume": "823491"
+		},
+		{
+			"pairName": "BTC/USDT",
+			"timestamp": 1588024908,
+			"side": 0,
+			"price": "732.9532",
+			"feeQuoted": "3.1274",
+			"feeExternal": "",
+			"externalFeeCurrency": "KICK",
+			"buyVolume": "14523",
+			"sellVolume": "823491"
+		}
+	]
 }
 ```
 
@@ -619,7 +660,7 @@ buyVolume | string | Да | купленный объем в сделке
 sellVolume | string | Да | проданный объем в сделке
 
 
-## active orders list 
+## Active Orders List
 
 Метод получения информации об активных ордерах.
 
@@ -631,15 +672,38 @@ curl "http://example.com/api/v1/activeOrders?pairName=KICK/BTC"
 
 ```json
 {
-	"pairName": "BTC/USDT",
-	"timestamp": 111111111,
-	"side": 111111111,
-	"price": 111111111,
-	"feeQuoted": 111111111,
-	"feeExternal": 111111111,
-	"externalFeeCurrency": 111111111,
-	"buyVolume": 111111111,
-	"sellVolume": 111111111
+	"orders": [
+		{
+			"pairName": "BTC/USDT",
+			"createdTimeStamp": 1588024908,
+			"side": 1,
+			"limitPrice": "91.9012",
+			"totalBuyVolume": "124124",
+			"totalSellVolume": "3243",
+			"orderedAmount": "150000",
+			"tpActivateLeve": "90.0000",
+			"tpLimitPrice": "92.0000",
+			"slLimitPrice": "85.0000",
+			"tpSubmitLevel": "89.0000",
+			"slSubmitLevel": "86.0000",
+			"activated": 1588022908
+		},
+		{
+			"pairName": "BTC/USDT",
+			"createdTimeStamp": 1588024908,
+			"side": 1,
+			"limitPrice": "91.9012",
+			"totalBuyVolume": "124124",
+			"totalSellVolume": "3243",
+			"orderedAmount": "150000",
+			"tpActivateLeve": "90.0000",
+			"tpLimitPrice": "92.0000",
+			"slLimitPrice": "85.0000",
+			"tpSubmitLevel": "89.0000",
+			"slSubmitLevel": "86.0000",
+			"activated": 1588022908
+		}
+	]
 }
 ```
 
@@ -768,7 +832,7 @@ orderId | integer | Да | Идентификатор созданного ор�
 Для использования данных методов требуется авторизация.
 </aside>
 
-## userinfo 
+## User Info 
 
 Основные данные о пользователе.
 
@@ -781,10 +845,10 @@ curl "http://example.com/api/v1/userInfo"
 ```json
 {
 	"userId": 111111111,
-	"userName": 111111111,
-	"platformName": 111111111,
-	"comment": 111111111,
-	"restrictions": 111111111
+	"userName": "kickuser123",
+	"platformName": "KickEX",
+	"comment": "",
+	"restrictions": 0
 }
 ```
 
@@ -806,7 +870,7 @@ platformName | string | Да | KickEX
 comment | string | Нет | Комментарий, может содержать информацию, касательно ограничений на действия с АПИ Пользоватем
 restrictions | integer | Да | Индикатор, показывающий, доступна ли торговля Пользователю (0 – доступна) 1 – не доступна
 
-## balance
+## Balance
 
 Информация о балансе пользователя;
 
@@ -818,11 +882,22 @@ curl "http://example.com/api/v1/user/balance"
 
 ```json
 {
-	"currencyName": 111111111,
-	"balance": 111111111,
-	"available": 111111111,
-	"inOrders": 111111111,
-	"accountType": 111111111
+	"balances": [
+		{
+			"currencyName": "KICK",
+			"balance": "10000000.8372",
+			"available": "598292.1214",
+			"inOrders": "300123.9133",
+			"accountType": "2401"
+		},
+		{
+			"currencyName": "ETH",
+			"balance": "10000000.8372",
+			"available": "598292.1214",
+			"inOrders": "300123.9133",
+			"accountType": "2401"
+		}
+	]
 }
 ```
 
@@ -849,24 +924,23 @@ accountType | string | Да | номер счета <br/>2401 - основной
 Метод получения персонального адреса для пополнения.
 
 ```shell
-curl "http://example.com/api/v1/depositAddresses"
+curl "http://example.com/api/v1/depositAddresses?currencyName=USDT&chain=ERC20"
 ```
 
 > Команда выше вернёт структуру следующего вида:
 
 ```json
 {
-	"currencyName": 111111111,
-	"balance": 111111111,
-	"available": 111111111,
-	"inOrders": 111111111,
-	"accountType": 111111111
+	"currencyName": "USDT",
+	"chain": "ERC20",
+	"memo": "123456",
+	"address": "0xc0DAa9e14343128cd50f7b934B5Bb23eddd3F246"
 }
 ```
 
 ### HTTP Запрос
 
-`GET https://example.com/api/v1/depositAddresses`
+`GET https://example.com/api/v1/depositAddresses?currencyName=USDT&chain=ERC20`
 
 ### Параметры URL 
 
@@ -890,24 +964,45 @@ address | string | Да | адрес для пополнения
 Метод получения истории пополнений.
 
 ```shell
-curl "http://example.com/api/v1/depositHistory"
+curl "http://example.com/api/v1/depositHistory?сurrencyName=KICK&startTime=1588015708&endTime=1588024908&status=success"
 ```
 
 > Команда выше вернёт структуру следующего вида:
 
 ```json
 {
-	"currencyName": 111111111,
-	"balance": 111111111,
-	"available": 111111111,
-	"inOrders": 111111111,
-	"accountType": 111111111
+	"deposits": [
+		{
+			"address": "0xc0DAa9e14343128cd50f7b934B5Bb23eddd3F246",
+			"amount": "200000.0000",
+			"fee": "",
+			"currencyName": "KICK",
+			"memo": "",
+			"walletTxId": "",
+			"status": "success",
+			"createdAt": 1588024908,
+			"updatedAt": 1588024908,
+			"comment": ""
+		},
+		{
+			"address": "0xc0DAa9e14343128cd50f7b934B5Bb23eddd3F246",
+			"amount": "200000.0000",
+			"fee": "",
+			"currencyName": "KICK",
+			"memo": "",
+			"walletTxId": "0x3f9a6dc91d0ac08e2d13fc3a42a9dc4481aade8a96e10c1f497f9d6c60130a15",
+			"status": "success",
+			"createdAt": 1588024908,
+			"updatedAt": 1588024908,
+			"comment": ""
+		}
+	]
 }
 ```
 
 ### HTTP Запрос
 
-`GET https://example.com/api/v1/depositHistory`
+`GET https://example.com/api/v1/depositHistory?сurrencyName=KICK&startTime=1588015708&endTime=1588024908&status=success`
 
 ### Параметры URL 
 
@@ -941,6 +1036,12 @@ comment | string | Нет | комментарий (при наличии)
 curl "http://example.com/api/v1/user/withdraw"
   -X POST
   -H "Authorization: meowmeowmeow"
+  -H "Content-Type: application/json"
+  -d '{"address":"0xc0DAa9e14343128cd50f7b934B5Bb23eddd3F246",
+	   "memo":"",
+	   "amount":"1000",
+	   "currency":"KICK",
+	   "chain":"ERC20"}'  
 ```
 
 > Команда выше вернёт структуру следующего вида:
@@ -972,12 +1073,12 @@ currency | string | Да | криптовалюта, в которой осущ�
 --------- | ----------- | ----------- | -----------
 orderId | integer | Да | Идентификатор созданного ордера
 
-## withdrawal History 
+## Withdrawal History 
 
 Метод для запроса истории вывода средств.
 
 ```shell
-curl "http://example.com/api/v1/withdrawalHistory"
+curl "http://example.com/api/v1/withdrawalHistory?сurrencyName=KICK&startTime=1588015708&endTime=1588024908&status=success"
 ```
 
 > Команда выше вернёт структуру следующего вида:
@@ -1001,7 +1102,7 @@ curl "http://example.com/api/v1/withdrawalHistory"
 
 ### HTTP Запрос
 
-`GET https://example.com/api/v1/withdrawalHistory`
+`GET https://example.com/api/v1/withdrawalHistory?сurrencyName=KICK&startTime=1588015708&endTime=1588024908&status=success`
 
 ### Параметры URL 
 
@@ -1028,18 +1129,3 @@ createdAt | timestamp | Да | время создания записи в бд
 updatedAt | timestamp | Да | время обновления записи в бд
 comment | string | Нет | комментарий (при наличии)
 chain | string | Нет | Если чейнов несколько, как с USDT, то отображается чейн на который был вывод
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
