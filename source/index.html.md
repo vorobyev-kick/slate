@@ -199,7 +199,7 @@ curl "http://example.com/api/v1/market/stats24?pairName=BTC/USDT"
 	"baseVol": "27020.6311",
 	"lastPrice": "3421.7623",
 	"bestBid": "3420.4223",
-	"bestAsk": "3401.7623"",
+	"bestAsk": "3401.7623",
 	"averagePrice": "3407.3719",
 	"priceChange": "36.0925",
 	"time": 1588024908,

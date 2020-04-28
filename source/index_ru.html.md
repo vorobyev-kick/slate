@@ -197,7 +197,7 @@ curl "http://example.com/api/v1/market/stats24?pairName=BTC/USDT"
 	"baseVol": "27020.6311",
 	"lastPrice": "3421.7623",
 	"bestBid": "3420.4223",
-	"bestAsk": "3401.7623"",
+	"bestAsk": "3401.7623",
 	"averagePrice": "3407.3719",
 	"priceChange": "36.0925",
 	"time": 1588024908,
@@ -1085,18 +1085,34 @@ curl "http://example.com/api/v1/withdrawalHistory?сurrencyName=KICK&startTime=1
 
 ```json
 {
-	"transactionId": 111111111,
-	"address": 111111111,
-	"amount": 111111111,
-	"fee": 111111111,
-	"currencyName": 111111111,
-	"memo": 111111111,
-	"walletTxId": 111111111,
-	"status": 111111111,
-	"createdAt": 111111111,
-	"updatedAt": 111111111,
-	"comment": 111111111,
-	"chain": 111111111
+	"withdrawals": [
+		{
+			"transactionId": "123415",
+			"address": "0xc0DAa9e14343128cd50f7b934B5Bb23eddd3F246",
+			"amount": "200000.0000",
+			"fee": "",
+			"currencyName": "KICK",
+			"memo": "",
+			"walletTxId": "",
+			"status": "processing",
+			"createdAt": 1588024908,
+			"updatedAt": 1588024908,
+			"comment": ""
+		},
+		{
+			"transactionId": "123416",
+			"address": "0xc0DAa9e14343128cd50f7b934B5Bb23eddd3F246",
+			"amount": "200000.0000",
+			"fee": "",
+			"currencyName": "KICK",
+			"memo": "",
+			"walletTxId": "0x3f9a6dc91d0ac08e2d13fc3a42a9dc4481aade8a96e10c1f497f9d6c60130a15",
+			"status": "success",
+			"createdAt": 1588024908,
+			"updatedAt": 1588024908,
+			"comment": ""
+		}
+	]
 }
 ```
 
