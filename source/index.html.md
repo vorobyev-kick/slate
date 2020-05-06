@@ -133,52 +133,80 @@ feeTaker | string | Yes | Taker fee (percentage of transaction amount)
 feeMaker | string | Yes | Maker fee (percentage of transaction amount)
 isFrozen | integer | Yes | Attribute showing if trading on this currency pair is frozen or not: <br/>0 – trading is available <br/>1 – traiding is unavailable
 
-## Ticker
+
+## All Tickers
 
 ```shell
-curl "http://example.com/api/v1/market/ticker?pairName=BTC/USDT"
+curl "http://example.com/api/v1/market/allTickers"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-	"pairName": "BTC/USDT",
-	"bestBid": "1234.1231",
-	"bestAsk": "1245.2847",
-	"lastPrice": "1242.1984",
-	"lastVolume": "100000",
-	"bestAskSize": "124990",
-	"bestBidSize": "95830",
-	"time": 1588024908
+	"tickers": [
+		{
+			"time": 1588024908,
+			"pairName": "BTC/USDT",
+			"bestBid": "1234.1231",
+			"bestAsk": "1245.2847",
+			"changePrice": "21.2349",
+			"highestPrice": "1251.9328",
+			"lowestPrice": "1197.3821",
+			"baseVol": "198273982",
+			"quoteVol": "2348792",
+			"lastPrice": "1246.0231",
+			"priceDecimal": "4",
+			"lastVolume": "10000",
+			"bestAskVolume": "124990",
+			"bestBidVolume": "95830"
+		},
+		{
+			"time": 1588024908,
+			"pairName": "BTC/ETH",
+			"bestBid": "1234.1231",
+			"bestAsk": "1245.2847",
+			"changePrice": "21.2349",
+			"highestPrice": "1251.9328",
+			"lowestPrice": "1197.3821",
+			"baseVol": "198273982",
+			"quoteVol": "2348792",
+			"lastPrice": "1246.0231",
+			"priceDecimal": "4",
+			"lastVolume": "10000",
+			"bestAskVolume": "124990",
+			"bestBidVolume": "95830"
+		}
+	]
 }
 ```
 
 ### HTTP Request
 
-`GET https://example.com/api/v1/market/ticker?pairName=BTC/USDT`
+`GET https://example.com/api/v1/market/allTickers`
 
 ### URL Parameters
 
-Parameter | Type | Required | Description
---------- | ----------- | ----------- | -----------
-pairName | string | Yes | Currency pair name *(ex: BTC/USDT)*
+*None.*
 
 ### Response Parameters
 Parameter | Type | Required | Description
 --------- | ----------- | ----------- | ----------- 
+time | timestamp | Yes | Server timestamp
 pairName | string | Yes | Currency pair name *(ex: BTC/USDT)*
-bestBid | string | Yes | Best bid
-bestAsk | string | Yes | Best ask
+bestBid | string | Yes | Best bid price
+bestAsk | string | Yes | Best ask price
+changePrice | string | Yes | Price change during last 24 hours
+highestPrice | string | Yes | Maximum price during last 24 hours
+lowestPrice | string | Yes | Minimum price during last 24 hours
+baseVol | string | Yes | Aggregated deals volume during last 24 hours in base currency
+quoteVol | string | Yes | Aggregated deals volume during last 24 hours in quotes currency
 lastPrice | string | Yes | Last deal price
+priceDecimal | string | Yes | Price fraction digits
 lastVolume | string | Yes | Last deal volume
-bestAskSize | string | Yes | Amount of currency in best ask
-bestBidSize | string | Yes | Amount of currency in best bid
-time | timestamp | Yes | Timestamp (milliseconds)
+bestAskVolume | string | Yes | Best ask volume
+bestBidVolume | string | Yes | Best bid volume
 
-## All Tickers
-
-**Description not finalized.**
 
 ## 24hrs stats
 
@@ -226,8 +254,8 @@ low24 | string | Yes | Minimum price during last 24 hours
 amountVol | string | Yes | Aggregated deals volume during last 24 hours
 baseVol | string | Yes | Aggregated deals volume during last 24 hours in base currency
 lastPrice | string | Yes | Last deal price
-bestBid | string | Yes | Best bid price
-bestAsk | string | Yes | Best ask price
+bestBid | string | Yes | Best bid price (at the time of the request)
+bestAsk | string | Yes | Best ask price (at the time of the request)
 averagePrice | string | Yes | Average price during last 24 hours
 priceChange | string | Yes | Price change during last 24 hours
 time | timestamp | Yes | Timestamp
@@ -251,10 +279,67 @@ curl "http://example.com/api/v1/currencies?currency=ETH"
 	"decimal": 8,
 	"minWithdawal???": "1",
 	"minFeeWithrawal???": "0.1",
-	"isWithdrawEnable???": 1,
-	"isDepositEnable???": 1,
-	"isExchangeEnable???": 1,
-	"isFrozen???": 0
+	"isWithdrawEnable???": true,
+	"isDepositEnable???": true,
+	"isExchangeEnable???": true,
+	"isFrozen???": false,
+	"convertPath": [
+				{
+					"BTC/USDT": true
+				},
+				{
+					"ETH/BTC": false
+				}
+			]
+}
+```
+
+> Or like this (if the currency attributes is ommitted):
+
+```json
+{
+	"currencies": [
+		{
+			"currencyCode???": "ETH",
+			"currencyName": "ETH",
+			"fullName": "Ethereum",
+			"decimal": 8,
+			"minWithdawal???": "1",
+			"minFeeWithrawal???": "0.1",
+			"isWithdrawEnable???": true,
+			"isDepositEnable???": true,
+			"isExchangeEnable???": true,
+			"isFrozen???": false,
+			"convertPath": [
+				{
+					"BTC/USDT": true
+				},
+				{
+					"ETH/BTC": false
+				}
+			]
+		},
+		{
+			"currencyCode???": "KICK",
+			"currencyName": "KICK",
+			"fullName": "Kick Token",
+			"decimal": 8,
+			"minWithdawal???": "1",
+			"minFeeWithrawal???": "0.1",
+			"isWithdrawEnable???": true,
+			"isDepositEnable???": false,
+			"isExchangeEnable???": true,
+			"isFrozen???": true,
+			"convertPath": [
+				{
+					"BTC/USDT": true
+				},
+				{
+					"ETH/BTC": false
+				}
+			]
+		}
+	]
 }
 ```
 
@@ -277,10 +362,12 @@ fullName | string | Yes | Currency full name
 decimal | number | Yes | Currency fraction digits
 minWithdawal | string | ? | Minimum withdrawal amount
 minFeeWithrawal? | string | ? | Minimum withdrawal fee
-isWithdrawEnable | integer | ? | Is withdrawal available?
-isDepositEnable | integer | ? | Is deposit available?
-isExchangeEnable | integer | ? | Is exhange available?
-isFrozen | integer | ? | Is frozen?
+isWithdrawEnable | boolean | ? | Is withdrawal available?
+isDepositEnable | boolean | ? | Is deposit available?
+isExchangeEnable | boolean | ? | Is exhange available?
+isFrozen | boolean | ? | Is frozen?
+convertPath | array | No | Array of currency pairs needed for convertion. Empty array means the conversion is not needed. <br/>true - means that conversion rate should be multiplied by currency pair rate <br/>false - means that convetion rate should be divided by currency pair rate absolute value <br/>```[{"BTC/USDT": true},{"ETH/BTC": false}]```
+
 
 ## Trades
 
@@ -323,6 +410,7 @@ baseVol | string | Yes | Base currency volume
 quoteVol | string | Yes | Quotes currency volume
 timestamp | timestamp | Yes | Trade timestamp
 type | string | Yes | Trade type: <br/>buy - means that an ask position was removed from the exchange order book; <br/>sell - means that a bid position was removed from the exchange order book.
+
 
 ## Orderbook
 
@@ -423,38 +511,6 @@ lowPrice | string | Yes | Lowest price
 transactionVolume | string | Yes | Trades volume within the candle
 transactionAmount | string | Yes | Trades number within the candle
 
-## Status
-
-```shell
-curl "http://example.com/api/v1/status"
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-	"code": 200,
-	"status": "open",
-	"message": ""
-}
-```
-
-### HTTP Request
-
-If time is not specified, **???** results is returned.
-
-`GET https://example.com/api/v1/status`
-
-### URL Parameters
-
-*None.*
-
-### Response Parameters
-Parameter | Type | Required | Description
---------- | ----------- | ----------- | -----------
-code | integer | Yes | Response code (200 for OK)
-status | string | Yes | *open*/*close*
-message | string | Yes | Text describing reasons for current status.
 
 ## Server time
 
@@ -577,6 +633,81 @@ Parameter | Type | Required | Description
 --------- | ----------- | ----------- | -----------
 cancelledOrderId | string | Yes | Cancelled exchange order identifier
 comment | string | No | Contains result: order cancelled or error
+
+
+## Orders History 
+
+This method is used to get data on the user's orders.
+
+```shell
+curl "http://example.com/api/v1/ordersHistory?pairName=KICK/BTC&startTime=123213123213213&endTime=32434523523535"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+	"orders": [
+		{
+			"pairName": "BTC/USDT",
+			"createdTimeStamp": 1588024908,
+			"side": 1,
+			"limitPrice": "91.9012",
+			"totalBuyVolume": "124124",
+			"totalSellVolume": "3243",
+			"orderedAmount": "150000",
+			"tpActivateLevel": "90.0000",
+			"tpLimitPrice": "92.0000",
+			"slLimitPrice": "85.0000",
+			"tpSubmitLevel": "89.0000",
+			"slSubmitLevel": "86.0000"
+		},
+		{
+			"pairName": "BTC/USDT",
+			"createdTimeStamp": 1588024908,
+			"side": 1,
+			"limitPrice": "91.9012",
+			"totalBuyVolume": "124124",
+			"totalSellVolume": "3243",
+			"orderedAmount": "150000",
+			"tpActivateLevel": "90.0000",
+			"tpLimitPrice": "92.0000",
+			"slLimitPrice": "85.0000",
+			"tpSubmitLevel": "89.0000",
+			"slSubmitLevel": "86.0000"
+		}
+	]
+}
+```
+
+### HTTP Request
+
+`GET https://example.com/api/v1/ordersHistory?pairName=KICK/BTC&startTime=123213123213213&endTime=32434523523535"`
+
+### URL Parameters
+
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+pairName | string | Yes | Currency pair name *(ex: KICK/BTC)*
+startTIme | timestamp |  | Start time in milliseconds
+endTime | timestamp |  | End time in milliseconds
+
+
+### Response Parameters
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+pairName | string | Yes | Currency pair name *(ex: KICK/ETH)*
+createdTimeStamp | timestamp | Yes | Order creation timestamp
+tradeIntent | integer | Yes | Trade side <br/> 0 - BUY <br/>1 - SALE
+limitPrice | string | No | Will be returned for orders where limit price was set on creation.
+totalBuyVolume | string | Yes | Total bought volume **???**
+totalSellVolume | string | Yes | Total sold volume **???**
+orderedVolume | string | Yes | Ordered volume of currency
+tpActivateLevel | string | No | Take profit activation level, will be returned if set on order creation.
+tpLimitPrice | string | No | Take profit limit price, will be returned if it was set on order creation.
+slLimitPrice | string | No | Stop loss limit price, will be returned if it was set on order creation.
+tpSubmitLevel | string | No | Take profit stop level, will be returned if it was set on order creation.
+slSubmitLevel | string | No | Stop loss stop level, will be returned if it was set on order creation.
 
 
 ## Trade History 
@@ -719,6 +850,7 @@ slLimitPrice | string | No | Stop loss limit price, will be returned if it was s
 tpSubmitLevel | string | No | Take profit stop level, will be returned if it was set on order creation.
 slSubmitLevel | string | No | Stop loss stop level, will be returned if it was set on order creation.
 activated | timestamp | No | Will be returned if the order was activated (for sliding orders) **???**
+
 
 ## Create Trade Order 
 
