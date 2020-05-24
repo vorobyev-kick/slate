@@ -25,43 +25,29 @@ Welcome to the External API.
 
 # Authentication
 
-> To authorize, use this code:
+For client authentication and integrity control the following attributes should be added to the request headers:
 
-```ruby
-require 'kittn'
+* KICK-API-KEY - API key (format (?))
+* KICK-API-PASS - API key passphrase (format (?))
+* KICK-API-TIMESTAMP - TIMESTAMP of the request (format (?))
+* KICK-SIGNATURE - request signature (format (?))
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
 ```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
+base64_encode(hash_hmac("sha512",
+	hash_hmac("sha512",
+		hash_hmac("sha512",
+			hash_hmac("sha512", $timestamp, $method, true),
+		$request_path, true),
+	$body, true),
+$api_secret, true));
 ```
+Request signature is need for the integrity control of the request on server-side. To create the request signature you need to use **API Secret** that is not included in the request headers.
+To create the request signature you need:
 
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
+- timestamp of the request;
+- method name used (e.g. GET);
+- request path (e.g. /api/v1/deposit-addresses);
+- request body (e.g. period=5min&pairName=BTC/USDT&startTime=22814882323);
 
 # Market
 This section covers methods that provide data regarding available currencies and currency pairs and rates.
