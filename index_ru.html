@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Описание внешнего API</title>
+    <title>KickEx - описание API</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -209,7 +209,7 @@
       </span>
     </a>
     <div class="toc-wrapper">
-      <img src="images/logo-1e815a84.png" class="logo" alt="Logo" />
+      <img src="images/logo-abfce8de.png" class="logo" alt="Logo" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
               <a href="#" data-language-name="ruby">ruby</a>
@@ -330,35 +330,32 @@
         <h1 id='1e4dc60201'>Ведение</h1>
 <p>API для внешней интеграции</p>
 <h1 id='authentication'>Authentication</h1>
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<p>Для аутентификации клиента и контроля целостности принимаемых сообщений к заголовкам запроса следует добавить следующие значения:</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<ul>
+<li>KICK-API-KEY - ключ API (в формате (?))</li>
+<li>KICK-API-PASS - парольная фраза ключа API (в формате (?))</li>
+<li>KICK-API-TIMESTAMP - время формирования запроса в формате TIMESTAMP (в формате (?))</li>
+<li>KICK-SIGNATURE - цифровой отпечаток запроса (в формате (?))</li>
+</ul>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
+<p>Цифровой отпечаток запроса предназначен для контроля целостности получаемых сервером данных. В формировании цифрового отпечатка используется API Secret, который не передается от клиента к серверу в процессе работы с REST API.</p>
+<pre class="highlight plaintext"><code>base64_encode(hash_hmac("sha512",
+    hash_hmac("sha512",
+        hash_hmac("sha512",
+            hash_hmac("sha512", $timestamp, $method, true),
+        $request_path, true),
+    $body, true),
+$api_secret, true));
 </code></pre>
-<blockquote>
-<p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
-</blockquote>
+<p>Цифровой отпечаток запроса создается на основе:</p>
 
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
-
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code>Authorization: meowmeowmeow</code></p>
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
+<ul>
+<li>времени (timestamp) формирования запроса;</li>
+<li>названия метода запроса (e.g. GET);</li>
+<li>пути запроса (e.g. /api/v1/deposit-addresses);</li>
+<li>тела запроса (e.g. period=5min&amp;pairName=BTC/USDT&amp;startTime=22814882323);</li>
+</ul>
 <h1 id='market'>Market</h1>
 <p>Данный раздел описывает набор методов, передающих информацию о парах и криптовалютах на платформе.
 <aside class="notice">
