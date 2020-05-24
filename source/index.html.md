@@ -89,9 +89,7 @@ curl "http://example.com/api/v1/market/pairs?type=market"
 			"quoteMinSize": "0.0001",
 			"priceDecimal": 12,
 			"amountDecimal": 8,
-			"feeTaker": "0.15",
-			"feeMaker": "0.15",
-			"isFrozen": 0
+			"state": 0
 		},
 		{
 			"pairName": "BTC/KICK",
@@ -101,9 +99,7 @@ curl "http://example.com/api/v1/market/pairs?type=market"
 			"quoteMinSize": "0.0001",
 			"priceDecimal": 12,
 			"amountDecimal": 8,
-			"feeTaker": "0.15",
-			"feeMaker": "0.15",
-			"isFrozen": 0
+			"state": 0
 		}
 	]
 }
@@ -129,9 +125,7 @@ baseMinSIze | string | Yes | Minimum amount of base currency for order creation
 quoteMinSize | string | Yes | Minimum amount of quote currency for order creation
 priceDecimal | Number | Yes | Price fraction digits 
 amountDecimal | Number | Yes | Amount fraction digits
-feeTaker | string | Yes | Taker fee (percentage of transaction amount)
-feeMaker | string | Yes | Maker fee (percentage of transaction amount)
-isFrozen | integer | Yes | Attribute showing if trading on this currency pair is frozen or not: <br/>0 – trading is available <br/>1 – traiding is unavailable
+state | integer | Yes | Attribute showing if trading on this currency pair or not: <br/>4 – trading is available <br/>1,2,3 – traiding is unavailable
 
 
 ## All Tickers
@@ -146,7 +140,7 @@ curl "http://example.com/api/v1/market/allTickers"
 {
 	"tickers": [
 		{
-			"time": 1588024908,
+			"timestamp": 1588024908,
 			"pairName": "BTC/USDT",
 			"bestBid": "1234.1231",
 			"bestAsk": "1245.2847",
@@ -162,7 +156,7 @@ curl "http://example.com/api/v1/market/allTickers"
 			"bestBidVolume": "95830"
 		},
 		{
-			"time": 1588024908,
+			"timestamp": 1588024908,
 			"pairName": "BTC/ETH",
 			"bestBid": "1234.1231",
 			"bestAsk": "1245.2847",
@@ -192,7 +186,7 @@ curl "http://example.com/api/v1/market/allTickers"
 ### Response Parameters
 Parameter | Type | Required | Description
 --------- | ----------- | ----------- | ----------- 
-time | timestamp | Yes | Server timestamp
+timestamp | timestamp | Yes | Server timestamp
 pairName | string | Yes | Currency pair name *(ex: BTC/USDT)*
 bestBid | string | Yes | Best bid price
 bestAsk | string | Yes | Best ask price
@@ -230,8 +224,7 @@ curl "http://example.com/api/v1/market/stats24?pairName=BTC/USDT"
 	"bestAsk": "3401.7623",
 	"averagePrice": "3407.3719",
 	"priceChange": "36.0925",
-	"time": 1588024908,
-	"changeRate?": ""
+	"timestamp": 1588024908
 }
 ```
 
@@ -258,8 +251,8 @@ bestBid | string | Yes | Best bid price (at the time of the request)
 bestAsk | string | Yes | Best ask price (at the time of the request)
 averagePrice | string | Yes | Average price during last 24 hours
 priceChange | string | Yes | Price change during last 24 hours
-time | timestamp | Yes | Timestamp
-changeRate? | string | Yes | 
+timestamp | timestamp | Yes | Timestamp
+
 
 ## Currency
 
@@ -273,16 +266,16 @@ curl "http://example.com/api/v1/currencies?currency=ETH"
 
 ```json
 {
-	"currencyCode???": "KICK",
+	"isoCode": "KICK",
 	"currencyName": "KICK",
 	"fullName": "Kick Token",
 	"decimal": 8,
-	"minWithdawal???": "1",
-	"minFeeWithrawal???": "0.1",
-	"isWithdrawEnable???": true,
-	"isDepositEnable???": true,
-	"isExchangeEnable???": true,
-	"isFrozen???": false,
+	"minWithdawal": "1",
+	"minFeeWithrawal": "0.1",
+	"isWithdrawEnable": true,
+	"isDepositEnable": true,
+	"isExchangeEnable": true,
+	"state": 4,
 	"convertPath": [
 				{
 					"BTC/USDT": true
@@ -309,7 +302,7 @@ curl "http://example.com/api/v1/currencies?currency=ETH"
 			"isWithdrawEnable???": true,
 			"isDepositEnable???": true,
 			"isExchangeEnable???": true,
-			"isFrozen???": false,
+			"state": 4,
 			"convertPath": [
 				{
 					"BTC/USDT": true
@@ -329,7 +322,7 @@ curl "http://example.com/api/v1/currencies?currency=ETH"
 			"isWithdrawEnable???": true,
 			"isDepositEnable???": false,
 			"isExchangeEnable???": true,
-			"isFrozen???": true,
+			"state": 4,
 			"convertPath": [
 				{
 					"BTC/USDT": true
@@ -345,7 +338,7 @@ curl "http://example.com/api/v1/currencies?currency=ETH"
 
 ### HTTP Request
 
-`GET https://example.com/api/v1/currencies?currency=ETH`
+`GET https://example.com/api/v1/minibars`
 
 ### URL Parameters
 
@@ -356,18 +349,74 @@ currency | string | Yes | Currency short name *(ex: BTC)*
 ### Response Parameters
 Parameter | Type | Required | Description
 --------- | ----------- | ----------- | -----------
-currencyCode | string | ? | Currency short name
+isoCode | string | ? | Currency code
 currencyName | string | Yes | Currency short name
 fullName | string | Yes | Currency full name
 decimal | number | Yes | Currency fraction digits
 minWithdawal | string | ? | Minimum withdrawal amount
-minFeeWithrawal? | string | ? | Minimum withdrawal fee
+minFeeWithrawal | string | ? | Minimum withdrawal fee
 isWithdrawEnable | boolean | ? | Is withdrawal available?
 isDepositEnable | boolean | ? | Is deposit available?
 isExchangeEnable | boolean | ? | Is exhange available?
-isFrozen | boolean | ? | Is frozen?
+state | integer | ? | Attribute showing if trading on this currency pair or not: <br/>4 – trading is available <br/>1,2,3 – traiding is unavailable
 convertPath | array | No | Array of currency pairs needed for convertion. Empty array means the conversion is not needed. <br/>true - means that conversion rate should be multiplied by currency pair rate <br/>false - means that convetion rate should be divided by currency pair rate absolute value <br/>```[{"BTC/USDT": true},{"ETH/BTC": false}]```
 
+## Minibars
+
+The method provides closure prices for last 24 hours for all currency pairs.
+
+```shell
+curl "http://example.com/api/v1/minibars"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+	"minibars": [
+		{
+			"pairName": "KICK/BTC",
+			"bars": [
+				[
+					1574168400,
+					0.0010096
+				],
+				[
+					1574172000,
+					0.0010004
+				]
+			]
+		},
+		{
+			"pairName": "ETH/BTC",
+			"bars": [
+				[
+					1574168400,
+					0.0010096
+				],
+				[
+					1574172000,
+					0.0010004
+				]
+			]
+		}
+	]
+}
+```
+
+### HTTP Request
+
+`GET https://example.com/api/v1/minibars`
+
+### URL Parameters
+
+*None.*
+
+### Response Parameters
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+pairName | string | Yes | Currency pair name *(ex: KICK/BTC)*
+bars | array | Yes | Candles in the following format <unix timestamp, close price><br/>{<br/>	"bars": [<br/>		[1574168400, 0.0010096],[1574172000,0.0010004]]<br/>}
 
 ## Trades
 
@@ -381,7 +430,6 @@ curl "http://example.com/api/v1/market/trades?pairName=BTC/USDT&type=buy"
 
 ```json
 {
-	"tradeId": 111111111,
 	"price": "1124.120937",
 	"baseVol": "491082.129100",
 	"quoteVol": "436.858805",
@@ -398,13 +446,12 @@ curl "http://example.com/api/v1/market/trades?pairName=BTC/USDT&type=buy"
 
 Parameter | Type | Required | Description
 --------- | ----------- | ----------- | -----------
-pairName | string | Да | наименование криптовалютной пары (В формате BTC/USDT)
-type | string | Нет | Принимает значения buy или sell, если параметр не передается передаем и то и другое
+pairName | string | Yes | Currency pair name *(ex: KICK/BTC)*
+type | string | Нет | Should be "buy" or "sell", if missing all trades are returned.
 
 ### Response Parameters
 Parameter | Type | Required | Description
 --------- | ----------- | ----------- | -----------
-tradeId | Integer | Yes | Trade unique identifier
 price | string | Yes | Trade price
 baseVol | string | Yes | Base currency volume
 quoteVol | string | Yes | Quotes currency volume
@@ -501,8 +548,6 @@ endTime | timestamp |  | End time in milliseconds
 ### Response Parameters
 Parameter | Type | Required | Description
 --------- | ----------- | ----------- | -----------
-code | integer | Yes | Response code (200 for OK)
-message | string | Yes | *success*/*error*
 timestamp | timestamp | Yes | Timestamp of candle creation
 openPrice | string | Yes | Open price of the candle
 closePrice | string | Yes | Close price of the candle
@@ -590,7 +635,6 @@ comment | string | No | Contains result: order cancelled or error
 
 Method used to cancel a group of orders or all the open orders.
 
-
 ```shell
 curl "http://example.com/api/v1/orders?pairName=BTC/USDT&orderType=STOP"
   -X DELETE
@@ -600,18 +644,18 @@ curl "http://example.com/api/v1/orders?pairName=BTC/USDT&orderType=STOP"
 > The above command returns JSON structured like this:
 
 ```json
-{
-	"cancelledOrders": [
-		{
-			"cancelledOrderId": "111111",
-			"comment": ""
-		},
-		{
-			"cancelledOrderId": "222222",
-			"comment": ""
-		}
-	]
-}
+[
+	{
+		"order_id": 192,
+		"error_code": 20002,
+		"reason": "something went wrong"
+	},
+	{
+		"order_id": 256,
+		"error_code": 20002,
+		"reason": "something went wrong"
+	}
+]
 ```
 
 ### HTTP Request
@@ -627,13 +671,60 @@ orderType | string | No | Type of the orders to cancel (stop/limit/all), missing
 
 ### Response Parameters
 
-**???** Should here be an object array?
+**Please be informed that response includes only orders that were not cancelled.**
 
 Parameter | Type | Required | Description
 --------- | ----------- | ----------- | -----------
-cancelledOrderId | string | Yes | Cancelled exchange order identifier
-comment | string | No | Contains result: order cancelled or error
+orderId | string | Yes | Not cancelled exchange order identifier
+error_code | string | Yes | Error code
+reason | string | No | Error reason
 
+## Cancel Orders
+
+Method used to cancel a group of open orders.
+
+
+```shell
+curl "http://example.com/api/v1/cancelorders?orders=123456,14589655,12563369"
+  -X DELETE
+  -H "Authorization: meowmeowmeow"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[
+	{
+		"order_id": 192,
+		"error_code": 20002,
+		"reason": "something went wrong"
+	},
+	{
+		"order_id": 256,
+		"error_code": 20002,
+		"reason": "something went wrong"
+	}
+]
+```
+
+### HTTP Request
+
+`DELETE https://example.com/api/v1/cancelorders?orders=123456,14589655,12563369`
+
+### URL Parameters
+
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+orders | string | No | Order identifiers divided by commas (without spaces)
+
+### Response Parameters
+**Please be informed that response includes only orders that were not cancelled.**
+
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | -----------
+orderId | string | Yes | Not cancelled exchange order identifier
+error_code | string | Yes | Error code
+reason | string | No | Error reason
 
 ## Orders History 
 
@@ -650,8 +741,9 @@ curl "http://example.com/api/v1/ordersHistory?pairName=KICK/BTC&startTime=123213
 	"orders": [
 		{
 			"pairName": "BTC/USDT",
+			"orderId": "1232352423",
 			"createdTimeStamp": 1588024908,
-			"side": 1,
+			"tradeIntent": 1,
 			"limitPrice": "91.9012",
 			"totalBuyVolume": "124124",
 			"totalSellVolume": "3243",
@@ -664,8 +756,9 @@ curl "http://example.com/api/v1/ordersHistory?pairName=KICK/BTC&startTime=123213
 		},
 		{
 			"pairName": "BTC/USDT",
+			"orderId": "1232352423",
 			"createdTimeStamp": 1588024908,
-			"side": 1,
+			"tradeIntent": 1,
 			"limitPrice": "91.9012",
 			"totalBuyVolume": "124124",
 			"totalSellVolume": "3243",
@@ -689,16 +782,20 @@ curl "http://example.com/api/v1/ordersHistory?pairName=KICK/BTC&startTime=123213
 Parameter | Type | Required | Description
 --------- | ----------- | ----------- | -----------
 pairName | string | Yes | Currency pair name *(ex: KICK/BTC)*
-startTIme | timestamp |  | Start time in milliseconds
-endTime | timestamp |  | End time in milliseconds
-
+startTIme | timestamp | No | Start time in milliseconds
+endTime | timestamp | No | End time in milliseconds
+pageSize | string | No | Page size, up to 100 orders
+tradeIntent | integer | No | Trade side <br/> 0 - BUY <br/>1 - SELL
+tsnBottomOrder | timestamp | No | Timestamp of order creation in nanoseconds (10^-9) of the last order on previous page (after which orders should be requested), if not the first page is requested.
+tsnTopOrder | timestamp | No | Timestamp of order creation in nanoseconds (10^-9) of the first order on previous page (if newer page is requested).
 
 ### Response Parameters
 Parameter | Type | Required | Description
 --------- | ----------- | ----------- | -----------
 pairName | string | Yes | Currency pair name *(ex: KICK/ETH)*
-createdTimeStamp | timestamp | Yes | Order creation timestamp
-tradeIntent | integer | Yes | Trade side <br/> 0 - BUY <br/>1 - SALE
+orderId | string | Yes | Order unique identifier
+createdTimeStamp | timestamp | Yes | Order creation timestamp in nanoseconds
+tradeIntent | integer | Yes | Trade side <br/> 0 - BUY <br/>1 - SELL
 limitPrice | string | No | Will be returned for orders where limit price was set on creation.
 totalBuyVolume | string | Yes | Total bought volume **???**
 totalSellVolume | string | Yes | Total sold volume **???**
@@ -725,8 +822,9 @@ curl "http://example.com/api/v1/tradesHistory?pairName=KICK/BTC&startTime=123213
 	"trades": [
 		{
 			"pairName": "BTC/USDT",
+			"orderId": "1232352423",
 			"timestamp": 1588024908,
-			"side": 0,
+			"tradeIntent": 0,
 			"price": "732.9532",
 			"feeQuoted": "3.1274",
 			"feeExternal": "",
@@ -736,8 +834,9 @@ curl "http://example.com/api/v1/tradesHistory?pairName=KICK/BTC&startTime=123213
 		},
 		{
 			"pairName": "BTC/USDT",
+			"orderId": "1232352423",
 			"timestamp": 1588024908,
-			"side": 0,
+			"tradeIntent": 0,
 			"price": "732.9532",
 			"feeQuoted": "3.1274",
 			"feeExternal": "",
@@ -760,14 +859,19 @@ Parameter | Type | Required | Description
 pairName | string | Yes | Currency pair name *(ex: KICK/BTC)*
 startTIme | timestamp |  | Start time in milliseconds
 endTime | timestamp |  | End time in milliseconds
+pageSize | string | No | Page size, up to 100 orders
+tradeIntent | integer | No | Trade side <br/> 0 - BUY <br/>1 - SELL
+tsnBottomDeal | timestamp | No | Timestamp of the trade in nanoseconds (10^-9) of the last trade on previous page (after which deals should be requested).
+tsnTopDeal | timestamp | No | Timestamp in nanoseconds (10^-9) of the first trade on previous page (if newer page is requested).
 
 
 ### Response Parameters
 Parameter | Type | Required | Description
 --------- | ----------- | ----------- | -----------
 pairName | string | Yes | Currency pair name *(ex: KICK/ETH)*
-timestamp | timestamp | Yes | Trade timestamp
-side | integer | Yes | Trade side <br/> 0 - BUY <br/>1 - SALE
+orderId | string | Yes | Order unique identifier (for current deal)
+timestamp | timestamp | Yes | Trade timestamp in nanoseconds
+tradeIntent | integer | Yes | Trade side <br/> 0 - BUY <br/>1 - SALE
 price | string | Yes | Price per currency unit (in quotes currency)
 feeQuoted | string | Yes | Fee (in quoted currency)
 feeExternal | string | No | Fee (in additional currency)
@@ -791,8 +895,9 @@ curl "http://example.com/api/v1/activeOrders?pairName=KICK/BTC"
 	"orders": [
 		{
 			"pairName": "BTC/USDT",
+			"orderId": "1232352423",
 			"createdTimeStamp": 1588024908,
-			"side": 1,
+			"tradeIntent": 1,
 			"limitPrice": "91.9012",
 			"totalBuyVolume": "124124",
 			"totalSellVolume": "3243",
@@ -802,12 +907,15 @@ curl "http://example.com/api/v1/activeOrders?pairName=KICK/BTC"
 			"slLimitPrice": "85.0000",
 			"tpSubmitLevel": "89.0000",
 			"slSubmitLevel": "86.0000",
-			"activated": 1588022908
+			"activated": 1588022908,
+			"stopTimestamp": 1588022908,
+			"triggeredSide": "l"
 		},
 		{
 			"pairName": "BTC/USDT",
+			"orderId": "1232352423",
 			"createdTimeStamp": 1588024908,
-			"side": 1,
+			"tradeIntent": 1,
 			"limitPrice": "91.9012",
 			"totalBuyVolume": "124124",
 			"totalSellVolume": "3243",
@@ -817,7 +925,9 @@ curl "http://example.com/api/v1/activeOrders?pairName=KICK/BTC"
 			"slLimitPrice": "85.0000",
 			"tpSubmitLevel": "89.0000",
 			"slSubmitLevel": "86.0000",
-			"activated": 1588022908
+			"activated": 1588022908,
+			"stopTimestamp": 1588022908,
+			"triggeredSide": "s"
 		}
 	]
 }
@@ -838,7 +948,8 @@ pairName | string | No | Currency pair name *(ex: KICK/BTC)*
 Parameter | Type | Required | Description
 --------- | ----------- | ----------- | -----------
 pairName | string | Yes | Currency pair name *(ex: KICK/ETH)*
-createdTimeStamp | timestamp | Yes | Order creation timestamp
+orderId | string | Yes | Order unique identifier
+createdTimeStamp | timestamp | Yes | Order creation timestamp in nanoseconds
 side | integer | Yes | Trade side <br/> 0 - BUY <br/>1 - SALE
 limitPrice | string | No | Will be returned for orders where limit price was set on creation.
 totalBuyVolume | string | Yes | Total bought volume **???**
@@ -849,7 +960,9 @@ tpLimitPrice | string | No | Take profit limit price, will be returned if it was
 slLimitPrice | string | No | Stop loss limit price, will be returned if it was set on order creation.
 tpSubmitLevel | string | No | Take profit stop level, will be returned if it was set on order creation.
 slSubmitLevel | string | No | Stop loss stop level, will be returned if it was set on order creation.
-activated | timestamp | No | Will be returned if the order was activated (for sliding orders) **???**
+activated | timestamp | No | Will be returned if the order was activated (for sliding orders) 
+stopTimestamp | timestamp | No | Timestamp of stop order change in nanoseconds
+triggeredSide | string | No | If it is a double stop order, this attribute shows which of them were fired: p/l/?
 
 
 ## Create Trade Order 
@@ -860,6 +973,8 @@ Method for trade order creation.
 curl "http://example.com/api/v1/orders/createTradeOrder"
   -X POST
   -H "Authorization: meowmeowmeow"
+  -H "Content-Type: application/json"
+  -d '{"pairName": "KICK/ETH", "orderedAmount": "110.000", "limitPrice": "0.12", "tradeIntent": 0, "modifier": "GTC"}'
 ```
 
 > The above command returns JSON structured like this:
@@ -882,15 +997,14 @@ pairName | string | Yes | Currency pair name *(ex: KICK/ETH)*
 orderedAmount | string | Yes | Ordered currency amount
 limitPrice | string | No | **???**
 tradeIntent | integer | Yes | Possible values:<br/>0 - buy base currency, <br/>1 - sell base currency
-modifier | integer | No | Possible value: GTC (if ommitted, the same is used)
-reserves | integer | No | 0 (default) - don't create reserves, <br/>1 - create reserves (valid only if limitPrice is set)
-
+modifier | string | No | Possible value: GTC (if ommitted, the same is used)
 
 ### Response Parameters
 
 Parameter | Type | Required | Description
 --------- | ----------- | ----------- | -----------
 orderId | integer | Yes | Created trade order identifier
+
 
 ## Create Stop Order 
 
@@ -900,6 +1014,8 @@ Method for stop order creation.
 curl "http://example.com/api/v1/orders/createStopOrder"
   -X POST
   -H "Authorization: meowmeowmeow"
+  -H "Content-Type: application/json"
+  -d '{"pairName": "KICK/ETH", "orderedAmount": "110.000", "limitPrice": "0.12", "tradeIntent": 0, "modifier": "GTC", "reserves": 0, "tpActivateLevel": "0.11", "tpLimitPrice": "0.15", "slLimitPrice": "0.10", "tpSubmitLevel": "0.14", "slSubmitLevel": "0.13"}'
 ```
 
 > The above command returns JSON structured like this:
@@ -920,6 +1036,7 @@ Parameter | Type | Required | Description
 --------- | ----------- | ----------- | -----------
 pairName | string | Yes | Currency pair name *(ex: KICK/ETH)*
 orderedAmount | string | Yes | Ordered currency amount
+limitPrice | string | No | Should be provided if single stop order is created
 tradeIntent | integer | Yes | Currently two possible values are accepted: <br/>0 - buying base currency <br/>1 - selling base currency
 modifier | integer | No | Possible value: GTC (if ommitted, the same is used)
 reserves | integer | No | 0 (default) - don't create reserves, <br/>1 - create reserves (valid only if limitPrice is set)
@@ -1135,7 +1252,63 @@ createdAt | timestamp | Yes | Database record creation timestamp
 updatedAt | timestamp | Yes | Database record update timestamp
 comment | string | No | Comment (if any)
 
-## Withdraw
+## User tariff
+
+Method that returns current user's discounts information
+
+```shell
+curl "http://example.com/api/v1/user/tariff"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+	"maker": "0.0015",
+	"taker": "0.0010",
+	"msf": "0.5",
+	"discount_regular_k": "0.2",
+	"discount_special_k": "0.3",
+	"discount_details": {
+		"vol_30d": "500280.1223",
+		"vol_30d_dk": "0.2",
+		"min_1d_rest": "12532.00",
+		"min_1d_rest_dk": "0.3",
+		"min_1d_kex_rest": "19732.64",
+		"min_1k_kex_rest_dk": "0.45",
+		"min_1d_activity_rest": "9612.14",
+		"min_1d_activity_rest_dk": "0.10"
+	}
+}
+```
+
+### HTTP Request
+
+`GET https://example.com/api/v1/user/tariff`
+
+### URL Parameters
+
+*None.*
+
+### Response Parameters
+Parameter | Type | Required | Description
+--------- | ----------- | ----------- | ----------- 
+maker | string | Yes | maker fee (like 0.0015, not 0.15%)
+taker | string | Yes | taker fee
+msf | string | Yes | share of the fee that could be payed in broker's currency
+discount_regular_k | string | Yes | discount factor when payed in quotes currency
+discount_special_k | string | Yes | discount factor when payed in broker's currency
+discount_details | object | Yes | object containing detailed information regarding gathered discounts conditions and amount of discounts (object structure below)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vol_30d | string | Yes | trading volume in USDT for the previous 30 days
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vol_30d_dk | string | Yes | trading volume discount rate 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;min_1d_rest | string | Yes | balance of KICK (in USDT) on main account
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;min_1d_rest_dk | string | Yes | KICK on main account discount rate
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;min_1d_kex_rest | string | Yes | Minimum balance of KICK (in USDT) on Ecosystem account for the last 24 hours
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;min_1k_kex_rest_dk | string | Yes | KICK on Ecosystem account discount rate
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;min_1d_activity_rest | string | Yes | Minimum balance on Ecosystem account
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;min_1d_activity_rest_dk | string | Yes | Discount on fees paid in broker's currency
+
+## Withdraw (under construction)
 
 Method for withdrawal request creation.
 
