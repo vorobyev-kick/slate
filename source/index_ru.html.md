@@ -1,5 +1,5 @@
 ---
-title: Описание внешнего API
+title: KickEx - описание API
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
@@ -24,43 +24,32 @@ API для внешней интеграции
 
 # Authentication
 
-> To authorize, use this code:
+Для аутентификации клиента и контроля целостности принимаемых сообщений к заголовкам запроса следует добавить следующие значения:
 
-```ruby
-require 'kittn'
+* KICK-API-KEY - ключ API (в формате (?))
+* KICK-API-PASS - парольная фраза ключа API (в формате (?))
+* KICK-API-TIMESTAMP - время формирования запроса в формате TIMESTAMP (в формате (?))
+* KICK-SIGNATURE - цифровой отпечаток запроса (в формате (?))
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
+Цифровой отпечаток запроса предназначен для контроля целостности получаемых сервером данных. В формировании цифрового отпечатка используется API Secret, который не передается от клиента к серверу в процессе работы с REST API.
+
+```
+base64_encode(hash_hmac("sha512",
+	hash_hmac("sha512",
+		hash_hmac("sha512",
+			hash_hmac("sha512", $timestamp, $method, true),
+		$request_path, true),
+	$body, true),
+$api_secret, true));
 ```
 
-```python
-import kittn
+Цифровой отпечаток запроса создается на основе:
 
-api = kittn.authorize('meowmeowmeow')
-```
+- времени (timestamp) формирования запроса;
+- названия метода запроса (e.g. GET);
+- пути запроса (e.g. /api/v1/deposit-addresses);
+- тела запроса (e.g. period=5min&pairName=BTC/USDT&startTime=22814882323);
 
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
 
 # Market
 Данный раздел описывает набор методов, передающих информацию о парах и криптовалютах на платформе.
