@@ -1032,7 +1032,7 @@ $api_secret, true));
 </tbody></table>
 <h2 id='orderbook'>Orderbook</h2>
 <p>Запрос актуальных биржевых ордеров по валютной паре, может предоставлять как агрегированные, так и неагрегированные данные.</p>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/market/orderbook/pairName=BTC/USDT?depth=20"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/market/orderbook?pairName=BTC/USDT&amp;depth=20"</span>
 </code></pre>
 <blockquote>
 <p>Команда выше вернёт структуру следующего вида:</p>
@@ -1053,7 +1053,7 @@ $api_secret, true));
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-7'>HTTP Запрос</h3>
-<p><code>GET https://example.com/api/v1/market/orderbook/pairName=BTC/USDT?depth=20</code></p>
+<p><code>GET https://example.com/api/v1/market/orderbook?pairName=BTC/USDT&amp;depth=20</code></p>
 <h3 id='url-7'>Параметры URL</h3>
 <table><thead>
 <tr>

@@ -1031,7 +1031,7 @@ You don&#39;t need to authorize to use methods from <b>Market</b> section.
 <h2 id='orderbook'>Orderbook</h2>
 <p>This request is used to get current exchange orders by currency pair name.
 Provides both aggregated and particular data.</p>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/market/orderbook/pairName=BTC/USDT?depth=20"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/market/orderbook?pairName=BTC/USDT&amp;depth=20"</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -1052,7 +1052,7 @@ Provides both aggregated and particular data.</p>
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-request-7'>HTTP Request</h3>
-<p><code>GET https://example.com/api/v1/market/orderbook/pairName=BTC/USDT?depth=20</code></p>
+<p><code>GET https://example.com/api/v1/market/orderbook?pairName=BTC/USDT&amp;depth=20</code></p>
 <h3 id='url-parameters-7'>URL Parameters</h3>
 <table><thead>
 <tr>
