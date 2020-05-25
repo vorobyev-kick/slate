@@ -456,7 +456,7 @@ type | string | Да | Тип сделки покупка/продажа. <br/>�
 Запрос актуальных биржевых ордеров по валютной паре, может предоставлять как агрегированные, так и неагрегированные данные.
 
 ```shell
-curl "http://example.com/api/v1/market/orderbook/pairName=BTC/USDT?depth=20"
+curl "http://example.com/api/v1/market/orderbook?pairName=BTC/USDT&depth=20"
 ```
 
 > Команда выше вернёт структуру следующего вида:
@@ -481,7 +481,7 @@ curl "http://example.com/api/v1/market/orderbook/pairName=BTC/USDT?depth=20"
 
 ### HTTP Запрос
 
-`GET https://example.com/api/v1/market/orderbook/pairName=BTC/USDT?depth=20`
+`GET https://example.com/api/v1/market/orderbook?pairName=BTC/USDT&depth=20`
 
 ### Параметры URL 
 

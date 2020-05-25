@@ -451,7 +451,7 @@ This request is used to get current exchange orders by currency pair name.
 Provides both aggregated and particular data.
 
 ```shell
-curl "http://example.com/api/v1/market/orderbook/pairName=BTC/USDT?depth=20"
+curl "http://example.com/api/v1/market/orderbook?pairName=BTC/USDT&depth=20"
 ```
 
 > The above command returns JSON structured like this:
@@ -476,7 +476,7 @@ curl "http://example.com/api/v1/market/orderbook/pairName=BTC/USDT?depth=20"
 
 ### HTTP Request
 
-`GET https://example.com/api/v1/market/orderbook/pairName=BTC/USDT?depth=20`
+`GET https://example.com/api/v1/market/orderbook?pairName=BTC/USDT&depth=20`
 
 ### URL Parameters
 
