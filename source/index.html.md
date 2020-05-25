@@ -20,7 +20,7 @@ search: true
 
 # Introduction
 
-Welcome to the External API.
+Welcome to the External API for KickEX exchange.
 
 
 # Authentication

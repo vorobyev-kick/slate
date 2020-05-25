@@ -18,9 +18,9 @@ includes:
 search: true
 ---
 
-# Ведение
+# Введение
 
-API для внешней интеграции
+API для внешней интеграции с биржей KickEX.
 
 # Authentication
 
