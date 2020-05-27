@@ -29,7 +29,7 @@ For client authentication and integrity control the following attributes should 
 
 * KICK-API-KEY - API key (format (?))
 * KICK-API-PASS - API key passphrase (format (?))
-* KICK-API-TIMESTAMP - TIMESTAMP of the request (format (?))
+* KICK-API-TIMESTAMP - TIMESTAMP of the request (unix timestamp, seconds)
 * KICK-SIGNATURE - request signature (format (?))
 
 ```
@@ -956,7 +956,7 @@ triggeredSide | string | No | If it is a double stop order, this attribute shows
 Method for trade order creation.
 
 ```shell
-curl "http://example.com/api/v1/orders/createTradeOrder"
+curl "http://example.com/api/v1/createTradeOrder"
   -X POST
   -H "Authorization: meowmeowmeow"
   -H "Content-Type: application/json"
@@ -973,7 +973,7 @@ curl "http://example.com/api/v1/orders/createTradeOrder"
 
 ### HTTP Request
 
-`POST https://example.com/api/v1/orders/createTradeOrder`
+`POST https://example.com/api/v1/createTradeOrder`
 
 ### Request Parameters
 
@@ -997,7 +997,7 @@ orderId | integer | Yes | Created trade order identifier
 Method for stop order creation.
 
 ```shell
-curl "http://example.com/api/v1/orders/createStopOrder"
+curl "http://example.com/api/v1/createStopOrder"
   -X POST
   -H "Authorization: meowmeowmeow"
   -H "Content-Type: application/json"
@@ -1014,7 +1014,7 @@ curl "http://example.com/api/v1/orders/createStopOrder"
 
 ### HTTP Request
 
-`POST https://example.com/api/v1/orders/createStopOrder`
+`POST https://example.com/api/v1/createStopOrder`
 
 ### Request Parameters
 

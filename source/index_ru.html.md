@@ -28,7 +28,7 @@ API для внешней интеграции с биржей KickEX.
 
 * KICK-API-KEY - ключ API (в формате (?))
 * KICK-API-PASS - парольная фраза ключа API (в формате (?))
-* KICK-API-TIMESTAMP - время формирования запроса в формате TIMESTAMP (в формате (?))
+* KICK-API-TIMESTAMP - время формирования запроса в формате TIMESTAMP (unix timestamp, в секундах)
 * KICK-SIGNATURE - цифровой отпечаток запроса (в формате (?))
 
 ```
@@ -979,7 +979,7 @@ triggeredSide | string | Нет | Если стоп был двойной, по�
 установка ордера
 
 ```shell
-curl "http://example.com/api/v1/orders/createTradeOrder"
+curl "http://example.com/api/v1/createTradeOrder"
   -X POST
   -H "Authorization: meowmeowmeow"
   -H "Content-Type: application/json"
@@ -996,7 +996,7 @@ curl "http://example.com/api/v1/orders/createTradeOrder"
 
 ### HTTP Запрос
 
-`POST https://example.com/api/v1/orders/createTradeOrder`
+`POST https://example.com/api/v1/createTradeOrder`
 
 
 ### Параметры запроса 
@@ -1021,7 +1021,7 @@ orderId | integer | Да | Идентификатор созданного ор�
 установка стоп-ордера
 
 ```shell
-curl "http://example.com/api/v1/orders/createStopOrder"
+curl "http://example.com/api/v1/createStopOrder"
   -X POST
   -H "Authorization: meowmeowmeow"
   -H "Content-Type: application/json"
@@ -1038,7 +1038,7 @@ curl "http://example.com/api/v1/orders/createStopOrder"
 
 ### HTTP Запрос
 
-`POST https://example.com/api/v1/orders/createStopOrder`
+`POST https://example.com/api/v1/createStopOrder`
 
 ### Параметры URL 
 
