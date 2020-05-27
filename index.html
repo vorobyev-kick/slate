@@ -335,7 +335,7 @@
 <ul>
 <li>KICK-API-KEY - API key (format (?))</li>
 <li>KICK-API-PASS - API key passphrase (format (?))</li>
-<li>KICK-API-TIMESTAMP - TIMESTAMP of the request (format (?))</li>
+<li>KICK-API-TIMESTAMP - TIMESTAMP of the request (unix timestamp, seconds)</li>
 <li>KICK-SIGNATURE - request signature (format (?))</li>
 </ul>
 <pre class="highlight plaintext"><code>base64_encode(hash_hmac("sha512",
@@ -1961,7 +1961,7 @@ Authorization is needed to use these methods.
 </tbody></table>
 <h2 id='create-trade-order'>Create Trade Order</h2>
 <p>Method for trade order creation.</p>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/orders/createTradeOrder"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/createTradeOrder"</span>
   -X POST
   -H <span class="s2">"Authorization: meowmeowmeow"</span>
   -H <span class="s2">"Content-Type: application/json"</span>
@@ -1974,7 +1974,7 @@ Authorization is needed to use these methods.
     </span><span class="s2">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-request-16'>HTTP Request</h3>
-<p><code>POST https://example.com/api/v1/orders/createTradeOrder</code></p>
+<p><code>POST https://example.com/api/v1/createTradeOrder</code></p>
 <h3 id='request-parameters'>Request Parameters</h3>
 <table><thead>
 <tr>
@@ -2033,7 +2033,7 @@ Authorization is needed to use these methods.
 </tbody></table>
 <h2 id='create-stop-order'>Create Stop Order</h2>
 <p>Method for stop order creation.</p>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/orders/createStopOrder"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/v1/createStopOrder"</span>
   -X POST
   -H <span class="s2">"Authorization: meowmeowmeow"</span>
   -H <span class="s2">"Content-Type: application/json"</span>
@@ -2046,7 +2046,7 @@ Authorization is needed to use these methods.
     </span><span class="s2">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-request-17'>HTTP Request</h3>
-<p><code>POST https://example.com/api/v1/orders/createStopOrder</code></p>
+<p><code>POST https://example.com/api/v1/createStopOrder</code></p>
 <h3 id='request-parameters-2'>Request Parameters</h3>
 <table><thead>
 <tr>
