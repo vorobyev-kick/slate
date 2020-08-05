@@ -104,7 +104,7 @@ type | string | Yes | Currently the only valid value is 'market'
 ### Response Parameters
 Parameter | Type | Required | Description
 --------- | ----------- | ----------- | -----------
-pairName | string | Yes | Currency pair name *(ex: BTC/USDT)*
+pairName | string | Yes   | Currency pair name *(ex: BTC/USDT)*
 baseCurrency | string | Yes | Base currency name *(ex: BTC)*
 quoteCurrencу | string | Yes | Quotes currency name *(ex: USDT)*
 baseMinSIze | string | Yes | Minimum amount of base currency for order creation
