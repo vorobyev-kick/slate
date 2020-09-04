@@ -27,7 +27,7 @@ Welcome to the External API for KickEX exchange.
 
 For client authentication and integrity control the following attributes should be added to the request headers:
 
-* KICK-API-KEY - API key (format (?))
+* KICK-API-KEY - API key (it is provided in *base64url* format and needs to be decoded to binary format before KICK-SIGNATURE generation)
 * KICK-API-PASS - API key passphrase (format (?))
 * KICK-API-TIMESTAMP - TIMESTAMP of the request (unix timestamp, seconds)
 * KICK-SIGNATURE - request signature (format (?))
@@ -59,7 +59,7 @@ You don't need to authorize to use methods from <b>Market</b> section.
 ## Pairs
 
 ```shell
-curl "http://example.com/api/v1/market/pairs?type=market"
+curl "https://gate.kickex.com/api/v1/market/pairs?type=market"
 ```
 
 > The above command returns JSON structured like this:
@@ -93,7 +93,7 @@ curl "http://example.com/api/v1/market/pairs?type=market"
 
 ### HTTP Request
 
-`GET https://example.com/api/v1/market/pairs?type=market`
+`GET https://gate.kickex.com/api/v1/market/pairs?type=market`
 
 ### URL Parameters
 
@@ -104,7 +104,7 @@ type | string | Yes | Currently the only valid value is 'market'
 ### Response Parameters
 Parameter | Type | Required | Description
 --------- | ----------- | ----------- | -----------
-pairName | string | Yes   | Currency pair name *(ex: BTC/USDT)*
+pairName | string | Yes | Currency pair name *(ex: BTC/USDT)*
 baseCurrency | string | Yes | Base currency name *(ex: BTC)*
 quoteCurrencу | string | Yes | Quotes currency name *(ex: USDT)*
 baseMinSIze | string | Yes | Minimum amount of base currency for order creation
@@ -117,7 +117,7 @@ state | integer | Yes | Attribute showing if trading on this currency pair or no
 ## All Tickers
 
 ```shell
-curl "http://example.com/api/v1/market/allTickers"
+curl "https://gate.kickex.com/api/v1/market/allTickers"
 ```
 
 > The above command returns JSON structured like this:
@@ -163,7 +163,7 @@ curl "http://example.com/api/v1/market/allTickers"
 
 ### HTTP Request
 
-`GET https://example.com/api/v1/market/allTickers`
+`GET https://gate.kickex.com/api/v1/market/allTickers`
 
 ### URL Parameters
 
@@ -193,7 +193,7 @@ bestBidVolume | string | Yes | Best bid volume
 The method provides statistics on a currency pair during the last 24 hours.
 
 ```shell
-curl "http://example.com/api/v1/market/stats24?pairName=BTC/USDT"
+curl "https://gate.kickex.com/api/v1/market/stats24?pairName=BTC/USDT"
 ```
 
 > The above command returns JSON structured like this:
@@ -203,7 +203,7 @@ curl "http://example.com/api/v1/market/stats24?pairName=BTC/USDT"
 	"pairName": "BTC/USDT",
 	"high24": "3425.0092",
 	"low24": "3389.1294",
-	"amountVol": "91572919",
+	"amountVol": "91582919",
 	"baseVol": "27020.6311",
 	"lastPrice": "3421.7623",
 	"bestBid": "3420.4223",
@@ -216,7 +216,7 @@ curl "http://example.com/api/v1/market/stats24?pairName=BTC/USDT"
 
 ### HTTP Request
 
-`GET https://example.com/api/v1/market/stats24?pairName=BTC/USDT`
+`GET https://gate.kickex.com/api/v1/market/stats24?pairName=BTC/USDT`
 
 ### URL Parameters
 
@@ -245,7 +245,7 @@ timestamp | timestamp | Yes | Timestamp
 The method provides data regarding specified currency. If *currency* parameter is not provided, returns data regarding all available currencies.
 
 ```shell
-curl "http://example.com/api/v1/currencies?currency=ETH"
+curl "https://gate.kickex.com/api/v1/currencies?currency=ETH"
 ```
 
 > The above command returns JSON structured like this:
@@ -324,7 +324,7 @@ curl "http://example.com/api/v1/currencies?currency=ETH"
 
 ### HTTP Request
 
-`GET https://example.com/api/v1/minibars`
+`GET https://gate.kickex.com/api/v1/currencies?currency=ETH`	
 
 ### URL Parameters
 
@@ -352,7 +352,7 @@ convertPath | array | No | Array of currency pairs needed for convertion. Empty 
 The method provides closure prices for last 24 hours for all currency pairs.
 
 ```shell
-curl "http://example.com/api/v1/minibars"
+curl "https://gate.kickex.com/api/v1/minibars"
 ```
 
 > The above command returns JSON structured like this:
@@ -392,7 +392,7 @@ curl "http://example.com/api/v1/minibars"
 
 ### HTTP Request
 
-`GET https://example.com/api/v1/minibars`
+`GET https://gate.kickex.com/api/v1/minibars`
 
 ### URL Parameters
 
@@ -409,7 +409,7 @@ bars | array | Yes | Candles in the following format <unix timestamp, close pric
 This method returns deals history during last 24 hours.
 
 ```shell
-curl "http://example.com/api/v1/market/trades?pairName=BTC/USDT&type=buy"
+curl "https://gate.kickex.com/api/v1/market/trades?pairName=BTC/USDT&type=buy"
 ```
 
 > The above command returns JSON structured like this:
@@ -426,7 +426,7 @@ curl "http://example.com/api/v1/market/trades?pairName=BTC/USDT&type=buy"
 
 ### HTTP Request
 
-`GET https://example.com/api/v1/market/trades?pairName=BTC/USDT&type=buy`
+`GET https://gate.kickex.com/api/v1/market/trades?pairName=BTC/USDT&type=buy`
 
 ### URL Parameters
 
@@ -451,7 +451,7 @@ This request is used to get current exchange orders by currency pair name.
 Provides both aggregated and particular data.
 
 ```shell
-curl "http://example.com/api/v1/market/orderbook?pairName=BTC/USDT&depth=20"
+curl "https://gate.kickex.com/api/v1/market/orderbook?pairName=BTC/USDT&depth=20"
 ```
 
 > The above command returns JSON structured like this:
@@ -476,7 +476,7 @@ curl "http://example.com/api/v1/market/orderbook?pairName=BTC/USDT&depth=20"
 
 ### HTTP Request
 
-`GET https://example.com/api/v1/market/orderbook?pairName=BTC/USDT&depth=20`
+`GET https://gate.kickex.com/api/v1/market/orderbook?pairName=BTC/USDT&depth=20`
 
 ### URL Parameters
 
@@ -497,7 +497,7 @@ asks | Array of string | Yes | List of asks (price and amount)
 ## Candles
 
 ```shell
-curl "http://example.com/api/v1/market/bars/?period=5min&pairName=BTC/USDT&startTime=22814882323&endTIme32222869898"
+curl "https://gate.kickex.com/api/v1/market/bars/?period=5min&pairName=BTC/USDT&startTime=22814882323&endTIme32222869898"
 ```
 
 > The above command returns JSON structured like this:
@@ -520,7 +520,7 @@ curl "http://example.com/api/v1/market/bars/?period=5min&pairName=BTC/USDT&start
 
 If `startTime` or `endTime` are not provided, not more than **???** results are returned.
 
-`GET https://example.com/api/v1/market/bars/?period=5min&pairName=BTC/USDT&startTime=22814882323&endTIme32222869898`
+`GET https://gate.kickex.com/api/v1/market/bars/?period=5min&pairName=BTC/USDT&startTime=22814882323&endTIme32222869898`
 
 ### URL Parameters
 
@@ -546,7 +546,7 @@ transactionAmount | string | Yes | Trades number within the candle
 ## Server time
 
 ```shell
-curl "http://example.com/api/v1/serverTime"
+curl "https://gate.kickex.com/api/v1/serverTime"
 ```
 
 > The above command returns JSON structured like this:
@@ -561,7 +561,7 @@ curl "http://example.com/api/v1/serverTime"
 
 ### HTTP Request
 
-`GET https://example.com/api/v1/serverTime`
+`GET https://gate.kickex.com/api/v1/serverTime`
 
 ### URL Parameters
 
@@ -588,7 +588,7 @@ Authorization is needed to use these methods.
 Exchange order cancellation method.
 
 ```shell
-curl "http://example.com/api/v1/orders/{orderId}"
+curl "https://gate.kickex.com/api/v1/orders/{orderId}"
   -X DELETE
   -H "Authorization: meowmeowmeow"
 ```
@@ -604,7 +604,7 @@ curl "http://example.com/api/v1/orders/{orderId}"
 
 ### HTTP Request
 
-`DELETE https://example.com/api/v1/orders/{orderId}`
+`DELETE https://gate.kickex.com/api/v1/orders/{orderId}`
 
 ### URL Parameters
 
@@ -622,7 +622,7 @@ comment | string | No | Contains result: order cancelled or error
 Method used to cancel a group of orders or all the open orders.
 
 ```shell
-curl "http://example.com/api/v1/orders?pairName=BTC/USDT&orderType=STOP"
+curl "https://gate.kickex.com/api/v1/orders?pairName=BTC/USDT&orderType=STOP"
   -X DELETE
   -H "Authorization: meowmeowmeow"
 ```
@@ -646,14 +646,14 @@ curl "http://example.com/api/v1/orders?pairName=BTC/USDT&orderType=STOP"
 
 ### HTTP Request
 
-`DELETE https://example.com/api/v1/orders?pairName=BTC/USDT&orderType=STOP`
+`DELETE https://gate.kickex.com/api/v1/orders?pairName=BTC/USDT&orderType=STOP`
 
 ### URL Parameters
 
 Parameter | Type | Required | Description
 --------- | ----------- | ----------- | -----------
 pairName | string | No | Currency pair name *(ex: KICK/ETH)*
-orderType | string | No | Type of the orders to cancel (stop/limit/all), missing order type is treated as "all".
+orderType | string | No | Type of the orders to cancel (stop/trade/all), missing order type is treated as "all".
 
 ### Response Parameters
 
@@ -671,7 +671,7 @@ Method used to cancel a group of open orders.
 
 
 ```shell
-curl "http://example.com/api/v1/cancelorders?orders=123456,14589655,12563369"
+curl "https://gate.kickex.com/api/v1/cancelorders?orders=123456,14589655,12563369"
   -X DELETE
   -H "Authorization: meowmeowmeow"
 ```
@@ -695,7 +695,7 @@ curl "http://example.com/api/v1/cancelorders?orders=123456,14589655,12563369"
 
 ### HTTP Request
 
-`DELETE https://example.com/api/v1/cancelorders?orders=123456,14589655,12563369`
+`DELETE https://gate.kickex.com/api/v1/cancelorders?orders=123456,14589655,12563369`
 
 ### URL Parameters
 
@@ -717,7 +717,7 @@ reason | string | No | Error reason
 This method is used to get data on the user's orders.
 
 ```shell
-curl "http://example.com/api/v1/ordersHistory?pairName=KICK/BTC&startTime=123213123213213&endTime=32434523523535"
+curl "https://gate.kickex.com/api/v1/ordersHistory?pairName=KICK/BTC&startTime=123213123213213&endTime=32434523523535"
 ```
 
 > The above command returns JSON structured like this:
@@ -761,7 +761,7 @@ curl "http://example.com/api/v1/ordersHistory?pairName=KICK/BTC&startTime=123213
 
 ### HTTP Request
 
-`GET https://example.com/api/v1/ordersHistory?pairName=KICK/BTC&startTime=123213123213213&endTime=32434523523535"`
+`GET https://gate.kickex.com/api/v1/ordersHistory?pairName=KICK/BTC&startTime=123213123213213&endTime=32434523523535"`
 
 ### URL Parameters
 
@@ -798,7 +798,7 @@ slSubmitLevel | string | No | Stop loss stop level, will be returned if it was s
 This method is used to get data on the user's trades.
 
 ```shell
-curl "http://example.com/api/v1/tradesHistory?pairName=KICK/BTC&startTime=123213123213213&endTime=32434523523535"
+curl "https://gate.kickex.com/api/v1/tradesHistory?pairName=KICK/BTC&startTime=123213123213213&endTime=32434523523535"
 ```
 
 > The above command returns JSON structured like this:
@@ -836,7 +836,7 @@ curl "http://example.com/api/v1/tradesHistory?pairName=KICK/BTC&startTime=123213
 
 ### HTTP Request
 
-`GET https://example.com/api/v1/tradesHistory?pairName=KICK/BTC&startTime=123213123213213&endTime=32434523523535`
+`GET https://gate.kickex.com/api/v1/tradesHistory?pairName=KICK/BTC&startTime=123213123213213&endTime=32434523523535`
 
 ### URL Parameters
 
@@ -871,7 +871,7 @@ sellVolume | string | Yes | Trade sell volume
 Method used to get information regarding all user's open (active) exchange orders.
 
 ```shell
-curl "http://example.com/api/v1/activeOrders?pairName=KICK/BTC"
+curl "https://gate.kickex.com/api/v1/activeOrders?pairName=KICK/BTC"
 ```
 
 > The above command returns JSON structured like this:
@@ -921,7 +921,7 @@ curl "http://example.com/api/v1/activeOrders?pairName=KICK/BTC"
 
 ### HTTP Request
 
-`GET https://example.com/api/v1/activeOrders?pairName=KICK/BTC`
+`GET https://gate.kickex.com/api/v1/activeOrders?pairName=KICK/BTC`
 
 ### URL Parameters
 
@@ -956,7 +956,7 @@ triggeredSide | string | No | If it is a double stop order, this attribute shows
 Method for trade order creation.
 
 ```shell
-curl "http://example.com/api/v1/createTradeOrder"
+curl "https://gate.kickex.com/api/v1/createTradeOrder"
   -X POST
   -H "Authorization: meowmeowmeow"
   -H "Content-Type: application/json"
@@ -973,7 +973,7 @@ curl "http://example.com/api/v1/createTradeOrder"
 
 ### HTTP Request
 
-`POST https://example.com/api/v1/createTradeOrder`
+`POST https://gate.kickex.com/api/v1/createTradeOrder`
 
 ### Request Parameters
 
@@ -997,7 +997,7 @@ orderId | integer | Yes | Created trade order identifier
 Method for stop order creation.
 
 ```shell
-curl "http://example.com/api/v1/createStopOrder"
+curl "https://gate.kickex.com/api/v1/createStopOrder"
   -X POST
   -H "Authorization: meowmeowmeow"
   -H "Content-Type: application/json"
@@ -1014,7 +1014,7 @@ curl "http://example.com/api/v1/createStopOrder"
 
 ### HTTP Request
 
-`POST https://example.com/api/v1/createStopOrder`
+`POST https://gate.kickex.com/api/v1/createStopOrder`
 
 ### Request Parameters
 
@@ -1052,7 +1052,7 @@ Authorization is needed to use these methods.
 Main user data.
 
 ```shell
-curl "http://example.com/api/v1/userInfo"
+curl "https://gate.kickex.com/api/v1/userInfo"
 ```
 
 > The above command returns JSON structured like this:
@@ -1069,7 +1069,7 @@ curl "http://example.com/api/v1/userInfo"
 
 ### HTTP Request
 
-`GET https://example.com/api/v1/userInfo`
+`GET https://gate.kickex.com/api/v1/userInfo`
 
 ### URL Parameters
 
@@ -1089,7 +1089,7 @@ restrictions | integer | Yes | Attribute showing if trading is blocked for the u
 User balance data.
 
 ```shell
-curl "http://example.com/api/v1/user/balance"
+curl "https://gate.kickex.com/api/v1/user/balance"
 ```
 
 > The above command returns JSON structured like this:
@@ -1117,7 +1117,7 @@ curl "http://example.com/api/v1/user/balance"
 
 ### HTTP Request
 
-`GET https://example.com/api/v1/user/balance`
+`GET https://gate.kickex.com/api/v1/user/balance`
 
 ### URL Parameters
 
@@ -1137,7 +1137,7 @@ accountType | string | Yes | Account type:<br/> 2401 - ordinary account <br/> 24
 Method for getting personal deposit address.
 
 ```shell
-curl "http://example.com/api/v1/depositAddresses?currencyName=USDT&chain=ERC20"
+curl "https://gate.kickex.com/api/v1/depositAddresses?currencyName=USDT&chain=ERC20"
 ```
 
 > The above command returns JSON structured like this:
@@ -1153,7 +1153,7 @@ curl "http://example.com/api/v1/depositAddresses?currencyName=USDT&chain=ERC20"
 
 ### HTTP Request
 
-`GET https://example.com/api/v1/depositAddresses?currencyName=USDT&chain=ERC20`
+`GET https://gate.kickex.com/api/v1/depositAddresses?currencyName=USDT&chain=ERC20`
 
 ### URL Parameters
 
@@ -1175,7 +1175,7 @@ address | string | Yes | Address in specified blockchain
 This method provides deposit history.
 
 ```shell
-curl "http://example.com/api/v1/depositHistory?сurrencyName=KICK&startTime=1588015708&endTime=1588024908&status=success"
+curl "https://gate.kickex.com/api/v1/depositHistory?сurrencyName=KICK&startTime=1588015708&endTime=1588024908&status=success"
 ```
 
 > The above command returns JSON structured like this:
@@ -1213,7 +1213,7 @@ curl "http://example.com/api/v1/depositHistory?сurrencyName=KICK&startTime=1588
 
 ### HTTP Request
 
-`GET https://example.com/api/v1/depositHistory?сurrencyName=KICK&startTime=1588015708&endTime=1588024908&status=success`
+`GET https://gate.kickex.com/api/v1/depositHistory?сurrencyName=KICK&startTime=1588015708&endTime=1588024908&status=success`
 
 ### URL Parameters
 
@@ -1243,7 +1243,7 @@ comment | string | No | Comment (if any)
 Method that returns current user's discounts information
 
 ```shell
-curl "http://example.com/api/v1/user/tariff"
+curl "https://gate.kickex.com/api/v1/user/tariff"
 ```
 
 > The above command returns JSON structured like this:
@@ -1270,7 +1270,7 @@ curl "http://example.com/api/v1/user/tariff"
 
 ### HTTP Request
 
-`GET https://example.com/api/v1/user/tariff`
+`GET https://gate.kickex.com/api/v1/user/tariff`
 
 ### URL Parameters
 
@@ -1299,7 +1299,7 @@ discount_details | object | Yes | object containing detailed information regardi
 Method for withdrawal request creation.
 
 ```shell
-curl "http://example.com/api/v1/user/withdraw"
+curl "https://gate.kickex.com/api/v1/user/withdraw"
   -X POST
   -H "Authorization: meowmeowmeow"
   -H "Content-Type: application/json"
@@ -1321,7 +1321,7 @@ curl "http://example.com/api/v1/user/withdraw"
 ### HTTP Request
 
 
-`POST https://example.com/api/v1/user/withdraw`
+`POST https://gate.kickex.com/api/v1/user/withdraw`
 
 ### Request Parameters
 
@@ -1344,7 +1344,7 @@ orderId | integer | Yes | Created trade order identifier
 Method to get withdrawal history.
 
 ```shell
-curl "http://example.com/api/v1/withdrawalHistory?сurrencyName=KICK&startTime=1588015708&endTime=1588024908&status=success"
+curl "https://gate.kickex.com/api/v1/withdrawalHistory?сurrencyName=KICK&startTime=1588015708&endTime=1588024908&status=success"
 ```
 
 > The above command returns JSON structured like this:
@@ -1384,7 +1384,7 @@ curl "http://example.com/api/v1/withdrawalHistory?сurrencyName=KICK&startTime=1
 
 ### HTTP Request
 
-`GET https://example.com/api/v1/withdrawalHistory?сurrencyName=KICK&startTime=1588015708&endTime=1588024908&status=success`
+`GET https://gate.kickex.com/api/v1/withdrawalHistory?сurrencyName=KICK&startTime=1588015708&endTime=1588024908&status=success`
 
 ### URL Parameters
 
@@ -1410,3 +1410,331 @@ createdAt | timestamp | Yes | Database record creation timestamp
 updatedAt | timestamp | Yes | Database record update timestamp
 comment | string | No | Comment (if any)
 chain | string | No | Blockchain short name (required for cryptocurrencies available in several blockchains)
+
+
+# WebSocket endpoint
+
+
+## Common
+
+>Sample request
+
+```json
+{
+    "id": "dsncjksdnc",             // Request identifier
+    "type": "someType",             // Request type
+}
+```
+
+>Sample response (error)
+
+```json
+{
+    "id": "dsncjksdnc",             // Request identifier
+    "error": {                      // 
+        "code": 29000,              // Error code
+        "reason": "Error reason"    // Error description
+    },
+    "dev_error": {                  // Debugger level information
+        "code": 5607,               // Internal error code
+        "reason": "Internal reason" // Internal error description
+    }
+}
+```
+
+>Error (data exceeds limit)
+
+```json
+{
+    "error": {"code": 19008, "reason": "answer is too big"}
+}
+```
+
+WebSocket client should be connected to: [http://gate.kickex.com](http://gate.kickex.com)
+
+Common part of all requests has two required attributes: **id** and **type**. 
+
+**id** is a request identifier, unformatted string generated by the client. Supposed to be unique, the same identifier will be returned in the response. **id** length should be less than 10KB.
+
+**type** is the type of the request.
+
+In case of error server reponse contains only **id** and **error** object with error code and error reason (description). On development environment **dev_error** object is returned.
+
+There is a special error in case when the server answer exceeds internal buffer limit or when client didn't manage to fetch the data. This response doesn't contain **id** field.
+
+Usually getting this response means that one or more messages (including important messages regarding orders or user's balance) were lost.
+
+There is a possibility to extend the buffer limit via the technical support.
+
+If an invalid JSON was sent as a request, the response will contain **ER_MALFORMED_JSON** error and won't contain **id**.
+
+### Gateway status
+
+>Request
+```json
+{
+    "id": "dsncjksdnc",             // Request identifier
+    "type": "status",               // Request type
+}
+```
+
+>Ответ
+
+```json
+{
+    "id": "dsncjksdnc",
+    "accounting": {                 // Accounting connection status
+        "connected": true,
+        "callbacks": 0
+    },
+    "kickid": {                     // KickID Tarantool connection status
+        "connected": true,
+        "callbacks": 0
+    },
+    "statistics": {                 // Statistics connection status
+        "connected": true,
+        "callbacks": 2
+    },
+    "walletbc": {                   // Wallet connection status
+        "status_code": 0,
+        "status": "CONNECTING"
+    }
+}
+```
+
+
+### Ping
+
+Client should be sending the following **ping** to prevent closing the connection from the server. Connection gets closed if the client doesn't send any frames within 1 minute. Instead of **ping** request any other request coud be sent.
+
+>Request
+
+```json
+{
+    "type": "ping",                 // Request type
+}
+```
+
+>Response
+
+```json
+{
+    "pong": 0
+}
+```
+
+
+## Orderbook API
+
+### Get orderbook and subscribe
+
+Responses by subscription.
+
+Every new response is an incremental change of the orderbook. Strings that were changed since the previous update are contained in **bids** and **asks** arrays.
+
+If **total** attribute contains an empty string then the line should be removed from the orderbook. Otherwise the line is added or updated.
+
+>Request
+
+```json
+{
+    "id": "dsncjksdnc",                 	// Request identifier
+    "type": "getOrderBookAndSubscribe",     // Request type
+    "pair": "KICK/ETH"
+}
+```
+
+>Response
+
+```json
+{
+    "id": "dsncjksdnc",                 // Request identifier
+    "bids":[{
+        "price": "152.7",               // Currency pair price
+        "amount": "4545.3",             // Base currency amount
+        "total": "455.22"               // Total (in quote currency)
+    },
+    ...],
+ 
+    "asks": [{
+        "price": "12.7",                // Currency pair price
+        "amount": "485.3",              // Base currency amount
+        "total": "4562.55"              // Total (in quote currency)
+    }
+    ...],
+ 
+    "lastPrice":{
+        "price": "4545,                 // Currency pair price
+        "type": -1/0/1                  // -1 price became lower
+                                        // 0 price didn't change
+                                        // 1 price became higher
+    }
+}
+```	
+
+> Updated data
+
+```json
+{
+    "id": "dihfbeibf",      			// Request identifier
+    "bids":[{
+        "price": "152.7",               // Currency pair price
+        "amount": "4545.3",             // Base currency amount
+        "total": "455.22"               // Total (in quote currency)
+    },
+    ...],
+ 
+    "asks": [{
+        "price": "12.7",                // Currency pair price
+        "amount": "485.3",              // Base currency amount
+        "total": "4562.55"              // Total (in quote currency)
+    },
+    {                                   // Line should be removed from the orderbook. Total is an empty string.
+        "price": "12.7",                // Currency pair price
+        "amount": "NaN",                // Base currency amount
+        "total": ""                     // Total (in quote currency)
+    }
+    ...],
+ 
+    "lastPrice":{
+        "price": "4545,                 // Currency pair price
+        "type": -1/0/1                  // -1 price became lower
+                                        // 0 price didn't change
+                                        // 1 price became higher
+    }
+}```
+
+### Unsubscribe from updates
+
+> Request (unsubscribe)
+
+```json
+{
+    "id": "dsncjksdnc",                 // Request identifier
+    "type": "unsubscribeOrderBook",     // Request type
+}
+```
+
+>Response
+
+```json
+{
+    "id": "dsncjksdnc",                 // Request identifier
+}
+```
+
+## Currency Pairs
+
+### Subscribe 
+
+> Request (subscribe)
+
+```json
+{
+    "id": "dsncjksdnc",             	// Request identifier
+    "type": "getPairsAndSubscribe",     // Request type
+}
+```
+
+>Ответы (по подписке)
+
+```json
+{
+    "id": "dsncjksdnc",             	// Request identifier
+    "pairs" : [
+    {
+        "baseCurrency": "ETH",          // Base currency
+        "quoteCurrency": "BTC",         // Quote currency
+        "price": "228.5698565",         // Currency pair price
+        "price24hChange": "-1.5",       // Price change during last 24 hours
+        "volume24hChange": "1258.55",   // Volume change during last 24 hours (in quote currency)
+        "amount24hChange": "45.55",     // Amount change during last 24 hours (in base currency)
+        ?"lowPrice24h": "220.0",        // Lowest price during last 24 hours
+        ?"highPrice24h": "230.0",       // Highest price during last 24 hours
+        "priceScale": 8,                // Order price precision
+        "quantityScale": 4,             // Order quantity precision
+        "volumeScale": 7,               // Order volume precision
+        ?"minQuantity": "0.0001",       // Minimum quantity
+        ?"minVolume": "0.0001",         // Minimum volume
+        "state": 1                      // State
+                                        // DRAFT    = 1, -- 1
+                                        // REJECTED = 2, -- 2
+                                        // BLOCKED  = 3, -- 3
+                                        // COMMITED = 4  -- 4
+ 
+    }
+    , ... ]
+}
+```
+
+### Unsubscribe
+
+>Request (unsubscribe)
+
+```json
+{
+    "id": "dsncjksdnc",                 // Request identifier
+    "type": "unsubscribePairs",         // Request type
+}
+```
+
+>Response
+
+```
+{
+    "id": "dsncjksdnc",                 // Request identifier
+}
+```
+
+
+## Trade history for currency pair
+
+### Subscribe
+
+>Request (subscribe)
+
+```json
+{
+    "id": "dsncjksdnc",                 // Request identifier
+    "type": "getHistoryAndSubscribe",   // Request type
+    "pair": "KICK/ETH",                 // Currency pair identifier
+}
+```
+
+>Response
+
+```json
+{
+    "id": "dsncjksdnc", 			// Request identifier
+    "history": [{
+        price: 455.55,              // Currency pair price
+        amount: 228.1488,           // Base currency amount
+        timestamp: 156454565645,    // Trade timestamp
+        type: "sell/buy" },         // Trade type (sell/buy)
+        ...
+    ]
+}
+```
+
+First response contains full list of latest deals, the following responses contain incremental updates.
+
+
+### Unsubscribe
+
+> Request unsubscribe
+
+```json
+{
+    "id": "dsncjlksdnc",                 // Request identifier
+    "type": "unsubscribeHistory",       // Request type
+}
+```
+
+>Ответ
+
+```json
+{
+    "id": "dsncjksdnc",                 // Request identifier
+}
+```
+
